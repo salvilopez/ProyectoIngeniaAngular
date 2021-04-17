@@ -1,0 +1,33 @@
+<section>
+    <form [formGroup]="loginForm" (submit)="login()" class="card-login-content">
+        <div class="inputs-container">
+            <div class="input-container-username">
+                <div class="text-email">
+                    <span>Email</span>
+                </div>
+                <input class="input-username" formControlName="email" />
+
+            </div>
+
+            <div class="password-container">
+                <div class="input-container-password">
+                    <div class="text-password">
+                        <span>Password</span>
+                    </div>
+                    <input class="input-password" formControlName="password" />
+
+                </div>
+            </div>
+        </div>
+        <div class="btn-container-inicio-sesion">
+            <div>
+                <div class="text-nuevo-usuario">
+                    Nuevo usuario? <a [routerLink]="['/registro']">Crear Cuenta</a>
+                    <button class="btn-inicio-sesion">
+            <div>Inicio sesión</div>
+          </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
