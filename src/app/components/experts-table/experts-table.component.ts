@@ -24,7 +24,7 @@ export interface UserData {
 export class ExpertsTableComponent implements AfterViewInit , OnInit
  {
   displayedColumns: string[] = ['nombre', 'estado', 'etiquetas', 'puntuacion'];
-  dataSource: MatTableDataSource<Expert>;
+  dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -45,8 +45,16 @@ export class ExpertsTableComponent implements AfterViewInit , OnInit
   }
 
   ngDoCheck(): void {
-    alert(this.dataSource.data[0].nombre)
-this.dataSource=this.listExpert ;
+
+    let body:UserData = {
+      nombre: "ffffff",
+      estado: "ffffff",
+      etiquetas: "ffffff",
+      puntuacion: 5,
+    };
+
+  body;
+
 
 
   }

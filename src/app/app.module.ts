@@ -27,11 +27,15 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ExpertsTableComponent } from './components/experts-table/experts-table.component';
 import { TagsTableComponent } from './components/tags-table/tags-table.component';
 import { CommonModule } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
+import { NavComponent } from './components/nav/nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 
 
@@ -48,9 +52,11 @@ import { MatSortModule } from '@angular/material/sort';
     RegistroComponent,
     ExpertsListComponent,
     TagsListComponent,
-    NavBarComponent,
+
     ExpertsTableComponent,
     TagsTableComponent,
+    NavComponent,
+
 
 
   ],
@@ -77,6 +83,12 @@ import { MatSortModule } from '@angular/material/sort';
     MatMenuModule,
 
     MatSortModule,
+
+    MatToolbarModule,
+
+    MatSidenavModule,
+
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
