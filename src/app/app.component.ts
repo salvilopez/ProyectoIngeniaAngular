@@ -1,23 +1,40 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent  implements DoCheck, OnDestroy {
   title = 'ProyectoIngenia';
-  routerUrl:any;
-  constructor(public router: Router){
-
-
-
+  routerUrl: boolean = false;
+  constructor(public router: Router) {}
+  ngOnDestroy(): void {
+    this.routerUrl =this.mostrarNav();
+  }
+  ngDoCheck(): void {
+    this.routerUrl =this.mostrarNav();
   }
 
-checkUrllogin():boolean {
-  if(this.router.url === '/expertos'||this.router.url === '/etiquetas') return false;
+  mostrarNav(): boolean {
+    switch (this.router.url) {
 
-  return true;
-}
+      case '/expertos':
+        return true;
+        break;
+      case '/etiquetas':
+        return true;
+        break;
+      case '/login':
+        return false;
+        break;
+      case '/registro':
+        return false;
+        break;
+      default:
+        return false;
+        break;
+    }
+  }
 }
