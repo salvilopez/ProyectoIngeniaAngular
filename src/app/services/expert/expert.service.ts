@@ -13,21 +13,21 @@ export class ExpertService {
 
 
 
-  getAllExperts(expertRequest:ExpertRequest): Observable<Expert[]> {
+  getAllExperts(expertRequest:ExpertRequest): Observable<Object[]> {
 
-     if (expertRequest.estado!=undefined)
+     if (expertRequest.estado!=="")
          return this.http.get<Expert[]>('http://localhost:8082/api/expertos?nombre='+expertRequest.nombre+"&pagina="+expertRequest.pagina+"&limite="+expertRequest.limite);
 
-     if (expertRequest.pagina!=undefined)
+     if (expertRequest.modalidad!=="")
          return this.http.get<Expert[]>('http://localhost:8082/api/expertos?modalidad='+expertRequest.modalidad+"&pagina="+expertRequest.pagina+"&limite="+expertRequest.limite);
 
-     if (expertRequest.estado!=undefined)
+     if (expertRequest.estado!=="")
           return this.http.get<Expert[]>('http://localhost:8082/api/expertos?estado='+expertRequest.estado+"&pagina="+expertRequest.pagina+"&limite="+expertRequest.limite);
 
    //  if (expertRequest.estado!=undefined)
    //      return this.http.get<Expert[]>('http://localhost:8082/api/expertos?estado='+expertRequest.etiqueta+"&pagina="+expertRequest.pagina+"&limite="+expertRequest.limite);
   //  if (expertRequest.estado!=undefined)
    //      return this.http.get<Expert[]>('http://localhost:8082/api/expertos?id='+expertRequest.id);
-          return this.http.get<Expert[]>('http://localhost:8082/api/expertos&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+          return this.http.get<Expert[]>('http://localhost:8082/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 }

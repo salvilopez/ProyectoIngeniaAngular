@@ -11,8 +11,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
-
-
+import{MatTableModule}from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -29,6 +30,9 @@ import { TagsListComponent } from './views/tags-list/tags-list.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ExpertsTableComponent } from './components/experts-table/experts-table.component';
 import { TagsTableComponent } from './components/tags-table/tags-table.component';
+import { CommonModule } from '@angular/common';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 
@@ -46,7 +50,9 @@ import { TagsTableComponent } from './components/tags-table/tags-table.component
     TagsListComponent,
     NavBarComponent,
     ExpertsTableComponent,
-    TagsTableComponent
+    TagsTableComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,16 @@ import { TagsTableComponent } from './components/tags-table/tags-table.component
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+
+    CommonModule,
+
+    MatMenuModule,
+
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
