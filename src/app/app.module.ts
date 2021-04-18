@@ -36,6 +36,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 import { ExpertDataTableComponent } from './components/expert-data-table/expert-data-table.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { MatInputModule } from '@angular/material/input';
 
@@ -87,7 +88,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-
+    MatChipsModule,
 
   ],
   providers: [],

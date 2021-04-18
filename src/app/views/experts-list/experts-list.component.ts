@@ -11,7 +11,6 @@ import {ExpertService} from 'src/app/services/expert/expert.service'
   styleUrls: ['./experts-list.component.scss']
 })
 export class ExpertsListComponent implements OnInit {
-  listaExpertTable:ExpertTable[]=[];
   expertList:any[]=[]
   expertSubscription: Subscription = new Subscription();
   expertRequest:ExpertRequest=new ExpertRequest(0,0,"","","");
@@ -28,12 +27,6 @@ this.getExperts();
 getExperts(){
   this.expertSubscription=this.expertsService.getAllExperts(this.expertRequest).subscribe((response)=>{
     this.expertList=response;
-
-      for (let index = 0; index < this.expertList.length; index++) {
-        this.listaExpertTable.push(new ExpertTable(this.expertList[index].nombre,this.expertList[index].estado,this.expertList[index].puntuacion,this.expertList[index].tagList) )
-      }
-
-
 
 
 

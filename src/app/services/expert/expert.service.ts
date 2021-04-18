@@ -15,7 +15,7 @@ export class ExpertService {
 
   getAllExperts(expertRequest:ExpertRequest): Observable<Object[]> {
 
-     if (expertRequest.estado!=="")
+     if (expertRequest.nombre!=="")
          return this.http.get<Expert[]>('http://localhost:8082/api/expertos?nombre='+expertRequest.nombre+"&pagina="+expertRequest.pagina+"&limite="+expertRequest.limite);
 
      if (expertRequest.modalidad!=="")
