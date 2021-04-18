@@ -21,13 +21,11 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { ExpertsPageComponent } from './pages/experts-page/experts-page.component';
 import { TagsPageComponent } from './pages/tags-page/tags-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
-import { ExpertsTableComponent } from './components/experts-table/experts-table.component';
 import { TagsTableComponent } from './components/tags-table/tags-table.component';
 import { CommonModule } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
@@ -35,6 +33,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
+import { ExpertDataTableComponent } from './components/expert-data-table/expert-data-table.component';
 
 
 
@@ -46,16 +46,15 @@ import { MatListModule } from '@angular/material/list';
     LoginPageComponent,
     RegisterPageComponent,
     NotFoundPageComponent,
-    ExpertsPageComponent,
     TagsPageComponent,
     LoginComponent,
     RegistroComponent,
     ExpertsListComponent,
     TagsListComponent,
-
-    ExpertsTableComponent,
+    ExpertPageComponent,
     TagsTableComponent,
     NavComponent,
+    ExpertDataTableComponent,
 
 
 

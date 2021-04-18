@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent  {
 
   routerUrl: boolean = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -20,9 +20,8 @@ export class NavComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,public router: Router, public authService:AuthService) {}
-  ngOnInit(): void {
-    this.routerUrl =this.mostrarNav();
-  }
+
+
 
   mostrarNav(): boolean {
     switch (this.router.url) {

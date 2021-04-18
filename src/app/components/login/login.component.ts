@@ -39,15 +39,15 @@ export class LoginComponent implements OnInit {
         (response:UserResponse) => {
           console.log(response)
           if (response.jwt) {
-         //   this.snackBar.open(
-        //      'Login realizado con exito',
-        //      `Token: ${response.jwt}`,
+           this.snackBar.open(
+              'Login realizado con exito',
+            "",
               {
-      //          duration: 2000,
-     //           horizontalPosition: 'center',
-      //          verticalPosition: 'top',
+              duration: 2000,
+               horizontalPosition: 'center',
+              verticalPosition: 'top',
               }
-     //       );
+            );
             sessionStorage.setItem('Token',"Jwt =  "+response.jwt);
             localStorage.setItem('username', user.email);
             this.authService.setLoggedIn(true);

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpertsPageComponent } from './experts-page.component';
+import { ExpertPageComponent } from './expert-page.component';
 
-describe('ExpertsPageComponent', () => {
-  let component: ExpertsPageComponent;
-  let fixture: ComponentFixture<ExpertsPageComponent>;
+describe('ExpertPageComponent', () => {
+  let component: ExpertPageComponent;
+  let fixture: ComponentFixture<ExpertPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpertsPageComponent ]
+      declarations: [ ExpertPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpertsPageComponent);
+    fixture = TestBed.createComponent(ExpertPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
