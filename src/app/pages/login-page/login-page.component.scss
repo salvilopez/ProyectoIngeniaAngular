@@ -1,0 +1,35 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.parteDerecha {
+    /* Frame 945 */
+    /* Auto Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    left: 792px;
+    top: 0px;
+}
+
+.parteIzquierda {
+    /* Frame 946 */
+    /* Auto Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    width: 45%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: radial-gradient(109.66% 112.15% at -1.89% -1.44%, #FFE81D 0%, #00D1C5 100%);
+}

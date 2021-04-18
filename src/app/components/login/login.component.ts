@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             }
           );
           this.authService.setLoggedIn(false);
-          sessionStorage.removeItem('username');
+          sessionStorage.removeItem('Token')
         }
       );
     } else {

@@ -1,1 +1,22 @@
-<p>registro works!</p>
+<main>
+    <div id="registro">
+        <h1>Register Page : </h1>
+        <!--   <h4>{{ registerForm.value | json }}</h4>-->
+        <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
+
+            <input formControlName="email" required/>
+
+
+
+
+            <input formControlName="password" required/>
+
+
+
+            <div>
+                <button [disabled]="registerForm.invalid" color="accent" type="submit">Register</button>
+                <button color="warning" [routerLink]="['/login']">Go To Login Page</button>
+            </div>
+        </form>
+    </div>
+</main>
