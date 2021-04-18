@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
@@ -35,8 +36,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 import { ExpertDataTableComponent } from './components/expert-data-table/expert-data-table.component';
-import {MatChipsModule} from '@angular/material/chips';
 
+import { MatInputModule } from '@angular/material/input';
+
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -46,21 +49,20 @@ import {MatChipsModule} from '@angular/material/chips';
     LoginPageComponent,
     RegisterPageComponent,
     NotFoundPageComponent,
+    ExpertPageComponent,
     TagsPageComponent,
     LoginComponent,
     RegistroComponent,
     ExpertsListComponent,
     TagsListComponent,
-    ExpertPageComponent,
+    ExpertDataTableComponent,
     TagsTableComponent,
     NavComponent,
-    ExpertDataTableComponent,
 
 
 
   ],
   imports: [
-    DragDropModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -77,18 +79,16 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
-    MatChipsModule,
+    MatInputModule,
     CommonModule,
-
+    MatSelectModule,
     MatMenuModule,
-
     MatSortModule,
-
     MatToolbarModule,
-
     MatSidenavModule,
-
     MatListModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
