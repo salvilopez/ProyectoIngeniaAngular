@@ -1,37 +1,73 @@
-import { AfterViewInit, Component, ViewChild ,Input} from '@angular/core';
+
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { AfterViewInit, Component, DoCheck, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { ExpertTable } from 'src/app/models/expert/expert-table.model';
 import { Expert } from 'src/app/models/expert/expert.model';
-import { ExpertDataTableDataSource, ExpertDataTableItem } from './expert-data-table-datasource';
+
 
 @Component({
   selector: 'app-expert-data-table',
   templateUrl: './expert-data-table.component.html',
   styleUrls: ['./expert-data-table.component.scss']
 })
-export class ExpertDataTableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ExpertRequest>;
-  @Input() expertList:any=[];
-  dataSource: ExpertDataTableDataSource;
+export class ExpertDataTableComponent  implements AfterViewInit,OnInit {
+@Input() expertList:Expert[]=[]
+listaExpertTable:ExpertTable[]=[];
+  public displayedColumns = ['nombre', 'estado', 'etiquetas', 'valoracion'
+];
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
-
+  public dataSource = new MatTableDataSource<ExpertTable>();
   constructor() {
-    this.dataSource = new ExpertDataTableDataSource();
-  }
 
+
+
+
+   }
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-  }
-}
-function input() {
-  throw new Error('Function not implemented.');
-}
+this.dataSource.data= this.listaExpertTable;
 
+  }
+  ngDoCheck(): void {
+    this.listaExpertTable=[];
+    for (let index = 0; index < this.expertList.length; index++) {
+
+      this.listaExpertTable.push(new ExpertTable(this.expertList[index].nombre,this.expertList[index].estado,this.expertList[index].puntuacion,this.expertList[index].tagList) )
+    }
+    this.dataSource.data= this.listaExpertTable;
+
+
+    console.log(this.dataSource.data)
+
+  }
+  ngOnInit(): void {
+    for (let index = 0; index < this.expertList.length; index++) {
+      this.listaExpertTable.push(new ExpertTable(this.expertList[index].nombre,this.expertList[index].estado,this.expertList[index].puntuacion,this.expertList[index].tagList) )
+    }
+
+  }
+
+  public redirectToDetails = (id: string) => {
+
+  }
+  public redirectToUpdate = (id: string) => {
+
+  }
+  public redirectToDelete = (id: string) => {
+
+  }
+  //drop(event: CdkDragDrop<ExpertTable[]>) {
+  //  moveItemInArray(this.vegetables, event.previousIndex, event.currentIndex);
+  //}
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+}

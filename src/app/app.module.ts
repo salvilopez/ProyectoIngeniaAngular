@@ -16,7 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
@@ -35,7 +35,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 import { ExpertDataTableComponent } from './components/expert-data-table/expert-data-table.component';
-
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -60,6 +60,7 @@ import { ExpertDataTableComponent } from './components/expert-data-table/expert-
 
   ],
   imports: [
+    DragDropModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -76,7 +77,7 @@ import { ExpertDataTableComponent } from './components/expert-data-table/expert-
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
-
+    MatChipsModule,
     CommonModule,
 
     MatMenuModule,
