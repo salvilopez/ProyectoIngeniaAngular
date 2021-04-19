@@ -37,18 +37,6 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   tagRequest: TagRequest = new TagRequest('', 0, 0);
 
 
-  @Output() usuarioSeleccionado: EventEmitter<Expert>= new EventEmitter();
-
-  verDetallesUsuario(event:any) {
-    console.log(event);
-    this.usuarioSeleccionado.emit(event)
-
-  }
-
-
-
-
-
   constructor(
     private expertsService: ExpertService,
     private tagsService: TagsService

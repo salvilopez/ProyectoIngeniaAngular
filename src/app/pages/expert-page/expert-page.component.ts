@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpertPageComponent implements OnInit {
 
+  tamlistaExpert:number=0;
   constructor() { }
 
   ngOnInit(): void {
@@ -14,7 +16,5 @@ export class ExpertPageComponent implements OnInit {
   }
 
 
-  procesaPropagar(event:any) {
-    alert(event)
-  }
+
 }

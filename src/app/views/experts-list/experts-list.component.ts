@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
@@ -14,6 +14,7 @@ export class ExpertsListComponent implements OnInit, OnDestroy {
   expertList:any[]=[]
   expertSubscription: Subscription = new Subscription();
   expertRequest:ExpertRequest=new ExpertRequest(0,0,"","","",0);
+
   constructor(private expertsService:ExpertService,  private snackBar: MatSnackBar,) {
 
 
@@ -25,6 +26,7 @@ export class ExpertsListComponent implements OnInit, OnDestroy {
 this.getExperts();
 
   }
+
 getExperts(){
   this.expertSubscription=this.expertsService.getAllExperts(this.expertRequest).subscribe((response)=>{
     this.expertList=response;

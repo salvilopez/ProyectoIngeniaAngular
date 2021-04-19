@@ -6,7 +6,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,32 +15,49 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ProyectoIngenia';
-  routerUrl: boolean = false;
+  routerUrlEtiqueta: boolean = false;
+  routerUrlExperto: boolean = false;
   constructor(public router: Router, public activatedRoute: ActivatedRoute) {}
 
   mostrarNav(): boolean {
-    switch (this.router.url) {
-      case '/expertos':
-        return true;
-        break;
-      case '/etiquetas':
-        return true;
-        break;
-      case '/expertos/:id':
-        return true;
-        break;
-      case '/etiquetas/:id':
-        return true;
-        break;
-      case '/login':
-        return false;
-        break;
-      case '/registro':
-        return false;
-        break;
-      default:
-        return false;
-        break;
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        //console.log(e.url);
+
+        this.routerUrlExperto = e.url.includes('expertos/');
+        this.routerUrlEtiqueta = e.url.includes('etiquetas/');
+      }
+    });
+
+    if (!this.routerUrlExperto) {
+      switch (this.router.url) {
+        case '/expertos':
+          return true;
+          break;
+        case '/etiquetas':
+          return true;
+          break;
+        case '/expertos/**':
+          return true;
+          break;
+        case '/etiquetas/**':
+          return true;
+          break;
+        case '/login':
+          return false;
+          break;
+        case '/registro':
+          return false;
+          break;
+        default:
+          return false;
+          break;
+      }
+    } else if (this.routerUrlExperto) {
+      return this.routerUrlExperto;
+    } else if (this.routerUrlExperto) {
+      return this.routerUrlEtiqueta;
     }
+    return false;
   }
 }

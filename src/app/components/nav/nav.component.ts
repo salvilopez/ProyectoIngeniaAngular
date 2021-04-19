@@ -12,6 +12,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class NavComponent {
   routerUrl: boolean = true;
+  routerUrlEtiqueta: boolean = false;
+  routerUrlExperto: boolean = false;
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -29,7 +32,13 @@ export class NavComponent {
       case '/etiquetas':
         return true;
         break;
+      case '/etiquetas/**':
+        return true;
+        break;
       case '/expertos':
+        return false;
+        break;
+      case '/expertos/**':
         return false;
         break;
       default:
@@ -39,28 +48,35 @@ export class NavComponent {
   }
 
   mostrarNav(): boolean {
-    switch (this.router.url) {
-      case '/expertos':
-        return true;
-        break;
-      case '/etiquetas':
-        return true;
-        break;
-      case '/expertos/:id':
-        return true;
-        break;
-      case '/etiquetas/:id':
-        return true;
-        break;
-      case '/login':
-        return false;
-        break;
-      case '/registro':
-        return false;
-        break;
-      default:
-        return false;
-        break;
+    if (!this.routerUrlExperto) {
+      switch (this.router.url) {
+        case '/expertos':
+          return true;
+          break;
+        case '/etiquetas':
+          return true;
+          break;
+        case '/expertos/**':
+          return true;
+          break;
+        case '/etiquetas/**':
+          return true;
+          break;
+        case '/login':
+          return false;
+          break;
+        case '/registro':
+          return false;
+          break;
+        default:
+          return false;
+          break;
+      }
+    } else if (this.routerUrlExperto) {
+      return this.routerUrlExperto;
+    } else if (this.routerUrlExperto) {
+      return this.routerUrlEtiqueta;
     }
+    return false;
   }
 }
