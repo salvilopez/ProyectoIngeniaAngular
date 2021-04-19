@@ -10,6 +10,11 @@ export class ExpertPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+
+  procesaPropagar(event:any) {
+    alert(event)
+  }
 }

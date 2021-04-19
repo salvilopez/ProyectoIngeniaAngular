@@ -8,11 +8,17 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar>
+        <mat-toolbar *ngIf="(pagActisEtiquetasPage())">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <span>ProyectoIngenia</span>
+            <h1>Lista de Etiquetas</h1>
+        </mat-toolbar>
+        <mat-toolbar *ngIf="(!pagActisEtiquetasPage())">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+            <h2>Lista de Expertos</h2>
         </mat-toolbar>
         <section class="">
             <router-outlet *ngIf="mostrarNav()"></router-outlet>

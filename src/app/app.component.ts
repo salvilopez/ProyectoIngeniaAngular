@@ -1,4 +1,11 @@
-import { Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,21 +13,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent  {
-
-
+export class AppComponent {
   title = 'ProyectoIngenia';
   routerUrl: boolean = false;
-  constructor(public router: Router,public activatedRoute:ActivatedRoute) {}
+  constructor(public router: Router, public activatedRoute: ActivatedRoute) {}
 
   mostrarNav(): boolean {
-
     switch (this.router.url) {
-
       case '/expertos':
         return true;
         break;
       case '/etiquetas':
+        return true;
+        break;
+      case '/expertos/:id':
+        return true;
+        break;
+      case '/etiquetas/:id':
         return true;
         break;
       case '/login':

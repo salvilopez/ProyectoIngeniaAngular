@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import {
   AfterViewInit,
   Component,
@@ -34,6 +35,20 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   expertAllSubscription = new Subscription();
   expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
   tagRequest: TagRequest = new TagRequest('', 0, 0);
+
+
+  @Output() usuarioSeleccionado: EventEmitter<Expert>= new EventEmitter();
+
+  verDetallesUsuario(event:any) {
+    console.log(event);
+    this.usuarioSeleccionado.emit(event)
+
+  }
+
+
+
+
+
   constructor(
     private expertsService: ExpertService,
     private tagsService: TagsService

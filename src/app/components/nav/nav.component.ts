@@ -8,20 +8,35 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent  {
-
+export class NavComponent {
   routerUrl: boolean = true;
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,public router: Router, public authService:AuthService) {}
-
-
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public router: Router,
+    public authService: AuthService
+  ) {}
+  pagActisEtiquetasPage(): boolean {
+    switch (this.router.url) {
+      case '/etiquetas':
+        return true;
+        break;
+      case '/expertos':
+        return false;
+        break;
+      default:
+        return false;
+        break;
+    }
+  }
 
   mostrarNav(): boolean {
     switch (this.router.url) {
@@ -29,6 +44,12 @@ export class NavComponent  {
         return true;
         break;
       case '/etiquetas':
+        return true;
+        break;
+      case '/expertos/:id':
+        return true;
+        break;
+      case '/etiquetas/:id':
         return true;
         break;
       case '/login':
