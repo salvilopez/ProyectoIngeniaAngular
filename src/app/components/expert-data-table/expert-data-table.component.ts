@@ -34,7 +34,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   expertSubscription: Subscription = new Subscription();
   expertAllSubscription = new Subscription();
   expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
-  tagRequest: TagRequest = new TagRequest('', 0, 0);
+  tagRequest: TagRequest = new TagRequest('', 0, 0,"", new Date());
 
 
   constructor(
@@ -48,7 +48,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(this.listaExpertTable);
   }
   ngOnInit(): void {
-    console.log(this.listaExpertTable);
+   this.listaExpertTable
   }
   ngDoCheck(): void {
     this.dataSource = this.listaExpertTable;
@@ -118,7 +118,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   applyFilterByEtiquetas(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.tagRequest.nombre = filterValue;
-    console.log(filterValue);
+    filterValue
     this.expertSubscription = this.tagsService
       .getAllTagsByName(this.tagRequest)
       .subscribe((result: Tag[]) => {

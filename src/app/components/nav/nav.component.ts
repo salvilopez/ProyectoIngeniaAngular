@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -31,6 +31,15 @@ export class NavComponent implements DoCheck {
   ngDoCheck(): void {
     this.totalExper=localStorage.getItem('totalExpert');
     this.totalTags=localStorage.getItem('totalTags');
+
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        //console.log(e.url);
+
+        this.routerUrlExperto = e.url.includes('expertos/');
+        this.routerUrlEtiqueta = e.url.includes('etiquetas/');
+      }
+    });
   }
 
 
@@ -55,6 +64,15 @@ export class NavComponent implements DoCheck {
   }
 
   mostrarNav(): boolean {
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        //console.log(e.url);
+
+        this.routerUrlExperto = e.url.includes('expertos/');
+        this.routerUrlEtiqueta = e.url.includes('etiquetas/');
+      }
+    });
+
     if (!this.routerUrlExperto) {
       switch (this.router.url) {
         case '/expertos':
@@ -76,7 +94,7 @@ export class NavComponent implements DoCheck {
           return false;
           break;
         default:
-          return false;
+          return true;
           break;
       }
     } else if (this.routerUrlExperto) {
@@ -86,4 +104,6 @@ export class NavComponent implements DoCheck {
     }
     return false;
   }
+
+
 }

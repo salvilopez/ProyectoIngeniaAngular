@@ -24,12 +24,12 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
 
-                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
+                        <input type="text" (keyup)="applyFilterByCreador($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
                         <p>CREADOR</p>
                     </div>
                 </th>
                 <td mat-cell *matCellDef="let row">
-                    {{row.expertList[0].nombre}}
+                    {{row.creador}}
 
                 </td>
             </ng-container>
@@ -38,7 +38,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
 
-                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
+                        <input type="date" (change)="applyFilterByFechaCrea($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
                         <p>Fecha Creacion</p>
                     </div>
                 </th>

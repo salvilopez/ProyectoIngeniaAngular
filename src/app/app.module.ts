@@ -27,7 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { NavComponent } from './components/nav/nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -36,11 +36,17 @@ import { MatListModule } from '@angular/material/list';
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 import { ExpertDataTableComponent } from './components/expert-data-table/expert-data-table.component';
 import {MatChipsModule} from '@angular/material/chips';
-
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
-
 import { MatSelectModule } from '@angular/material/select';
 import { TagDataTableComponent } from './components/tag-data-table/tag-data-table.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ExpertDetailsPageComponent } from './pages/expert-details-page/expert-details-page.component';
+import { TagDetailsPageComponent } from './pages/tag-details-page/tag-details-page.component';
+import { GeneralDataComponent } from './components/general-data/general-data.component';
+import { ObservationsComponent } from './components/observations/observations.component';
+
+///////////////////////////////////////////////////////////////////////
 
 
 
@@ -59,9 +65,10 @@ import { TagDataTableComponent } from './components/tag-data-table/tag-data-tabl
     ExpertDataTableComponent,
     NavComponent,
     TagDataTableComponent,
-
-
-
+    ExpertDetailsPageComponent,
+    TagDetailsPageComponent,
+    GeneralDataComponent,
+    ObservationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +96,31 @@ import { TagDataTableComponent } from './components/tag-data-table/tag-data-tabl
     MatSidenavModule,
     MatListModule,
     MatChipsModule,
+    MatTabsModule,
+    MatNativeDateModule,
+
+    MatButtonModule,
+
+    MatCardModule,
+
+    MatChipsModule,
+
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+
+    MatSelectModule,
+    MatSidenavModule,
+
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
 
   ],
   providers: [],

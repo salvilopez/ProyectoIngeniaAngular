@@ -1,1 +1,35 @@
-<p>expert-details-page works!</p>
+<main class="d-flex flex-column m-5">
+    <div *ngFor='let item of this.expertDet' class="mb-5 d-flex flex-row flex-end space-between">
+        <div><img src="imagen1"><span></span></div>
+
+        {{item.nombre}}
+
+
+
+
+        <div></div>
+
+
+
+
+
+    </div>
+    <mat-tab-group class="mt-5">
+        #docregion mat-tab-content
+        <mat-tab label="Datos generales">
+            <ng-template matTabContent>
+                <app-general-data [expertDetail]="expertDet"></app-general-data>
+            </ng-template>
+        </mat-tab>
+        #enddocregion mat-tab-content
+        <mat-tab label="Observaciones">
+            <ng-template matTabContent>
+                <app-observations [expertDetail]="expertDet"></app-observations>
+            </ng-template>
+        </mat-tab>
+
+    </mat-tab-group>-->
+
+
+
+</main>

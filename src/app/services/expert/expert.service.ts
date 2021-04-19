@@ -29,7 +29,10 @@ export class ExpertService {
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
+  getExpertsById(num:number): Observable<Expert> {
 
+    return this.http.get<Expert>('http://localhost:8082/api/expertos/'+num);
+  }
   getAllExpertsByName(expertRequest:ExpertRequest): Observable<Expert[]> {
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10

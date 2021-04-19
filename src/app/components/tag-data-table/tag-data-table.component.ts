@@ -20,7 +20,7 @@ export class TagDataTableComponent implements DoCheck {
   @Input() listaTagTable: any = [];
 
   tagSubscription: Subscription = new Subscription();;
-  tagRequest: TagRequest = new TagRequest('',0, 0,);
+  tagRequest: TagRequest = new TagRequest('',0, 0,"",new Date());
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -45,12 +45,30 @@ export class TagDataTableComponent implements DoCheck {
 
 
   applyFilterByName(event: Event) {
-  //  const filterValue = (event.target as HTMLInputElement).value;
-   // this.expertRequest.nombre = filterValue;
-   // this.expertSubscription = this.expertsService
-   //   .getAllExpertsByName(this.expertRequest)
-   //   .subscribe((result) => {
-   //     this.listaExpertTable = result;
-   //   });
+    const filterValue = (event.target as HTMLInputElement).value;
+   this.tagRequest.nombre = filterValue;
+    this.tagSubscription = this.tagsService
+      .getAllTagsByName(this.tagRequest)
+     .subscribe((result) => {
+        this.listaTagTable = result;
+     });
+  }
+  applyFilterByFechaCrea(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+   this.tagRequest.fechaCreacion =new Date(filterValue);
+    this.tagSubscription = this.tagsService
+      .getAllTagbyFeCr(this.tagRequest)
+     .subscribe((result) => {
+        this.listaTagTable = result;
+     });
+  }
+  applyFilterByCreador(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+   this.tagRequest.creador = filterValue;
+    this.tagSubscription = this.tagsService
+      .getAllTagsByCreador(this.tagRequest)
+     .subscribe((result) => {
+        this.listaTagTable = result;
+     });
   }
 }

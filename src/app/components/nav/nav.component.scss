@@ -19,3 +19,21 @@
 mat-sidenav-content {
     overflow-x: hidden;
 }
+
+mat-toolbar {
+    background-color: white;
+    min-height: 100px;
+}
+
+nav {
+    background-color: white;
+}
+
+.breadcrumb {
+    background-color: white;
+    margin-left: 10px;
+}
+
+ol li {
+    font-size: 16px;
+}
