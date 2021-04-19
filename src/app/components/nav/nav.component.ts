@@ -10,11 +10,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent {
+export class NavComponent implements DoCheck {
   routerUrl: boolean = true;
   routerUrlEtiqueta: boolean = false;
   routerUrlExperto: boolean = false;
-
+  totalExper:any = 0;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -27,6 +27,12 @@ export class NavComponent {
     public router: Router,
     public authService: AuthService
   ) {}
+  ngDoCheck(): void {
+    this.totalExper=localStorage.getItem('totalExpert');
+
+  }
+
+
   pagActisEtiquetasPage(): boolean {
     switch (this.router.url) {
       case '/etiquetas':

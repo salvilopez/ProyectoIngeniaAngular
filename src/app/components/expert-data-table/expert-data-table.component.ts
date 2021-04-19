@@ -52,6 +52,9 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   }
   ngDoCheck(): void {
     this.dataSource = this.listaExpertTable;
+
+
+  localStorage.setItem('totalExpert',this.listaExpertTable.length);
   }
 
   ngAfterViewInit() {

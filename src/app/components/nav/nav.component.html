@@ -18,7 +18,11 @@
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-            <h2>Lista de Expertos</h2>
+            <div class="d-flex flex-column">
+                <h2>Lista de Expertos</h2>
+                <span>{{totalExper}} Candidatos</span>
+            </div>
+
         </mat-toolbar>
         <section class="">
             <router-outlet *ngIf="mostrarNav()"></router-outlet>
