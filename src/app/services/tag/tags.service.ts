@@ -12,10 +12,24 @@ export class TagsService {
 
 
 
-  getAllTags(tag:TagRequest): Observable<Tag[]> {
-      if(tag.nombre!==undefined) return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tag.nombre+"&pagina="+tag.pagina+"&limite="+tag.limite);
+  getAllTagsByName(tagrequest:TagRequest): Observable<Tag[]> {
 
-      return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas&pagina='+tag.pagina+"&limite="+tag.limite);
+        //TODO----------------------
+        if(tagrequest.limite===0)tagrequest.limite=10
+        //TODO----------------------
+        if(tagrequest.nombre==undefined)tagrequest.nombre="";
+         console.log(tagrequest)
+         console.log('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
+
+        return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+
+
+  }
+
+  getAllTags(tag:TagRequest): Observable<Tag[]> {
+
+      return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tag.nombre+"&pagina="+tag.pagina+"&limite="+tag.limite);
+
 
   }
 }

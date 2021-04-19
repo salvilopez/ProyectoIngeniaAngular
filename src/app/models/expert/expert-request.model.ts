@@ -1,3 +1,4 @@
+import { Tag } from "../tag/tag.model";
 
 
 export class ExpertRequest {
@@ -6,7 +7,7 @@ export class ExpertRequest {
   nombre: string;
   modalidad: string;
   estado: string;
-  etiqueta:any;
+  etiqueta:Tag[]=[];
   puntuacion: number;
 
   constructor(limite:number, pagina:number, nombre:string, modalidad:string, estado:string,puntuacion:number){

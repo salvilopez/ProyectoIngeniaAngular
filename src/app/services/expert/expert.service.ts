@@ -14,21 +14,20 @@ export class ExpertService {
 
 
   getAllExpertsByValoracion(expertRequest:ExpertRequest): Observable<Expert[]> {
-    console.log(expertRequest.puntuacion)
+
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10
+
+    if(expertRequest.puntuacion===101){
+      return this.getAllExperts(expertRequest);
+  }
     //TODO----------------------
     if (isNaN(expertRequest.puntuacion)) {
       expertRequest.puntuacion=0
     }
 
-
-    console.log(expertRequest.puntuacion)
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
-
-
-
 
 
   getAllExpertsByName(expertRequest:ExpertRequest): Observable<Expert[]> {
@@ -43,26 +42,20 @@ export class ExpertService {
 
 
 
-
-
-
-
-
-
-
   getAllExpertsByestado(expertRequest:ExpertRequest): Observable<Expert[]> {
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10
     //TODO----------------------
-    console.log("peticion")
-    console.log(expertRequest)
+    if(expertRequest.estado==='todos'){
+        return this.getAllExperts(expertRequest);
+    }
+
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?estado='+expertRequest.estado+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
   getAllExpertsByModalidad(expertRequest:ExpertRequest): Observable<Expert[]> {
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10
     //TODO----------------------
-    console.log(expertRequest)
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?modalidad='+expertRequest.modalidad+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
@@ -70,7 +63,6 @@ export class ExpertService {
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10
     //TODO----------------------
-    console.log(expertRequest)
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 

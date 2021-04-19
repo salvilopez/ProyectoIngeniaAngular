@@ -1,7 +1,10 @@
+import { Expert } from "../expert/expert.model";
+
 export class TagRequest {
   nombre: string;
   limite:number;
   pagina:number;
+  expertList:Expert[]=[]
 
 
 

@@ -12,8 +12,10 @@ import { Subscription } from 'rxjs';
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
 import { ExpertTable } from 'src/app/models/expert/expert-table.model';
 import { Expert } from 'src/app/models/expert/expert.model';
+import { TagRequest } from 'src/app/models/tag/tag-request.model';
+import { Tag } from 'src/app/models/tag/tag.model';
 import { ExpertService } from 'src/app/services/expert/expert.service';
-
+import { TagsService } from 'src/app/services/tag/tags.service';
 @Component({
   selector: 'app-expert-data-table',
   templateUrl: './expert-data-table.component.html',
@@ -30,8 +32,12 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
 
   expertSubscription: Subscription = new Subscription();
   expertAllSubscription = new Subscription();
-  expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '',0);
-  constructor(private expertsService: ExpertService) {
+  expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
+  tagRequest: TagRequest = new TagRequest('', 0, 0);
+  constructor(
+    private expertsService: ExpertService,
+    private tagsService: TagsService
+  ) {
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -78,21 +84,9 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
     this.expertSubscription = this.expertsService
       .getAllExpertsByName(this.expertRequest)
       .subscribe((result) => {
-        if (result.length ===0) {
-          this.expertRequest.nombre="";
-          this.expertAllSubscription = this.expertsService
-            .getAllExperts(this.expertRequest)
-            .subscribe((res) => {
-              this.listaExpertTable = res;
-            });
-        } else {
-          this.listaExpertTable = result;
-
-      }
+        this.listaExpertTable = result;
       });
   }
-
-
 
   applyFilterByEstado(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -100,17 +94,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
     this.expertSubscription = this.expertsService
       .getAllExpertsByestado(this.expertRequest)
       .subscribe((result) => {
-        if (result.length ===0) {
-          this.expertRequest.estado="";
-          this.expertAllSubscription = this.expertsService
-            .getAllExperts(this.expertRequest)
-            .subscribe((res) => {
-              this.listaExpertTable = res;
-            });
-        } else {
-          this.listaExpertTable = result;
-
-      }
+        this.listaExpertTable = result;
       });
   }
   applyFilterByValoracion(event: Event) {
@@ -119,20 +103,51 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
     this.expertSubscription = this.expertsService
       .getAllExpertsByValoracion(this.expertRequest)
       .subscribe((result) => {
-        console.log(result);
-        if (result.length ===0) {
-          this.expertRequest.puntuacion=0;
-          this.expertAllSubscription = this.expertsService
-            .getAllExperts(this.expertRequest)
-            .subscribe((res) => {
-              this.listaExpertTable = res;
-            });
-        } else {
-          this.listaExpertTable = result;
-
-      }
+        this.listaExpertTable = result;
       });
   }
+
+
+  //TODO----------------------------
+  applyFilterByEtiquetas(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.tagRequest.nombre = filterValue;
+    console.log(filterValue);
+    this.expertSubscription = this.tagsService
+      .getAllTagsByName(this.tagRequest)
+      .subscribe((result: Tag[]) => {
+        if (result.length !== 0) {
+          this.listaExpertTable =this.tratarTags(result)
+        }
+      });
+  }
+
+
+
+
+  tratarTags(result: any) {
+    let listTag: Tag[] = result;
+    let listExper: Expert[] = [];
+    for (let i = 0; i < listTag.length; i++)
+      for (let j = 0; j < listTag[i].expertList.length; j++) {
+        listExper.push(listTag[i].expertList[j]);
+      }
+
+    let sinRepetidos = listExper.filter(
+      (valorActual, indiceActual, arreglo) => {
+        //Podríamos omitir el return y hacerlo en una línea, pero se vería menos legible
+        return (
+          arreglo.findIndex(
+            (valorDelArreglo) =>
+              JSON.stringify(valorDelArreglo) === JSON.stringify(valorActual)
+          ) === indiceActual
+        );
+      }
+    );
+    return sinRepetidos;
+  }
+
+  //TODO----------------------------
   ngOnDestroy(): void {
     this.expertSubscription.unsubscribe();
     this.expertAllSubscription.unsubscribe();

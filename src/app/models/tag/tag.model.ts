@@ -4,7 +4,7 @@ import { Itag } from './itag.interface';
 export class Tag implements Itag {
   id: number = 0;
   nombre: string;
-  tagList: Expert[] = [];
+  expertList: Expert[] = [];
   constructor(nombre: string) {
     this.nombre = nombre;
   }
