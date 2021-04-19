@@ -8,8 +8,11 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
 import { ExpertTable } from 'src/app/models/expert/expert-table.model';
 import { Expert } from 'src/app/models/expert/expert.model';
+import { ExpertService } from 'src/app/services/expert/expert.service';
 
 @Component({
   selector: 'app-expert-data-table',
@@ -24,7 +27,11 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() listaExpertTable: any = [];
-  constructor() {
+
+  expertSubscription: Subscription = new Subscription();
+  expertAllSubscription = new Subscription();
+  expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '',0);
+  constructor(private expertsService: ExpertService) {
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -64,24 +71,70 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
         return '#D66464';
     }
   }
-  getletraEstado(estado: string): string {
-    switch (estado) {
-      case 'validado':
-        return 'Validado';
-        break;
-      case 'pendiente':
-        return 'Pdte.Validar';
-        break;
-      default:
-        return 'No Validado';
-    }
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  applyFilterByName(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.expertRequest.nombre = filterValue;
+    this.expertSubscription = this.expertsService
+      .getAllExpertsByName(this.expertRequest)
+      .subscribe((result) => {
+        if (result.length ===0) {
+          this.expertRequest.nombre="";
+          this.expertAllSubscription = this.expertsService
+            .getAllExperts(this.expertRequest)
+            .subscribe((res) => {
+              this.listaExpertTable = res;
+            });
+        } else {
+          this.listaExpertTable = result;
+
+      }
+      });
+  }
+
+
+
+  applyFilterByEstado(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.expertRequest.estado = filterValue;
+    this.expertSubscription = this.expertsService
+      .getAllExpertsByestado(this.expertRequest)
+      .subscribe((result) => {
+        if (result.length ===0) {
+          this.expertRequest.estado="";
+          this.expertAllSubscription = this.expertsService
+            .getAllExperts(this.expertRequest)
+            .subscribe((res) => {
+              this.listaExpertTable = res;
+            });
+        } else {
+          this.listaExpertTable = result;
+
+      }
+      });
+  }
+  applyFilterByValoracion(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.expertRequest.puntuacion = parseInt(filterValue);
+    this.expertSubscription = this.expertsService
+      .getAllExpertsByValoracion(this.expertRequest)
+      .subscribe((result) => {
+        console.log(result);
+        if (result.length ===0) {
+          this.expertRequest.puntuacion=0;
+          this.expertAllSubscription = this.expertsService
+            .getAllExperts(this.expertRequest)
+            .subscribe((res) => {
+              this.listaExpertTable = res;
+            });
+        } else {
+          this.listaExpertTable = result;
+
+      }
+      });
+  }
+  ngOnDestroy(): void {
+    this.expertSubscription.unsubscribe();
+    this.expertAllSubscription.unsubscribe();
   }
 }

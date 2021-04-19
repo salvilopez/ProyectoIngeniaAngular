@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
@@ -10,15 +10,16 @@ import {ExpertService} from 'src/app/services/expert/expert.service'
   templateUrl: './experts-list.component.html',
   styleUrls: ['./experts-list.component.scss']
 })
-export class ExpertsListComponent implements OnInit {
+export class ExpertsListComponent implements OnInit, OnDestroy {
   expertList:any[]=[]
   expertSubscription: Subscription = new Subscription();
-  expertRequest:ExpertRequest=new ExpertRequest(0,0,"","","");
+  expertRequest:ExpertRequest=new ExpertRequest(0,0,"","","",0);
   constructor(private expertsService:ExpertService,  private snackBar: MatSnackBar,) {
 
 
 
    }
+
 
   ngOnInit(): void {
 this.getExperts();
@@ -39,5 +40,9 @@ getExperts(){
   });
 
 }
+
+ngOnDestroy(): void {
+  this.expertSubscription.unsubscribe();
+    }
 }
 
