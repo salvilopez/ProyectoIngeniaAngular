@@ -15,6 +15,7 @@ export class NavComponent implements DoCheck {
   routerUrlEtiqueta: boolean = false;
   routerUrlExperto: boolean = false;
   totalExper:any = 0;
+  totalTags:any =0;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -29,7 +30,7 @@ export class NavComponent implements DoCheck {
   ) {}
   ngDoCheck(): void {
     this.totalExper=localStorage.getItem('totalExpert');
-
+    this.totalTags=localStorage.getItem('totalTags');
   }
 
 

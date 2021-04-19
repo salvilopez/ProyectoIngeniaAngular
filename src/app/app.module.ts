@@ -27,7 +27,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
-import { TagsTableComponent } from './components/tags-table/tags-table.component';
 import { CommonModule } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { NavComponent } from './components/nav/nav.component';
@@ -41,6 +40,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatSelectModule } from '@angular/material/select';
+import { TagDataTableComponent } from './components/tag-data-table/tag-data-table.component';
 
 
 
@@ -57,8 +57,8 @@ import { MatSelectModule } from '@angular/material/select';
     ExpertsListComponent,
     TagsListComponent,
     ExpertDataTableComponent,
-    TagsTableComponent,
     NavComponent,
+    TagDataTableComponent,
 
 
 

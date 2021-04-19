@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagsTableComponent } from './tags-table.component';
+import { TagDataTableComponent } from './tag-data-table.component';
 
-describe('TagsTableComponent', () => {
-  let component: TagsTableComponent;
-  let fixture: ComponentFixture<TagsTableComponent>;
+describe('TagDataTableComponent', () => {
+  let component: TagDataTableComponent;
+  let fixture: ComponentFixture<TagDataTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TagsTableComponent ]
+      declarations: [ TagDataTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TagsTableComponent);
+    fixture = TestBed.createComponent(TagDataTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

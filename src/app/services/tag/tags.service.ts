@@ -27,8 +27,10 @@ export class TagsService {
   }
 
   getAllTags(tag:TagRequest): Observable<Tag[]> {
-
-      return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tag.nombre+"&pagina="+tag.pagina+"&limite="+tag.limite);
+    if(tag.pagina===undefined) tag.pagina=0
+    if(tag.limite===undefined) tag.limite=10
+console.log('http://localhost:8082/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite)
+      return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite);
 
 
   }

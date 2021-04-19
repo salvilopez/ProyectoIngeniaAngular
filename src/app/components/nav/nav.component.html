@@ -12,7 +12,10 @@
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <h1>Lista de Etiquetas</h1>
+            <div class="d-flex flex-column">
+                <h2>Lista de Etiquetas</h2>
+                <span>{{totalTags}} Etiquetas</span>
+            </div>
         </mat-toolbar>
         <mat-toolbar *ngIf="(!pagActisEtiquetasPage())">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">

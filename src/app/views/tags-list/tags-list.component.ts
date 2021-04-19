@@ -10,7 +10,7 @@ import { TagsService } from 'src/app/services/tag/tags.service';
   styleUrls: ['./tags-list.component.scss'],
 })
 export class TagsListComponent implements OnInit {
-  TagList: Tag[] = [];
+  tagList: Tag[] = [];
   tagSubscription: Subscription = new Subscription();
   tagResponse: any = {};
   constructor(private tagService: TagsService, private snackBar: MatSnackBar) {}
@@ -23,8 +23,7 @@ export class TagsListComponent implements OnInit {
       .getAllTags(this.tagResponse)
       .subscribe(
         (response) => {
-          this.TagList = response;
-          console.log(this.TagList);
+          this.tagList = response;
         },
         (err) => {
           this.snackBar.open(

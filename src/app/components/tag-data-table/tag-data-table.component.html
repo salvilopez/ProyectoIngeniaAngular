@@ -1,0 +1,62 @@
+<main class="row mt-5 mb-5">
+    <section class="mat-elevation-z8 col-10 offset-1 ">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="etiqueta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="d-flex flex-column">
+
+                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
+                        <p>ETIQUETA</p>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    {{row.nombre}}
+
+
+                </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="creador">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="d-flex flex-column">
+
+                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
+                        <p>CREADOR</p>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    {{row.expertList[0].nombre}}
+
+                </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="fechaCreacion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="d-flex flex-column">
+
+                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm  mr-5 w-100  m-2" placeholder="Buscar por etiqueta" />
+                        <p>Fecha Creacion</p>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.expertList[0].created_at | date}}
+
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter </td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </section>
+</main>
