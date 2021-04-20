@@ -23,7 +23,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { TagsPageComponent } from './pages/tags-page/tags-page.component';
-import { LoginComponent } from './components/general-data/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
