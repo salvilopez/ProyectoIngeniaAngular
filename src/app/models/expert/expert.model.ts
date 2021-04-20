@@ -79,4 +79,5 @@ this.observaciones=observaciones;
 this.origen= origen;
 this.estado= estado;
   }
+
 }

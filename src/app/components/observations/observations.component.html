@@ -3,22 +3,26 @@
 
         <div class="col-12 mt-5">
             <label for="observaciones" class="form-label">Observaciones</label>
-            <input class="form-control form-control-lg" name="observaciones" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
+            <input (change)="actualizarExperto()" [(ngModel)]="this.expDetail.observaciones" class="form-control form-control-lg" name="observaciones" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
         </div>
 
         <div class="col-2  m-0 mt-5">
-            <label for="formFile" class="form-label">Default file input example</label>
-            <select class="custom-select  form-select-lg p-0  w-100 " id="inputGroupSelect01">
-            <option value="otros">Otros</option>
-            <option value="incompetencia">100</option>
-            <option value="formacion">95</option>
-            <option value="90">90</option>
+            <label for="formFile" class="form-label">Motivo de descarte</label>
+
+
+            <select id="motivoDescarte" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.estado_motivo" name="motivoDescarte" class="form-control">
+              <option value="mala acitud" [selected]="this.expDetail.estado_motivo == 'mala acitud'">Mala Actitud</option>
+              <option value="precio alto" [selected]="this.expDetail.estado_motivo == 'precio alto'">Precio Alto</option>
+              <option value="incompetecia" [selected]="this.expDetail.estado_motivo == 'incompetecia'">Incompetencia</option>
+              <!--<option value="{{this.expDetail.estado_motivo}}" *ngIf="this.expDetail.estado_motivo !== 'incompetecia'&&this.expDetail.estado_motivo !== 'precio alto'&&this.expDetail.estado_motivo !== 'mala acitud'">{{this.expDetail.estado_motivo}}</option>-->
+              <option value="otros" [selected]="this.expDetail.estado_motivo == 'otros'">Otros</option>
+
             </select>
         </div>
         <div class="col-8 offset-1 mt-5">
 
             <label for="motivo" class="form-label">Especifica el motivo</label>
-            <input class="form-control form-control-lg" name="motivo" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
+            <input (blur)="actualizarExperto()" *ngIf="this.expDetail.estado_motivo === 'otros'; disabled " [(ngModel)]="motivoNuevo" class="form-control form-control-lg" name="motivo" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
 
         </div>
 

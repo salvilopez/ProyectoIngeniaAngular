@@ -30,7 +30,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() listaExpertTable: any = [];
-
+listaSelect:string[] =[]
   expertSubscription: Subscription = new Subscription();
   expertAllSubscription = new Subscription();
   expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
@@ -48,6 +48,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(this.listaExpertTable);
   }
   ngOnInit(): void {
+this.listaSelect.length=101
    this.listaExpertTable
   }
   ngDoCheck(): void {

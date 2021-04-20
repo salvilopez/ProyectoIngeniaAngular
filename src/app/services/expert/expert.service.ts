@@ -13,6 +13,17 @@ export class ExpertService {
   constructor(private http: HttpClient, ) { }
 
 
+  updateExpert(expert:Expert): Observable<Expert> {
+
+
+
+    console.log("antes del put")
+    console.log(expert)
+    console.log("antes del put")
+    return this.http.put<Expert>('http://localhost:8082/api/expertos',expert);
+
+  }
+
   getAllExpertsByValoracion(expertRequest:ExpertRequest): Observable<Expert[]> {
 
     //TODO----------------------

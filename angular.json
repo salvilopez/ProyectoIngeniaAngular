@@ -76,7 +76,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "ProyectoIngenia:build"
+                        "browserTarget": "ProyectoIngenia:build",
+                        "proxyConfig": "proxy.config.json"
                     },
                     "configurations": {
                         "production": {
