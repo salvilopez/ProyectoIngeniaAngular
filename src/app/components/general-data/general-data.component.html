@@ -1,0 +1,98 @@
+<form>
+    <div class=" col-12 p-0 w-100">
+        <div class="form-group d-flex flex-row row p-0 m-0   justify-content-between">
+            <div class="form-group row d-flex flex-column col-3 -0">
+                <label for="select" class="col-form-label mb-1 mt-1">DISPONIBILIDAD</label>
+                <div class="w-100">
+                    <select id="select" name="select" class="form-control">
+        <option value="manana">Mañanas</option>
+        <option value="tardes">Tardes</option>
+      </select>
+                </div>
+            </div>
+            <div class="form-group row d-flex flex-column col-3 m-0">
+                <label for="estado" class=" col-form-label">ESTADO</label>
+                <div class="w-100">
+                    <select id="estado" name="estado" class="form-control">
+        <option value="pendiente">Pdte. Validar</option>
+        <option value="validado">Validado</option>
+        <option value="todos">Todos</option>
+      </select>
+                </div>
+            </div>
+            <div class="form-group row d-flex flex-column m-0">
+                <label class=" mb-1 mt-1 col-form-label" for="valoracion">VALORACION</label>
+                <div class="w-100">
+                    <input id="valoracion" name="valoracion" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row d-flex flex-column col-3 m-0">
+                <label for="origen" class=" mb-1 mt-1 col-form-label">ORIGEN</label>
+                <div class="w-100">
+                    <select id="origen" name="origen" class="form-control">
+        <option value="busqueda">Busqueda</option>
+      </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row m-0 mt-5">
+
+
+
+            <div class="col-6 m-0 p-0">
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="col-6 m-0 p-0">
+                <div class="form-group row d-flex flex-column mb-5">
+                    <label for="etiquetas" class="col-2  offset-1 col-form-label">ETIQUETAS</label>
+                    <div class="col-10 offset-1">
+                        <input id="etiquetas" name="etiquetas" placeholder="Añadir Etiquetas" type="text" class=" input-group-lg" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                    </div>
+                </div>
+                <div class="col-10 offset-1">
+                    <mat-form-field class="example-chip-list">
+                        <mat-label>Favorite Fruits</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                            <mat-chip *ngFor="let fruit of this.expertDetail.tagList" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                                {{fruit.nombre}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </mat-form-field>
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+</form>

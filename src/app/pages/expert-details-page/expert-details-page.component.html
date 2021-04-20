@@ -1,20 +1,19 @@
 <main class="d-flex flex-column m-5">
-    <div *ngFor='let item of this.expertDet' class="mb-5 d-flex flex-row flex-end space-between">
-        <div><img src="imagen1"><span></span></div>
+    <div class="mb-3 d-flex flex-row  justify-content-between">
+        <div class="d-flex flex-column m-2 justify-content-center"><img src="imagen1"><span></span>
+            <p class="m-2">{{this.expertDet.contacto_email}}</p>
+            <p class="m-2"> nif {{this.expertDet.nif}}</p>
+        </div>
+        <div>
 
-        {{item.nombre}}
-
-
-
-
-        <div></div>
-
-
-
-
-
+            <P class="m-2">CREADO</P>
+            <p class="m-2">{{this.expertDet.created_at | date :'dd-MMM-yyyy h:mm'}}</p>
+            <p class="m-2">{{this.expertDet.updated_at| date :'dd-MMM-yyyy h:mm'}}</p>
+            <P class="m-2">ULTIMO CAMBIO</P>
+        </div>
     </div>
-    <mat-tab-group class="mt-5">
+
+    <mat-tab-group class="mt-3">
         #docregion mat-tab-content
         <mat-tab label="Datos generales">
             <ng-template matTabContent>
@@ -22,14 +21,10 @@
             </ng-template>
         </mat-tab>
         #enddocregion mat-tab-content
-        <mat-tab label="Observaciones">
+        <mat-tab label="Observaciones" color="primary">
             <ng-template matTabContent>
                 <app-observations [expertDetail]="expertDet"></app-observations>
             </ng-template>
         </mat-tab>
-
-    </mat-tab-group>-->
-
-
-
+    </mat-tab-group>
 </main>

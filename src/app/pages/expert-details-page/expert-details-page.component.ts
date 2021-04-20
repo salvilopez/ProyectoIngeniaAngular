@@ -14,7 +14,7 @@ export class ExpertDetailsPageComponent  {
 tabLoadTimes: Date[] = [];
   routerSubscription: Subscription = new Subscription();
   expertSubscription: Subscription = new Subscription();
-  expertDet: any=[];
+  expertDet: any;
   id:number=0;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +38,7 @@ tabLoadTimes: Date[] = [];
     this.expertSubscription = this.expertService
     .getExpertsById(this.id)
     .subscribe((data: Expert) => {
-      this.expertDet.push(data);
+      this.expertDet=data;
       console.log(this.expertDet);
     });
 
