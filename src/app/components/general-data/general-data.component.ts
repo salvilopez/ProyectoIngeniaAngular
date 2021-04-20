@@ -26,7 +26,9 @@ visible = true;
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.expertDetail.tagList.push({name: value.trim()});
+
+      let tag=new Tag(value.trim(),new Date(),"salvi@gmail.com",new Date())
+      this.expertDetail.tagList.push(tag);
     }
 
     // Reset the input value
