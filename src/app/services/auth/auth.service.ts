@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { UserRequest } from 'src/app/models/user/user-request.model';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { User } from 'src/app/models/user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,11 @@ export class AuthService {
 
     return this.http.post('http://localhost:8082/auth/login', body);
   }
+  getbyUsername(username: string): Observable<User> {
 
+
+    return this.http.get<User>('http://localhost:8082/auth/username/'+username);
+  }
   /**
    * Metodo getter de log
    */

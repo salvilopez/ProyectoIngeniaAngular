@@ -25,7 +25,7 @@ export class ObservationsComponent  implements DoCheck {
     }
   }
   actualizarExperto() {
-
+    this.expDetail.update_at=new Date();
     if(this.motivoNuevo!==''){
         this.expDetail.estado_motivo=this.motivoNuevo;
     }

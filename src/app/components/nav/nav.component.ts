@@ -1,21 +1,25 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/models/user/user.model';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements DoCheck {
+export class NavComponent implements DoCheck, OnInit {
   routerUrl: boolean = true;
   routerUrlEtiqueta: boolean = false;
   routerUrlExperto: boolean = false;
   totalExper:any = 0;
   totalTags:any =0;
+  username:any;
+  userLogueado:any;
+  authSubscription: Subscription = new Subscription();
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -26,12 +30,18 @@ export class NavComponent implements DoCheck {
   constructor(
     private breakpointObserver: BreakpointObserver,
     public router: Router,
-    public authService: AuthService
+    public authService: AuthService,
   ) {}
+  ngOnInit(): void {
+ this.authSubscription=this.authService.getbyUsername(this.username).subscribe((res)=>{
+  this.userLogueado=res;
+
+ })
+  }
   ngDoCheck(): void {
     this.totalExper=localStorage.getItem('totalExpert');
     this.totalTags=localStorage.getItem('totalTags');
-
+    this.username=localStorage.getItem('username');
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         //console.log(e.url);
@@ -42,7 +52,24 @@ export class NavComponent implements DoCheck {
     });
   }
 
+  /*showPreviewImg(event: any) {
+    this.archivoCapturado = event.target.files[0];
+    //
+    //TODO---.- Importante de Leer ..------
 
+   //TODO opcional porque el servidor no acepta tamaño de la imagen base64
+   //TODO(cambiar por lo comentado de abajo , si el servidor admite Base64)
+
+    //TODO----------------------------------------------
+   this.expertService
+     .extraerBase64(this.archivoCapturado)
+    .then((base64: any) => {
+      this.archivoBase64 = base64.base;
+      this.expertDet.fichero_foto = base64.base;
+      this.actualizarExperto()
+     });
+        //TODO----------------------------------------------
+  }*/
   pagActisEtiquetasPage(): boolean {
     switch (this.router.url) {
       case '/etiquetas':

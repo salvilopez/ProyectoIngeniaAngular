@@ -1,67 +1,88 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar><svg width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.3737 15.8939C9.7884 16.0396 9.17624 16.117 8.54608 16.117C4.36663 16.117 0.978516 12.7144 0.978516 8.51699C0.978516 4.31963 4.36663 0.916992 8.54608 0.916992C12.5495 0.916992 15.8268 4.03896 16.0958 7.99091L20.73 11.3757L25.9512 8.31685C26.5596 4.73186 29.6679 2.00271 33.4109 2.00271C37.5904 2.00271 40.9785 5.40534 40.9785 9.60271C40.9785 13.8001 37.5904 17.2027 33.4109 17.2027C32.5132 17.2027 31.652 17.0457 30.8531 16.7576L25.3028 20.0091V25.4953C26.9552 26.8894 28.0055 28.98 28.0055 31.317C28.0055 35.5144 24.6174 38.917 20.438 38.917C16.2585 38.917 12.8704 35.5144 12.8704 31.317C12.8704 28.98 13.9207 26.8894 15.5731 25.4953V19.6915L10.3737 15.8939Z" fill="url(#paint0_linear)"/>
-          <defs>
-          <linearGradient id="paint0_linear" x1="-0.0140737" y1="-1.41699" x2="36.6098" y2="31.0004" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#FFE600"/>
-          <stop offset="1" stop-color="#00FFE0"/>
+        <path
+          d="M10.3737 15.8939C9.7884 16.0396 9.17624 16.117 8.54608 16.117C4.36663 16.117 0.978516 12.7144 0.978516 8.51699C0.978516 4.31963 4.36663 0.916992 8.54608 0.916992C12.5495 0.916992 15.8268 4.03896 16.0958 7.99091L20.73 11.3757L25.9512 8.31685C26.5596 4.73186 29.6679 2.00271 33.4109 2.00271C37.5904 2.00271 40.9785 5.40534 40.9785 9.60271C40.9785 13.8001 37.5904 17.2027 33.4109 17.2027C32.5132 17.2027 31.652 17.0457 30.8531 16.7576L25.3028 20.0091V25.4953C26.9552 26.8894 28.0055 28.98 28.0055 31.317C28.0055 35.5144 24.6174 38.917 20.438 38.917C16.2585 38.917 12.8704 35.5144 12.8704 31.317C12.8704 28.98 13.9207 26.8894 15.5731 25.4953V19.6915L10.3737 15.8939Z"
+          fill="url(#paint0_linear)"
+        />
+        <defs>
+          <linearGradient
+            id="paint0_linear"
+            x1="-0.0140737"
+            y1="-1.41699"
+            x2="36.6098"
+            y2="31.0004"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FFE600" />
+            <stop offset="1" stop-color="#00FFE0" />
           </linearGradient>
-          </defs>
-          </svg>
+        </defs>
+      </svg>
             <h1>Experts</h1>
         </mat-toolbar>
-        <mat-nav-list>
-            <a mat-list-item [routerLink]="['/expertos']">Expertos</a>
-            <a mat-list-item [routerLink]="['/etiquetas']">Etiquetas</a>
+        <mat-nav-list class="d-flex flex-column justify-content-between byt">
+            <div>
+                <a mat-list-item [routerLink]="['/expertos']">Expertos</a>
+                <a mat-list-item [routerLink]="['/etiquetas']">Etiquetas</a>
+            </div>
+            <div class="mi-imagen-abajo-izquierda d-flex flex-row">
 
+                <div class="imagen-para-archivo">
+                    <label for="boton-archivo">
+                  <img src="{{this.userLogueado.img}}" />
+                </label>
+
+                    <input id="boton-archivo" type="file" (change)="showPreviewImg($event)" />
+                </div>
+                <p>{{this.userLogueado.email}}</p>
+            </div>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar *ngIf="(pagActisEtiquetasPage())">
+        <mat-toolbar *ngIf="pagActisEtiquetasPage()">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
             <div class="d-flex flex-column">
                 <h2>Lista de Etiquetas</h2>
-                <span>{{totalTags}} Etiquetas</span>
+                <span>{{ totalTags }} Etiquetas</span>
             </div>
-            <nav *ngIf="pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <nav *ngIf="pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a [routerLink]="['/etiquetas']">Volver a la lista de Etiquetas</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Nueva etiqueta</li>
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['/etiquetas']">Volver a la lista de Etiquetas</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Nueva etiqueta
+                    </li>
                 </ol>
             </nav>
         </mat-toolbar>
-        <mat-toolbar *ngIf="(!pagActisEtiquetasPage())">
+        <mat-toolbar *ngIf="!pagActisEtiquetasPage()">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
 
             <div class="d-flex flex-row">
                 <div class="d-flex flex-column">
                     <h2>Lista de Expertos</h2>
-                    <span>{{totalExper}} Candidatos</span>
+                    <span>{{ totalExper }} Candidatos</span>
                 </div>
-                <nav *ngIf="!pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <nav *ngIf="!pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="['/expertos']">Volver a la lista de expertos</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Informacion de experto</li>
-
+                        <li class="breadcrumb-item">
+                            <a [routerLink]="['/expertos']">Volver a la lista de expertos</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Informacion de experto
+                        </li>
                     </ol>
                 </nav>
             </div>
-
-
-
         </mat-toolbar>
         <section class="">
-            <router-outlet *ngIf="mostrarNav() || this.routerUrlExperto ||this.routerUrlEtiqueta"></router-outlet>
-
-
+            <router-outlet *ngIf="mostrarNav() || this.routerUrlExperto || this.routerUrlEtiqueta"></router-outlet>
         </section>
-
     </mat-sidenav-content>
-
-
 </mat-sidenav-container>

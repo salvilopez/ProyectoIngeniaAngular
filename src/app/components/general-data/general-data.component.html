@@ -4,7 +4,6 @@
             <div class="form-group row d-flex flex-column col-3 -0">
                 <label for="select" class="col-form-label mb-1 mt-1">DISPONIBILIDAD</label>
                 <div class="w-100">
-
                     <select id="disponibilidad" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.disponibilidad" name="disponibilidad" class="form-control">
         <option value="morning" [selected]="this.expDetail.disponibilidad == 'morning'">Mañanas</option>
         <option value="tardes" [selected]="this.expDetail.disponibilidad == 'tardes'">Tardes</option>
@@ -34,74 +33,57 @@
                     <select id="origen" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.origen" name="origen" class="form-control">
                       <option value="recursos humanos" [selected]="this.expDetail.origen == 'recursos humanos'">Recursos Humanos</option>
                       <option value="Infojobs" [selected]="this.expDetail.origen == 'Infojobs'">Infojobs</option>
-
                     </select>
                 </div>
             </div>
         </div>
-
         <div class="form-group row m-0 mt-5">
-
-
-
             <div class="col-6 m-0 p-0">
                 <div class="row w-100 col-12">
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Telefono</div>
-                    <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_telefono}}</div>
+                    <input type="number" [(ngModel)]="this.expDetail.contacto_telefono" (change)="actualizarExperto()" name="telefono" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <!--   <div (change)="actualizarExperto()" *ngIf="!telefonovisible" (click)="telefonovisible=!telefonovisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_telefono}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Correo</div>
-                    <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_email}}</div>
-
+                    <input type="text" [(ngModel)]="this.expDetail.contacto_email" (change)="actualizarExperto()" name="email" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <!--    <div (change)="actualizarExperto()" *ngIf="!emailvisible" (click)="emailvisible=!emailvisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_email}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Direccion</div>
-                    <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_email}}</div>
+                    <input type="text" [(ngModel)]="this.expDetail.contacto_ciudad" (change)="actualizarExperto()" name="direccion" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <!--     <div (change)="actualizarExperto()" *ngIf="!direccionvisible" (click)="direccionvisible=!direccionvisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_direccion}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">CV</div>
+                    <div class="m-0 p-0 offset-1 col-10 d-flex flex-row justify-content-between mt-3 mb-3">
+                        <button type="button" (click)="verPdf()" class="btn btn-success">Ver</button>
+
+
+                        <input type="file" class="btn " id="customFile" (change)="showPreviewCv($event)" />
+
+
+                    </div>
                     <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.fichero_cv}}</div>
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Linkedin</div>
-                    <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_linkedin}}</div>
-
+                    <input type="text" [(ngModel)]="this.expDetail.contacto_linkedin" (change)="actualizarExperto()" name="linkedin" class="m-0 p-0 offset-1 col-5 text-left">
+                    <!--         <div (change)="actualizarExperto()" *ngIf="!linkedinvisible" (click)="linkedinvisible=!linkedinvisible" class="m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_linkedin}}</div>-->
                 </div>
             </div>
-
-
-
-
             <div class="col-6 m-0 p-0">
                 <div class="form-group row d-flex flex-column mb-5">
                     <label for="etiquetas" class="col-2  offset-1 col-form-label">ETIQUETAS</label>
                     <div class="col-10 offset-1">
-                        <input id="etiquetas" name="etiquetas" placeholder="Añadir Etiquetas" type="text" class=" input-group-lg" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                        <input id="etiquetas" (change)="actualizarExperto()" name="etiquetas" placeholder="Añadir Etiquetas" type="text" class=" input-group-lg" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
                     </div>
                 </div>
                 <div class="col-10 offset-1">
                     <mat-form-field class="example-chip-list">
-                        <mat-label>Favorite Fruits</mat-label>
+                        <mat-label>Etiquetas</mat-label>
                         <mat-chip-list #chipList aria-label="Fruit selection">
                             <mat-chip *ngFor="let fruit of this.expDetail.tagList" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
                                 {{fruit.nombre}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-
                         </mat-chip-list>
                     </mat-form-field>
-
                 </div>
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
     </div>
 </form>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
 import { Expert } from 'src/app/models/expert/expert.model';
@@ -10,7 +11,7 @@ import { Expert } from 'src/app/models/expert/expert.model';
 })
 export class ExpertService {
 
-  constructor(private http: HttpClient, ) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer ) { }
 
 
   updateExpert(expert:Expert): Observable<Expert> {
@@ -23,7 +24,27 @@ export class ExpertService {
     return this.http.put<Expert>('http://localhost:8082/api/expertos',expert);
 
   }
-
+  extraerBase64 = async ($event: any) =>
+  new Promise((resolve, reject) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result,
+        });
+      };
+      reader.onerror = (error) => {
+        resolve({
+          base: null,
+        });
+      };
+    } catch (e) {
+      return null;
+    }
+  });
   getAllExpertsByValoracion(expertRequest:ExpertRequest): Observable<Expert[]> {
 
     //TODO----------------------

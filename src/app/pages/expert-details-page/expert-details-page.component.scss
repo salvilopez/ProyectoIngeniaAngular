@@ -1,3 +1,16 @@
 ::ng-deep .mat-ink-bar {
     background-color: var(--primary-color, lightgreen) !important;
 }
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.imagen-para-archivo input {
+    display: none;
+    /*si lo de arriba no funciona bien usar
+  visibility:hidden;*/
+}
