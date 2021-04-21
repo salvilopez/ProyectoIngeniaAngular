@@ -12,7 +12,7 @@
             <div class="form-group col-12 m-0 p-3 w-100">
                 <label for="etiquetas">ETIQUETAS</label>
                 <div>
-                    <select id="etiquetas" formControlName="tagList" class="custom-select" (change)="addTag($event)">
+                    <select id="etiquetas" class="custom-select" (change)="addTag($event)">
                           <option value="" default>Añadir Etiquetas</option>
                           <option value="css3">CSS3</option>
                           <option value="javascript">JavaScript</option>
@@ -32,8 +32,9 @@
             <option value="" default>
               Seleccionar disponibilidad de experto
             </option>
-            <option value="duck">Duck</option>
-            <option value="fish">Fish</option>
+            <option value="morning">Mañanas</option>
+            <option value="tardes">Tardes</option>
+            <option value="todo">Todo el día</option>
           </select>
                 </div>
             </div>

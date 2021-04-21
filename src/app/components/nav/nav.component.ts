@@ -5,7 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/models/user/user.model';
-
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { DialogAddTagComponent } from '../dialog-add-tag/dialog-add-tag.component';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -33,6 +34,7 @@ export class NavComponent implements DoCheck, OnInit {
     private breakpointObserver: BreakpointObserver,
     public router: Router,
     public authService: AuthService,
+public dialog:MatDialog
   ) {}
   ngOnInit(): void {
     this.username=localStorage.getItem('username');
@@ -41,6 +43,7 @@ export class NavComponent implements DoCheck, OnInit {
 
  })
   }
+
   ngDoCheck(): void {
 
     if(this.userLogueado==undefined){
@@ -62,6 +65,11 @@ export class NavComponent implements DoCheck, OnInit {
     });
   }
 
+openDialog(){
+  this.dialog.open(DialogAddTagComponent);
+}
+
+
 showPreviewImg(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
@@ -79,6 +87,7 @@ showPreviewImg(event: any) {
      });
         //TODO----------------------------------------------
   }
+
 
   actualizarUsu() {
 
@@ -165,3 +174,4 @@ return this.router.url
 
 
 }
+

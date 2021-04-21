@@ -14,7 +14,7 @@ import { TagsService } from 'src/app/services/tag/tags.service';
   styleUrls: ['./tag-data-table.component.scss']
 })
 export class TagDataTableComponent implements DoCheck {
-  displayedColumns: string[] = ['etiqueta', 'creador', 'fechaCreacion'];
+  displayedColumns: string[] = ['etiqueta', 'creador', 'fechaCreacion','botonBorrar'];
   dataSource: MatTableDataSource<Tag>;
 
   @Input() listaTagTable: any = [];

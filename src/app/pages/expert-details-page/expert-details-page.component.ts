@@ -45,7 +45,7 @@ tabLoadTimes: Date[] = [];
     .getExpertsById(this.id)
     .subscribe((data: Expert) => {
       this.expertDet=data;
-      console.log(this.expertDet);
+     // console.log(this.expertDet);
     });
 
 
@@ -94,7 +94,7 @@ tabLoadTimes: Date[] = [];
     this.routerSubscription.unsubscribe();
   }
   pagActual(): string {
-    console.log(this.router.url)
+  //  console.log(this.router.url)
 return this.router.url
   }
 }

@@ -1,0 +1,16 @@
+<form [formGroup]="addTagForm" (submit)="addTag()">
+    <div class="form-group row">
+        <label for="text1" class="col-4 col-form-label">Nombre Tarea</label>
+        <div class="col-8">
+            <input id="nombreEtiqueta" type="text" formControlName="nombreEtiqueta" class="form-control" placeholder="Introducir Nombre">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-4 col-8">
+            <button class="btn btn-danger" type="button" (click)="closeDialog()">salir</button>
+            <button [disabled]="addTagForm.invalid" class="btn btn-success" type="submit">CrearEtiqueta</button>
+
+
+        </div>
+    </div>
+</form>

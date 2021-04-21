@@ -47,9 +47,9 @@ import { GeneralDataComponent } from './components/general-data/general-data.com
 import { ObservationsComponent } from './components/observations/observations.component';
 import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.component';
 import { NewExpertFormComponent } from './components/new-expert-form/new-expert-form.component';
-
+import { DialogAddTagComponent } from './components/dialog-add-tag/dialog-add-tag.component';
 ///////////////////////////////////////////////////////////////////////
-
+import {MatDialogModule} from '@angular/material/dialog'
 
 
 @NgModule({
@@ -73,9 +73,13 @@ import { NewExpertFormComponent } from './components/new-expert-form/new-expert-
     ObservationsComponent,
     NewExpertPageComponent,
     NewExpertFormComponent,
+    DialogAddTagComponent,
+
   ],
+  entryComponents:[DialogAddTagComponent],
   imports: [
     BrowserModule,
+    MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,

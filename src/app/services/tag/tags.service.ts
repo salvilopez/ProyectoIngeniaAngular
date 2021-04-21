@@ -10,6 +10,15 @@ export class TagsService {
 
   constructor(private http: HttpClient) { }
 
+
+  createTags(tag:Tag): Observable<Tag> {
+
+
+    return this.http.post<Tag>('http://localhost:8082/api/etiquetas',tag);
+  }
+
+
+
   getAllTagsByCreador(tagrequest:TagRequest): Observable<Tag[]> {
 
     //TODO----------------------

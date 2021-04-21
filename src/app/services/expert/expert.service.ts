@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { AddExpert } from 'src/app/models/expert/add-expert.model';
+
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
 import { Expert } from 'src/app/models/expert/expert.model';
 
@@ -63,7 +63,6 @@ export class ExpertService {
   }
 
   createExpert(expert:Expert): Observable<Expert> {
-    expert.created_at=new Date();
 
 
     return this.http.post<Expert>('http://localhost:8082/api/expertos',expert);

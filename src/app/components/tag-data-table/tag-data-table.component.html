@@ -48,6 +48,31 @@
 
                 </td>
             </ng-container>
+
+
+
+            <ng-container matColumnDef="botonBorrar">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+                </th>
+                <td mat-cell *matCellDef="let row">
+
+                    <button class="btn btn-danger"><span class="material-icons-outlined">
+
+                      </span>Borrar Etiqueta</button>
+
+                </td>
+            </ng-container>
+
+
+
+
+
+
+
+
+
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
