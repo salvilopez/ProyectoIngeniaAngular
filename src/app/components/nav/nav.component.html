@@ -26,30 +26,32 @@
                 <a mat-list-item [routerLink]="['/expertos']">Expertos</a>
                 <a mat-list-item [routerLink]="['/etiquetas']">Etiquetas</a>
             </div>
-            <div class="mi-imagen-abajo-izquierda d-flex flex-row">
+            <!--   <div class="mi-imagen-abajo-izquierda d-flex flex-row">
 
-                <div class="imagen-para-archivo">
+               <div class="imagen-para-archivo">
                     <label for="boton-archivo">
-                  <img src="{{this.userLogueado.img}}" />
+             <img src="{{this.userLogueado.img}}" />
                 </label>
 
                     <input id="boton-archivo" type="file" (change)="showPreviewImg($event)" />
                 </div>
                 <p>{{this.userLogueado.email}}</p>
-            </div>
+            </div>-->
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+
         <mat-toolbar *ngIf="pagActisEtiquetasPage()">
+
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column ">
                 <h2>Lista de Etiquetas</h2>
                 <span>{{ totalTags }} Etiquetas</span>
             </div>
             <nav *ngIf="pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb" *ngIf="pagActual()!=='/etiquetas'">
                     <li class="breadcrumb-item">
                         <a [routerLink]="['/etiquetas']">Volver a la lista de Etiquetas</a>
                     </li>
@@ -57,29 +59,37 @@
                         Nueva etiqueta
                     </li>
                 </ol>
+
+
             </nav>
         </mat-toolbar>
-        <mat-toolbar *ngIf="!pagActisEtiquetasPage()">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-toolbar *ngIf="!pagActisEtiquetasPage()" class="d-flex flex-row justify-content-between">
+            <div>
+
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
-            <div class="d-flex flex-row">
-                <div class="d-flex flex-column">
-                    <h2>Lista de Expertos</h2>
-                    <span>{{ totalExper }} Candidatos</span>
+                <div class="d-flex flex-row">
+                    <div class="d-flex flex-column">
+                        <h2>Lista de Expertos</h2>
+                        <span>{{ totalExper }} Candidatos</span>
+                    </div>
+                    <nav *ngIf="!pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+                        <ol class="breadcrumb " *ngIf="pagActual()!=='/expertos'">
+                            <li class="breadcrumb-item">
+                                <a [routerLink]="['/expertos']">Volver a la lista de expertos</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Informacion de experto
+                            </li>
+                        </ol>
+
+                    </nav>
                 </div>
-                <nav *ngIf="!pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a [routerLink]="['/expertos']">Volver a la lista de expertos</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            Informacion de experto
-                        </li>
-                    </ol>
-                </nav>
             </div>
+
+            <button class="btn btn-success" [routerLink]="['/addexperto']">Nuevo Experto</button>
         </mat-toolbar>
         <section class="">
             <router-outlet *ngIf="mostrarNav() || this.routerUrlExperto || this.routerUrlEtiqueta"></router-outlet>

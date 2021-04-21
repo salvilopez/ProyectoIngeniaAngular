@@ -37,6 +37,9 @@ export class AppComponent {
         case '/etiquetas':
           return true;
           break;
+          case '/addexperto':
+            return true;
+            break;
         case '/expertos/**':
           return true;
           break;

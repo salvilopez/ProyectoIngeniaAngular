@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { AddExpert } from 'src/app/models/expert/add-expert.model';
 import { ExpertRequest } from 'src/app/models/expert/expert-request.model';
 import { Expert } from 'src/app/models/expert/expert.model';
 
@@ -16,11 +17,6 @@ export class ExpertService {
 
   updateExpert(expert:Expert): Observable<Expert> {
 
-
-
-    console.log("antes del put")
-    console.log(expert)
-    console.log("antes del put")
     return this.http.put<Expert>('http://localhost:8082/api/expertos',expert);
 
   }
@@ -65,6 +61,16 @@ export class ExpertService {
 
     return this.http.get<Expert>('http://localhost:8082/api/expertos/'+num);
   }
+
+  createExpert(expert:Expert): Observable<Expert> {
+    expert.created_at=new Date();
+
+
+    return this.http.post<Expert>('http://localhost:8082/api/expertos',expert);
+  }
+
+
+
   getAllExpertsByName(expertRequest:ExpertRequest): Observable<Expert[]> {
     //TODO----------------------
     if(expertRequest.limite===0)expertRequest.limite=10

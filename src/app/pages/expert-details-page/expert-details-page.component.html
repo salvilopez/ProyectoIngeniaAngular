@@ -1,15 +1,14 @@
-<main class="d-flex flex-column m-5">
+<main class="d-flex flex-column m-5" *ngIf="pagActual()!=='/expertos/addexpert'">
     <div class="mb-3 d-flex flex-row  justify-content-between">
         <div class="d-flex flex-column m-2 justify-content-center">
             <div class="d-flex flex-column">
-                <!--<img src="{{this.expertDet.fichero_foto}}">
-                <input type="file" class="btn " id="customFile" (change)="showPreviewImg($event)" />-->
+
                 <div class="imagen-para-archivo">
                     <label for="boton-archivo">
-                    <img src="{{this.expertDet.fichero_foto}}" />
+                    <img src="{{this.expertDet.fichero_foto}}" class="img" />
                   </label>
 
-                    <input id="boton-archivo" type="file" (change)="showPreviewImg($event)" />
+                    <!--     <input id="boton-archivo" type="file" (change)="showPreviewImg($event)" />-->
                 </div>
             </div>
 

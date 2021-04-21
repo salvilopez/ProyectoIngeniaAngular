@@ -1,0 +1,66 @@
+<main class="container">
+    <div class="offset-1 col-10 w-100 m-0 p-3">
+        <form class="row m-0 p-3 w-100" [formGroup]="addExpertForm" (submit)="addExpertMethod()">
+            <div class="form-group col-6 m-0 p-3 w-100">
+                <label for="nombre">NOMBRE COMPLETO</label>
+                <input id="text" formControlName="nombre" type="text" class="form-control" placeholder="Ej:Juan Perez martinez" />
+            </div>
+            <div class="form-group col-6 m-0 p-3 w-100">
+                <label for="nif">NIF</label>
+                <input id="text1" formControlName="nif" type="text" class="form-control" placeholder="Ej:354543545" />
+            </div>
+            <div class="form-group col-12 m-0 p-3 w-100">
+                <label for="etiquetas">ETIQUETAS</label>
+                <div>
+                    <select id="etiquetas" formControlName="tagList" class="custom-select" (change)="addTag($event)">
+                          <option value="" default>Añadir Etiquetas</option>
+                          <option value="css3">CSS3</option>
+                          <option value="javascript">JavaScript</option>
+                          <option value="angular">Angular</option>
+                          <option value="spring">Spring</option>
+                          <option value="node">Node.J.S</option>
+                    </select>
+                    <mat-chip-list aria-label="Fish selection" *ngFor="let tag of this.listaTags" class="d-flex flex-column">
+                        <mat-chip>{{ tag.nombre }}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+            <div class="form-group col-12 m-0 p-3 w-100">
+                <label for="disponibilidad">DISPONIBILIDAD</label>
+                <div>
+                    <select id="disponibilidad" formControlName="disponibilidad" class="custom-select">
+            <option value="" default>
+              Seleccionar disponibilidad de experto
+            </option>
+            <option value="duck">Duck</option>
+            <option value="fish">Fish</option>
+          </select>
+                </div>
+            </div>
+
+            <div class="form-group col-6 m-0 p-3 w-100">
+                <label for="telefono">TELEFONO</label>
+                <input id="telefono" formControlName="contacto_telefono" type="number" class="form-control" placeholder="Ej: 60 000 00 00" />
+            </div>
+            <div class="form-grou col-6 m-0 p-3 w-100">
+                <label for="email">EMAIL</label>
+                <input id="formControlName" formControlName="contacto_email" type="email" class="form-control" placeholder="Ej: juanperez@gmail.com" />
+            </div>
+
+            <div class="form-group col-12 m-0 p-3 w-100">
+                <label for="direccion">DIRECCIÓn</label>
+                <input id="direccion" formControlName="contacto_ciudad" type="text" class="form-control" placeholder="Ej: Avenida colon, Valencia" />
+            </div>
+            <div class="form-group col-12 m-0 p-3 w-100">
+                <label for="linkedin">LINKEDIN</label>
+                <input id="linkedin" formControlName="contacto_linkedin" type="text" class="form-control" placeholder="Introduce el enlace del Linkedin del experto" />
+            </div>
+
+            <div class="form-group col-12 m-0 p-3 w-100">
+                <button [disabled]="addExpertForm.invalid" type="submit" class="btn btn-success w-100">
+          Crear nuevo experto
+        </button>
+            </div>
+        </form>
+    </div>
+</main>

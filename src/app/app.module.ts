@@ -45,6 +45,8 @@ import { ExpertDetailsPageComponent } from './pages/expert-details-page/expert-d
 import { TagDetailsPageComponent } from './pages/tag-details-page/tag-details-page.component';
 import { GeneralDataComponent } from './components/general-data/general-data.component';
 import { ObservationsComponent } from './components/observations/observations.component';
+import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.component';
+import { NewExpertFormComponent } from './components/new-expert-form/new-expert-form.component';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -69,6 +71,8 @@ import { ObservationsComponent } from './components/observations/observations.co
     TagDetailsPageComponent,
     GeneralDataComponent,
     ObservationsComponent,
+    NewExpertPageComponent,
+    NewExpertFormComponent,
   ],
   imports: [
     BrowserModule,

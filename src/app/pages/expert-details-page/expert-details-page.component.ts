@@ -1,6 +1,6 @@
 import { DoCheck } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Expert } from 'src/app/models/expert/expert.model';
 import { ExpertService } from 'src/app/services/expert/expert.service';
@@ -20,9 +20,12 @@ tabLoadTimes: Date[] = [];
   archivoBase64:any;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private expertService: ExpertService
+    private expertService: ExpertService,
+    public router: Router
   ) {}
-  ngDoCheck(): void {
+
+
+  ngOnInit(): void {
 
     if(this.expertDet===undefined){
       this.routerSubscription = this.activatedRoute.params.subscribe((params) => {
@@ -37,16 +40,6 @@ tabLoadTimes: Date[] = [];
 
     }
 
-
-
-
-  }
-
-  ngOnInit(): void {
-    this.routerSubscription = this.activatedRoute.params.subscribe((params) => {
-      this.id=  params.id
-
-    });
 
     this.expertSubscription = this.expertService
     .getExpertsById(this.id)
@@ -100,5 +93,8 @@ tabLoadTimes: Date[] = [];
     this.expertSubscription.unsubscribe();
     this.routerSubscription.unsubscribe();
   }
-
+  pagActual(): string {
+    console.log(this.router.url)
+return this.router.url
+  }
 }

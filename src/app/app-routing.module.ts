@@ -4,6 +4,7 @@ import { ExpertDetailsPageComponent } from './pages/expert-details-page/expert-d
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { TagDetailsPageComponent } from './pages/tag-details-page/tag-details-page.component';
@@ -43,12 +44,17 @@ const routes: Routes = [
     path: 'etiquetas', // http:localhost:4200/todos/1
     component: TagsPageComponent,
     //canActivate: [GuardGuard],
+  }
+  ,
+  {
+    path: 'addexperto', // http:localhost:4200/todos/1
+    component: NewExpertPageComponent,
+    //canActivate: [GuardGuard],
   },
   {
     path: '**',
     component: NotFoundPageComponent,
   }
-
 
 
 

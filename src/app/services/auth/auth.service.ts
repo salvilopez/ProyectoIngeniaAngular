@@ -28,6 +28,11 @@ export class AuthService {
 
     return this.http.post('http://localhost:8082/auth/login', body);
   }
+  actualizarUser(usu: User): Observable<User> {
+
+
+    return this.http.put<User>('http://localhost:8082/auth/username',usu);
+  }
   getbyUsername(username: string): Observable<User> {
 
 

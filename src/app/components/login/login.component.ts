@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit {
               }
             );
             sessionStorage.setItem('Token',"Jwt =  "+response.jwt);
-            localStorage.setItem('username', user.email);
+           // localStorage.setItem('username', user.email);
+            localStorage.setItem('username', 'salvi@gmail.com');
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
           }

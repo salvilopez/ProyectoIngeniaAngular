@@ -19,6 +19,8 @@ export class NavComponent implements DoCheck, OnInit {
   totalTags:any =0;
   username:any;
   userLogueado:any;
+  userActualizado:any;
+  archivoCapturado:any;
   authSubscription: Subscription = new Subscription();
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -33,15 +35,23 @@ export class NavComponent implements DoCheck, OnInit {
     public authService: AuthService,
   ) {}
   ngOnInit(): void {
+    this.username=localStorage.getItem('username');
  this.authSubscription=this.authService.getbyUsername(this.username).subscribe((res)=>{
   this.userLogueado=res;
 
  })
   }
   ngDoCheck(): void {
+
+    if(this.userLogueado==undefined){
+      this.userLogueado=this.userLogueado as User;
+    }
+
+
+
     this.totalExper=localStorage.getItem('totalExpert');
     this.totalTags=localStorage.getItem('totalTags');
-    this.username=localStorage.getItem('username');
+
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         //console.log(e.url);
@@ -52,7 +62,7 @@ export class NavComponent implements DoCheck, OnInit {
     });
   }
 
-  /*showPreviewImg(event: any) {
+showPreviewImg(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
     //TODO---.- Importante de Leer ..------
@@ -61,15 +71,33 @@ export class NavComponent implements DoCheck, OnInit {
    //TODO(cambiar por lo comentado de abajo , si el servidor admite Base64)
 
     //TODO----------------------------------------------
-   this.expertService
+   this.authService
      .extraerBase64(this.archivoCapturado)
     .then((base64: any) => {
-      this.archivoBase64 = base64.base;
-      this.expertDet.fichero_foto = base64.base;
-      this.actualizarExperto()
+      this.userLogueado.img = base64.base;
+      this.actualizarUsu()
      });
         //TODO----------------------------------------------
-  }*/
+  }
+
+  actualizarUsu() {
+
+    let body={
+      ...this.userLogueado
+    }
+    console.log("--------------------")
+    console.log("antes del update");
+    console.log(body)
+    console.log("--------------------")
+    this.authService.actualizarUser(body).subscribe((response) => {
+      this.userActualizado = response;
+      this.userLogueado=response;
+      console.log("--------------------")
+      console.log("depues del update");
+      console.log(this.userActualizado)
+      console.log("--------------------")
+    });
+  }
   pagActisEtiquetasPage(): boolean {
     switch (this.router.url) {
       case '/etiquetas':
@@ -89,7 +117,10 @@ export class NavComponent implements DoCheck, OnInit {
         break;
     }
   }
+  pagActual(): string {
 
+return this.router.url
+  }
   mostrarNav(): boolean {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
