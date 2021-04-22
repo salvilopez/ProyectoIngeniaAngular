@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TagsService } from 'src/app/services/tag/tags.service';
 import { data } from 'jquery';
 import { ElementSchemaRegistry } from '@angular/compiler';
+import { MatDialog } from '@angular/material/dialog';
+import { PDFviewerComponent } from '../pdfviewer/pdfviewer.component';
 
 @Component({
   selector: 'app-general-data',
@@ -32,21 +34,25 @@ export class GeneralDataComponent implements OnInit {
   archivoBase64: any;
   nombreUsu:any;
   tagCreada:any;
+  verpdf:any=false;
+  imagensubida:boolean=false;
+  pdfdeco:any;
   expertSubscription: Subscription = new Subscription();
   tagSubscription: Subscription = new Subscription();
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  constructor(private expertService: ExpertService,private snackBar: MatSnackBar, private tagService:TagsService) {
+  constructor(private expertService: ExpertService, public dialog: MatDialog,private snackBar: MatSnackBar, private tagService:TagsService) {
   }
 
   ngOnInit(): void {
 
 
-    if(this.expertDetail!=undefined){
-      this.expDetail=this.expertDetail;
+
+    if (this.expDetail != undefined||this.expDetail !=0) {
+      this.expDetail = this.expertDetail;
     }
-    if(this.expActualizado!==undefined){
-      this.expDetail=this.expDetail;
-      this.expActualizado=undefined;
+    if (this.expActualizado !== undefined) {
+      this.expDetail = this.expDetail;
+      this.expActualizado = undefined;
     }
   }
   ocultar(): string {
@@ -121,17 +127,35 @@ export class GeneralDataComponent implements OnInit {
     this.expertSubscription.unsubscribe();
   }
 
-  verPdf() {
-    //  console.log("descargando pdf")
-    //  let doc = new jsPDF();
-    //  var url = this.expDetail.fichero_cv
-    //  var iframe ="<iframe width='100% height='100%' src'"+url+"'></iframe>";
-    //  var x:any=window.open();
-    //  x.document.open();
-    ///  x.document.write(iframe)
-    //  x.document.close();
-    // document.location.href=url;
-  }
+
+
+
+
+
+   downloadPDF() {
+    const linkSource = this.expDetail.fichero_cv;
+    const downloadLink = document.createElement("a");
+    const fileName = "tupdf.pdf";
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.type='application/pdf';
+    downloadLink.click();}
+
+
+
+     verPDF() {
+      this.dialog.open(PDFviewerComponent,{
+        data:{pdf:this.expDetail.fichero_cv},
+        width: '1024px',
+        height: '720px',
+      });
+
+    }
+
+
+
+
+
 
   /**
  * Metodo para sub imagen del input y cambiarla a base64
@@ -141,7 +165,7 @@ export class GeneralDataComponent implements OnInit {
 
   showPreviewCv(event: any) {
     this.archivoCapturado = event.target.files[0];
-    //
+    this.imagensubida=true;
     //TODO---.- Importante de Leer ..------
 
     //TODO opcional porque el servidor no acepta tamaño de la imagen base64

@@ -51,14 +51,16 @@
                     <!--     <div (change)="actualizarExperto()" *ngIf="!direccionvisible" (click)="direccionvisible=!direccionvisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_direccion}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">CV</div>
                     <div class="m-0 p-0 offset-1 col-10 d-flex flex-row justify-content-between mt-3 mb-3">
-                        <button type="button" (click)="verPdf()" class="btn btn-success">Ver</button>
+                        <button type="button" (click)="downloadPDF()" class="btn btn-success">Descargar PDF</button>
 
+                        <button type="button" (click)="verPDF()" class="btn btn-success">Visualizar PDF</button>
 
-                        <input type="file" class="btn " id="customFile" (change)="showPreviewCv($event)" />
+                        <label for="customFile" id="labelfile" class="btn btn-success">Subir archivo</label>
+                        <input type="file" class="btn btn-success " id="customFile" (change)="showPreviewCv($event)" />
 
 
                     </div>
-                    <div class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.fichero_cv}}</div>
+
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Linkedin</div>
                     <input type="text" [(ngModel)]="this.expDetail.contacto_linkedin" (change)="actualizarExperto()" name="linkedin" class="m-0 p-0 offset-1 col-5 text-left">
                     <!--         <div (change)="actualizarExperto()" *ngIf="!linkedinvisible" (click)="linkedinvisible=!linkedinvisible" class="m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_linkedin}}</div>-->

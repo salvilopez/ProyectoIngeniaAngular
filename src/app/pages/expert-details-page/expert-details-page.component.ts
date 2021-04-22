@@ -19,6 +19,7 @@ tabLoadTimes: Date[] = [];
   expertActualizado:any;
   archivoCapturado:any;
   archivoBase64:any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private expertService: ExpertService,

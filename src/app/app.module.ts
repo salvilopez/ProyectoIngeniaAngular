@@ -49,6 +49,7 @@ import { NewExpertFormComponent } from './components/new-expert-form/new-expert-
 import { DialogAddTagComponent } from './components/dialog-add-tag/dialog-add-tag.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-delete-tag.component';
+import { PDFviewerComponent } from './components/pdfviewer/pdfviewer.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-
     NewExpertFormComponent,
     DialogAddTagComponent,
     DialogDeleteTagComponent,
+    PDFviewerComponent,
 
   ],
   entryComponents:[DialogAddTagComponent],
