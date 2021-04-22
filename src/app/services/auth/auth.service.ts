@@ -25,16 +25,23 @@ export class AuthService {
      email: 'salvi@gmail.com',
       password: 'salvi'
      };
-
     return this.http.post('http://localhost:8082/auth/login', body);
   }
+/**
+ * Metodo para Actualizar Usuario
+ * @param usu
+ * @returns
+ */
   actualizarUser(usu: User): Observable<User> {
-
 
     return this.http.put<User>('http://localhost:8082/auth/username',usu);
   }
+  /**
+   *  Metodo pra obtener User oir Username
+   * @param username
+   * @returns
+   */
   getbyUsername(username: string): Observable<User> {
-
 
     return this.http.get<User>('http://localhost:8082/auth/username/'+username);
   }
@@ -68,7 +75,11 @@ export class AuthService {
     return this.http.post('http://localhost:8082/auth/registro', body);
   }
 
-
+  /**
+   * Metodo para convertir cualquier imagen a base64
+   * @param $event
+   * @returns
+   */
   extraerBase64 = async ($event: any) =>
   new Promise((resolve, reject) => {
     try {
@@ -90,35 +101,5 @@ export class AuthService {
       return null;
     }
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

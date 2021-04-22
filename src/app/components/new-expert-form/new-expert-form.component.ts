@@ -5,8 +5,9 @@ import { Subscription } from 'rxjs';
 import { Expert } from 'src/app/models/expert/expert.model';
 import { Tag } from 'src/app/models/tag/tag.model';
 import { ExpertService } from 'src/app/services/expert/expert.service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-expert-form',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class NewExpertFormComponent implements OnInit {
   addExpertForm: FormGroup = new FormGroup({});
-  listaTags:Tag[]=[]
+  listaTags: Tag[] = [];
   expertSubscription: Subscription = new Subscription();
   visible = true;
   selectable = true;
@@ -25,21 +26,26 @@ export class NewExpertFormComponent implements OnInit {
   constructor(
     private expertService: ExpertService,
     private formBuilder: FormBuilder,
-    private router:Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
+
   ngOnInit(): void {
     this.addExpertForm = this.formBuilder.group({
-      nombre:  ['', Validators.required],
-      nif:  ['', Validators.required],
-      contacto_telefono:  ['', Validators.compose([Validators.required, Validators.pattern("[0-9]{9}")])],
-      contacto_email: ['', Validators.compose([Validators.required, Validators.email])],
+        nombre: ['', Validators.required],
+        nif: ['', Validators.required],
+        contacto_telefono: ['', Validators.compose([ Validators.required,Validators.pattern('[0-9]{9}'), ]), ],
+      contacto_email: ['', Validators.compose([Validators.required, Validators.email]), ],
       contacto_ciudad: ['', Validators.required],
       contacto_linkedin: ['', Validators.required],
-      disponibilidad:  ['', Validators.required],
-      tagList: ''
+      disponibilidad: ['', Validators.required],
+      tagList: '',
     });
   }
 
+  /**
+   * Metodo Crear Un experto
+   */
   addExpertMethod(): void {
     if (
       this.addExpertForm.valid &&
@@ -50,48 +56,73 @@ export class NewExpertFormComponent implements OnInit {
       this.addExpertForm.value.contacto_ciudad &&
       this.addExpertForm.value.contacto_linkedin &&
       this.addExpertForm.value.disponibilidad &&
-      this.listaTags!==[]
-
+      this.listaTags !== []
     ) {
-     let experto:Expert= new Expert(this.addExpertForm.value.nombre,new Date(),new Date(),this.addExpertForm.value.nif,this.addExpertForm.value.disponibilidad,"",false,this.addExpertForm.value.contacto_telefono,this.addExpertForm.value.contacto_email,this.addExpertForm.value.contacto_ciudad,this.addExpertForm.value.contacto_linkedin,0,0,0,this.addExpertForm.value.nif,this.addExpertForm.value.contacto_email,"","","","","","","","pendiente")
-     experto.tagList= this.listaTags
-
-    this.expertSubscription = this.expertService.createExpert(experto).subscribe((result)=>{
-    })
+      let experto: Expert = new Expert(this.addExpertForm.value.nombre, new Date(),new Date(),this.addExpertForm.value.nif,
+        this.addExpertForm.value.disponibilidad, '',false,this.addExpertForm.value.contacto_telefono,this.addExpertForm.value.contacto_email,
+        this.addExpertForm.value.contacto_ciudad,this.addExpertForm.value.contacto_linkedin, 0, 0,0,this.addExpertForm.value.nif,
+        this.addExpertForm.value.contacto_email,'','', '', '', '','', '', 'pendiente' );
+      experto.tagList = this.listaTags;
+      this.expertSubscription = this.expertService
+        .createExpert(experto)
+        .subscribe((result) => {
+          this.snackBar.open(
+            '',
+            `Experto creado correctamente`,
+            {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+        },(error)=>{
+          this.snackBar.open(
+            '',
+            error.message,
+            {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+        });
     }
 
-
-    this.reloadCurrentRoute()
+    this.reloadCurrentRoute();
   }
-addTag(event: any): void {
-  const value = event.target.value;
-  if(value!=""){
-  let nomCreador:any=localStorage.getItem("username");
 
-  let tagnuevo ={
+  /**
+   * MEtodo para añadir la etiqueta a la lista de etiquetas
+   * @param event
+   */
+  addTag(event: any): void {
+    const value = event.target.value;
+    if (value != '') {
+      let nomCreador: any = localStorage.getItem('username');
 
+      let tagnuevo = {};
+      let tag1: Tag = new Tag(value, new Date(), nomCreador, new Date());
+
+      let nombreTag = value.toString();
+
+      let nuevaEtiqueta = {
+        id: undefined,
+        nombre: nombreTag,
+        creador: nomCreador,
+        created_at: new Date(),
+        updated_at: new Date(),
+        expertList: undefined,
+      };
+      if ((value || '').trim()) {
+        this.listaTags.push(nuevaEtiqueta);
+      }
+    }
   }
-let tag1:Tag = new Tag(value,new Date(),nomCreador,new Date())
-
-let nombreTag=value.toString()
-
-let nuevaEtiqueta = {
-  id: undefined,
-  nombre:nombreTag,
-  creador:nomCreador,
-  created_at: new Date()  ,
-  updated_at:new Date() ,
-  expertList:undefined,
-};
-  if ((value || '').trim()) {
-    this.listaTags.push(nuevaEtiqueta);
+  /**
+   * MEtodo actualizar la ruta al añadir el experto
+   */
+  reloadCurrentRoute() {
+    this.router
+      .navigateByUrl('/addexperto', { skipLocationChange: true })
+      .then(() => this.router.navigate(['/expertos']));
+    window.location.reload();
   }
-}
-
-}
-reloadCurrentRoute() {
-  this.router.navigateByUrl('/addexperto', {skipLocationChange: true}).then(()=>
-  this.router.navigate(["/expertos"]));
-  window.location.reload();
-}
 }

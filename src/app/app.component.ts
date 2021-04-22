@@ -19,16 +19,18 @@ export class AppComponent {
   routerUrlExperto: boolean = false;
   constructor(public router: Router, public activatedRoute: ActivatedRoute) {}
 
+  /**
+   * Metodo para controlar lar Rutas del sideNav
+   *
+   * @returns booleano
+   */
   mostrarNav(): boolean {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        //console.log(e.url);
-
         this.routerUrlExperto = e.url.includes('expertos/');
         this.routerUrlEtiqueta = e.url.includes('etiquetas/');
       }
     });
-
     if (!this.routerUrlExperto) {
       switch (this.router.url) {
         case '/expertos':

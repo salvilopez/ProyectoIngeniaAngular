@@ -75,6 +75,7 @@ listaSelect:string[] =[]
   }
   ngOnInit(): void {
 this.listaSelect.length=101
+
    this.listaExpertTable
    this.dataSource.sort = this.sort;
    this.dataSource.paginator=this.paginator;

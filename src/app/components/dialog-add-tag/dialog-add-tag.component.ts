@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tag } from 'src/app/models/tag/tag.model';
 import { TagsService } from 'src/app/services/tag/tags.service';
-
 @Component({
   selector: 'app-dialog-add-tag',
   templateUrl: './dialog-add-tag.component.html',
@@ -14,7 +13,6 @@ import { TagsService } from 'src/app/services/tag/tags.service';
 export class DialogAddTagComponent implements OnInit , OnDestroy {
   addTagForm: FormGroup = new FormGroup({});
   tagSubscription: Subscription = new Subscription();
-
   constructor(
     private formBuilder: FormBuilder,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogAddTagComponent>){}
   ngOnDestroy(): void {
@@ -24,15 +22,11 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
     this.addTagForm = this.formBuilder.group({
       nombreEtiqueta: ['', Validators.compose([Validators.required])],
     });
-
   }
-
-
 
   closeDialog() {
     this.dialogRef.close();
   }
-
   addTag() {
     if (
       this.addTagForm.valid &&

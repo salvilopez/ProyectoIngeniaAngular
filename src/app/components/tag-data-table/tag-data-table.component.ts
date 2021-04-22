@@ -18,40 +18,38 @@ import { DialogDeleteTagComponent } from '../dialog-delete-tag/dialog-delete-tag
 export class TagDataTableComponent implements DoCheck {
   displayedColumns: string[] = ['etiqueta', 'creador', 'fechaCreacion','botonBorrar'];
   dataSource: MatTableDataSource<Tag>;
-
   @Input() listaTagTable: any = [];
-
   tagSubscription: Subscription = new Subscription();;
   tagRequest: TagRequest = new TagRequest('',0, 0,"",new Date());
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(
-    private tagsService: TagsService,public dialog:MatDialog,
-  ) {
-    // Create 100 users
-    //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor( private tagsService: TagsService,public dialog:MatDialog) {
 
-    // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.listaTagTable);
   }
+
   ngDoCheck(): void {
     this.dataSource = this.listaTagTable;
-
-
-  localStorage.setItem('totalTags',this.listaTagTable.length);
+    localStorage.setItem('totalTags',this.listaTagTable.length);
   }
 
   ngOnInit(): void {
 
   }
+  /**
+   * Metodo abrir ventana modal
+   * @param dato
+   */
   openDialog2(dato:any){
-
-    this.dialog.open(DialogDeleteTagComponent,{
+      this.dialog.open(DialogDeleteTagComponent,{
       data:{tag:JSON.stringify(dato)}
     });
   }
 
+  /**
+   * Aplicar flitro de etiqueta por nombre
+   * @param event
+   */
   applyFilterByName(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
    this.tagRequest.nombre = filterValue;
@@ -61,6 +59,10 @@ export class TagDataTableComponent implements DoCheck {
         this.listaTagTable = result;
      });
   }
+    /**
+   * Aplicar flitro de etiqueta por fecha
+   * @param event
+   */
   applyFilterByFechaCrea(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
    this.tagRequest.fechaCreacion =new Date(filterValue);
@@ -70,6 +72,11 @@ export class TagDataTableComponent implements DoCheck {
         this.listaTagTable = result;
      });
   }
+
+    /**
+   * Aplicar flitro de etiqueta por creador
+   * @param event
+   */
   applyFilterByCreador(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
    this.tagRequest.creador = filterValue;

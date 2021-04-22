@@ -1,21 +1,20 @@
 <main>
     <div id="registro">
         <h1>Register Page : </h1>
-        <!--   <h4>{{ registerForm.value | json }}</h4>-->
         <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
-
-            <input formControlName="email" required/>
-
-
-
-
-            <input formControlName="password" required/>
-
-
-
-            <div>
-                <button [disabled]="registerForm.invalid" color="accent" type="submit">Register</button>
-                <button color="warning" [routerLink]="['/login']">Go To Login Page</button>
+            <div class="form-group row">
+                <div class="col-12">
+                    <input id="email" formControlName="email" type="text" class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <input id="password" formControlName="password" type="text" class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-lg-around ">
+                <button [disabled]="registerForm.invalid" type="submit" class="btn btn-success m-3">Register</button>
+                <button color="warning" [routerLink]="['/login']" class=" btn btn-secondary m-3">Go To Login Page</button>
             </div>
         </form>
     </div>

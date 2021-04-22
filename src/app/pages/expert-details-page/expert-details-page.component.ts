@@ -46,32 +46,39 @@ tabLoadTimes: Date[] = [];
     .getExpertsById(this.id)
     .subscribe((data: Expert) => {
       this.expertDet=data;
-     // console.log(this.expertDet);
     });
-
-
   }
-
+/**
+ *
+ * @param index
+ * @returns
+ */
   getTimeLoaded(index: number) {
     if (!this.tabLoadTimes[index]) {
       this.tabLoadTimes[index] = new Date();
     }
-
     return this.tabLoadTimes[index];
   }
 
+  /**
+   * Metodo para actualizar el experto
+   */
   actualizarExperto() {
     console.log("antes del update");
     this.expertDet.update_at=new Date();
     let body={
       ...this.expertDet
     }
-
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expertDet = response;
 
     });
   }
+
+  /**
+   *
+   * @param event Metodo del input para actaulizar la imagen base
+   */
   showPreviewImg(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
@@ -95,6 +102,10 @@ tabLoadTimes: Date[] = [];
     this.expertSubscription.unsubscribe();
     this.routerSubscription.unsubscribe();
   }
+  /**
+   * Metodo que devuelve la pagina actual
+   * @returns String
+   */
   pagActual(): string {
   //  console.log(this.router.url)
 return this.router.url

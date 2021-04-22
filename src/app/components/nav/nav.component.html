@@ -3,17 +3,10 @@
         <mat-toolbar><svg width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M10.3737 15.8939C9.7884 16.0396 9.17624 16.117 8.54608 16.117C4.36663 16.117 0.978516 12.7144 0.978516 8.51699C0.978516 4.31963 4.36663 0.916992 8.54608 0.916992C12.5495 0.916992 15.8268 4.03896 16.0958 7.99091L20.73 11.3757L25.9512 8.31685C26.5596 4.73186 29.6679 2.00271 33.4109 2.00271C37.5904 2.00271 40.9785 5.40534 40.9785 9.60271C40.9785 13.8001 37.5904 17.2027 33.4109 17.2027C32.5132 17.2027 31.652 17.0457 30.8531 16.7576L25.3028 20.0091V25.4953C26.9552 26.8894 28.0055 28.98 28.0055 31.317C28.0055 35.5144 24.6174 38.917 20.438 38.917C16.2585 38.917 12.8704 35.5144 12.8704 31.317C12.8704 28.98 13.9207 26.8894 15.5731 25.4953V19.6915L10.3737 15.8939Z"
-          fill="url(#paint0_linear)"
-        />
+          fill="url(#paint0_linear)" />
         <defs>
-          <linearGradient
-            id="paint0_linear"
-            x1="-0.0140737"
-            y1="-1.41699"
-            x2="36.6098"
-            y2="31.0004"
-            gradientUnits="userSpaceOnUse"
-          >
+          <linearGradient id="paint0_linear" x1="-0.0140737" y1="-1.41699" x2="36.6098" y2="31.0004"
+            gradientUnits="userSpaceOnUse">
             <stop stop-color="#FFE600" />
             <stop offset="1" stop-color="#00FFE0" />
           </linearGradient>
@@ -40,18 +33,17 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-
         <mat-toolbar *ngIf="pagActisEtiquetasPage()" class="d-flex flex-row justify-content-between">
             <div>
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-                <div class="d-flex flex-column ">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+                <div class="d-flex flex-column">
                     <h2>Lista de Etiquetas</h2>
                     <span>{{ totalTags }} Etiquetas</span>
                 </div>
                 <nav *ngIf="pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-                    <ol class="breadcrumb" *ngIf="pagActual()!=='/etiquetas'">
+                    <ol class="breadcrumb" *ngIf="pagActual() !== '/etiquetas'">
                         <li class="breadcrumb-item">
                             <a [routerLink]="['/etiquetas']">Volver a la lista de Etiquetas</a>
                         </li>
@@ -59,21 +51,18 @@
                             Nueva etiqueta
                         </li>
                     </ol>
-
-
                 </nav>
             </div>
 
-            <button type="button" class="btn btn-success" *ngIf="pagActual()==='/etiquetas'" (click)="openDialog()">
-              <mat-icon>add</mat-icon>   añadir Etiqueta
-              </button>
+            <button type="button" class="btn btn-success" *ngIf="pagActual() === '/etiquetas'" (click)="openDialog()">
+        <mat-icon>add</mat-icon> añadir Etiqueta
+      </button>
         </mat-toolbar>
         <mat-toolbar *ngIf="!pagActisEtiquetasPage()" class="d-flex flex-row justify-content-between">
             <div>
-
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
 
                 <div class="d-flex flex-row">
                     <div class="d-flex flex-column">
@@ -81,7 +70,7 @@
                         <span>{{ totalExper }} Candidatos</span>
                     </div>
                     <nav *ngIf="!pagActisEtiquetasPage()" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-                        <ol class="breadcrumb " *ngIf="pagActual()!=='/expertos'">
+                        <ol class="breadcrumb" *ngIf="pagActual() !== '/expertos'">
                             <li class="breadcrumb-item">
                                 <a [routerLink]="['/expertos']">Volver a la lista de expertos</a>
                             </li>
@@ -89,12 +78,12 @@
                                 Informacion de experto
                             </li>
                         </ol>
-
                     </nav>
                 </div>
             </div>
-            <button *ngIf="pagActual()==='/expertos'" class="btn btn-success" [routerLink]="['/addexperto']"><mat-icon>add</mat-icon> añadir Experto</button>
-
+            <button *ngIf="pagActual() === '/expertos'" class="btn btn-success" [routerLink]="['/addexperto']">
+        <mat-icon>add</mat-icon> añadir Experto
+      </button>
         </mat-toolbar>
         <section class="">
             <router-outlet *ngIf="mostrarNav() || this.routerUrlExperto || this.routerUrlEtiqueta"></router-outlet>

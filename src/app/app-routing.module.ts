@@ -7,7 +7,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { TagDetailsPageComponent } from './pages/tag-details-page/tag-details-page.component';
 import { TagsPageComponent } from './pages/tags-page/tags-page.component';
 
 const routes: Routes = [
@@ -33,11 +32,6 @@ const routes: Routes = [
   {
     path: 'expertos/:id', // http:localhost:4200/todos
     component: ExpertDetailsPageComponent,
-    //canActivate: [GuardGuard],
-  },
-  {
-    path: 'etiquetas/:id', // http:localhost:4200/todos
-    component: TagDetailsPageComponent,
     //canActivate: [GuardGuard],
   },
   {

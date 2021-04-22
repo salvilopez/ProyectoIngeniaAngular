@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-
+  /**
+   * Login
+   */
   login(): void {
     if (
       this.loginForm.valid &&
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
           if (response.jwt) {
            this.snackBar.open(
               'Login realizado con exito',
-            "",
+            " Token Recibido Correctamente",
               {
               duration: 2000,
                horizontalPosition: 'center',
@@ -49,8 +51,7 @@ export class LoginComponent implements OnInit {
               }
             );
             sessionStorage.setItem('Token',"Jwt =  "+response.jwt);
-           // localStorage.setItem('username', user.email);
-            localStorage.setItem('username', 'salvi@gmail.com');
+            localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
           }

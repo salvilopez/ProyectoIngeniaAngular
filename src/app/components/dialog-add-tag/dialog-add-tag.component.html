@@ -1,16 +1,14 @@
 <form [formGroup]="addTagForm" (submit)="addTag()">
-    <div class="form-group row">
-        <label for="text1" class="col-4 col-form-label">Nombre Tarea</label>
-        <div class="col-8">
+    <div class="form-group row d-flex flex-column">
+        <label for="text1" class="col-12 col-form-label text-left">Nombre Tarea</label>
+        <div class="col-12">
             <input id="nombreEtiqueta" type="text" formControlName="nombreEtiqueta" class="form-control" placeholder="Introducir Nombre">
         </div>
     </div>
     <div class="form-group row">
-        <div class="offset-4 col-8">
-            <button class="btn btn-secondary" type="button" (click)="closeDialog()">salir</button>
-            <button [disabled]="addTagForm.invalid" class="btn btn-success" type="submit">CrearEtiqueta</button>
-
-
+        <div class="offset-2 col-8 d-flex flex-row justify-content-around">
+            <button class="btn btn-secondary m-3 mt-5" type="button" (click)="closeDialog()">salir</button>
+            <button [disabled]="addTagForm.invalid" class="btn btn-success m-3 mt-5" type="submit">CrearEtiqueta</button>
         </div>
     </div>
 </form>

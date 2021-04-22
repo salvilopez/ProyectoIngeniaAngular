@@ -42,13 +42,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { TagDataTableComponent } from './components/tag-data-table/tag-data-table.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ExpertDetailsPageComponent } from './pages/expert-details-page/expert-details-page.component';
-import { TagDetailsPageComponent } from './pages/tag-details-page/tag-details-page.component';
 import { GeneralDataComponent } from './components/general-data/general-data.component';
 import { ObservationsComponent } from './components/observations/observations.component';
 import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.component';
 import { NewExpertFormComponent } from './components/new-expert-form/new-expert-form.component';
 import { DialogAddTagComponent } from './components/dialog-add-tag/dialog-add-tag.component';
-///////////////////////////////////////////////////////////////////////
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-delete-tag.component'
 
@@ -69,7 +67,6 @@ import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-
     NavComponent,
     TagDataTableComponent,
     ExpertDetailsPageComponent,
-    TagDetailsPageComponent,
     GeneralDataComponent,
     ObservationsComponent,
     NewExpertPageComponent,

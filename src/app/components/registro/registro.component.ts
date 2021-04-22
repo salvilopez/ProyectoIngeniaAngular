@@ -41,7 +41,6 @@ export class RegistroComponent implements OnInit {
       );
       this.authSubscription = this.auth.register(user).subscribe(
         (response) => {
-          if (response.token) {
             this.snackBar.open(
               'Registro realizado con exito',
               `Token: ${response.token}`,
@@ -51,17 +50,13 @@ export class RegistroComponent implements OnInit {
                 verticalPosition: 'top',
               }
             );
-            sessionStorage.setItem('Token', response.token);
-
-            //añadimos el nombre de usuario al local storage
+            sessionStorage.setItem('Token',  user.email);
             localStorage.setItem('username', user.email);
-            this.router.navigate(['/login']);
-          }
         },
         (error) => {
           this.snackBar.open(
             'Fallo en el Registro',
-            'Error: ' + error.status + '  Introduce el usuario y el email de la Web',
+            'Error: ' + error.status + '  Introduce el usuario y el email Correcto',
             {
               duration: 2000,
               horizontalPosition: 'center',
@@ -71,18 +66,12 @@ export class RegistroComponent implements OnInit {
           sessionStorage.removeItem('Token');
         }
       );
-    } else {
-      this.snackBar.open('Fallo en el registro , Algun campo invalido ', '', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
-    }
+    } else
+    this.router.navigate(['/login']);
   }
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
-
 }
 
 

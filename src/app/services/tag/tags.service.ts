@@ -10,69 +10,80 @@ export class TagsService {
 
   constructor(private http: HttpClient) { }
 
-
+/**
+ * Metodo ctrear tags
+ * @param tag
+ * @returns Tag
+ */
   createTags(tag:Tag): Observable<Tag> {
 
-
-    return this.http.post<Tag>('http://localhost:8082/api/etiquetas',tag);
+   return this.http.post<Tag>('http://localhost:8082/api/etiquetas',tag);
   }
+
+/**
+ * Metodo borrar tags
+ * @param idTag
+ * @returns Tag borrada
+ */
   deleteTag(idTag:number): Observable<Tag> {
 
-    console.log('http://localhost:8082/api/etiquetas/delete/'+idTag)
     return this.http.delete<Tag>('http://localhost:8082/api/etiquetas/delete/'+idTag);
   }
 
-
+/**
+ * Metodo obtener lista flitrando por creador
+ * @param tagrequest
+ * @returns Tag[]
+ */
   getAllTagsByCreador(tagrequest:TagRequest): Observable<Tag[]> {
 
-    //TODO----------------------
     if(tagrequest.limite===0)tagrequest.limite=10
-    //TODO----------------------
+
     if(tagrequest.creador==undefined)tagrequest.creador="";
-    console.log('http://localhost:8082/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
+
     return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
 
 }
 
-//TODO---------------------------------------------------------
-//TODO---------------------------------------------------------
-//TODO falla al filtrar la fecha
-//TODO---------------------------------------------------------
-getAllTagbyFeCr(tagrequest:TagRequest): Observable<Tag[]> {
+/**
+ * Metodo obtener lista flitrando por fecha de creacion
+ * @param tagrequest
+ * @returns Tag[]
+ */
+  getAllTagbyFeCr(tagrequest:TagRequest): Observable<Tag[]> {
 
-  //TODO----------------------
-  if(tagrequest.limite===0)tagrequest.limite=10
-  //TODO----------------------
-  if(tagrequest.fechaCreacion==undefined)tagrequest.fechaCreacion=new Date();
+   if(tagrequest.limite===0)tagrequest.limite=10
 
-  console.log('http://localhost:8082/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
-  return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+   if(tagrequest.fechaCreacion==undefined)tagrequest.fechaCreacion=new Date();
 
-}
-//TODO---------------------------------------------------------
-//TODO---------------------------------------------------------
-//TODO---------------------------------------------------------
-
+    return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+  }
+/**
+ * Metodo obtener lista flitrando por nombre
+ * @param tagrequest
+ * @returns Tag[]
+ */
   getAllTagsByName(tagrequest:TagRequest): Observable<Tag[]> {
 
-        //TODO----------------------
         if(tagrequest.limite===0)tagrequest.limite=10
-        //TODO----------------------
+
         if(tagrequest.nombre==undefined)tagrequest.nombre="";
 
         return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
-
   }
 
+  /**
+ * Metodo obtener lista de todas las tags
+ * @param tagrequest
+ * @returns Tag[]
+ */
   getAllTags(tag:TagRequest): Observable<Tag[]> {
+
     if(tag.pagina===undefined) tag.pagina=0
+
     if(tag.limite===undefined) tag.limite=10
-console.log('http://localhost:8082/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite)
+
       return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite);
-
-
   }
-
-
 
 }
