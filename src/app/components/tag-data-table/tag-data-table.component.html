@@ -57,9 +57,9 @@
                 </th>
                 <td mat-cell *matCellDef="let row">
 
-                    <button class="btn btn-danger"><span class="material-icons-outlined">
-
-                      </span>Borrar Etiqueta</button>
+                    <button mat-raised-button class="btn btn-danger" (click)="openDialog2(row)">
+                      <mat-icon>delete</mat-icon>
+                      Borrar Etiqueta</button>
 
                 </td>
             </ng-container>

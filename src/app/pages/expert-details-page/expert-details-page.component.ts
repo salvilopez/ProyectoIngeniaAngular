@@ -10,7 +10,7 @@ import { ExpertService } from 'src/app/services/expert/expert.service';
   templateUrl: './expert-details-page.component.html',
   styleUrls: ['./expert-details-page.component.scss'],
 })
-export class ExpertDetailsPageComponent  {
+export class ExpertDetailsPageComponent implements OnInit {
 tabLoadTimes: Date[] = [];
   routerSubscription: Subscription = new Subscription();
   expertSubscription: Subscription = new Subscription();
@@ -25,9 +25,10 @@ tabLoadTimes: Date[] = [];
   ) {}
 
 
+
   ngOnInit(): void {
 
-    if(this.expertDet===undefined){
+    if(this.expertDet==undefined){
       this.routerSubscription = this.activatedRoute.params.subscribe((params) => {
         this.id=  params.id
       });
@@ -84,7 +85,8 @@ tabLoadTimes: Date[] = [];
      .extraerBase64(this.archivoCapturado)
     .then((base64: any) => {
       this.archivoBase64 = base64.base;
-      this.expertDet.fichero_foto = base64.base;
+      if(this.expertDet.fichero_foto !==undefined) this.expertDet.fichero_foto = base64.base;
+
       this.actualizarExperto()
      });
         //TODO----------------------------------------------

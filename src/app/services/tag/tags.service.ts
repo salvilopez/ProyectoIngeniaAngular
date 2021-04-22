@@ -16,7 +16,11 @@ export class TagsService {
 
     return this.http.post<Tag>('http://localhost:8082/api/etiquetas',tag);
   }
+  deleteTag(idTag:number): Observable<Tag> {
 
+    console.log('http://localhost:8082/api/etiquetas/delete/'+idTag)
+    return this.http.delete<Tag>('http://localhost:8082/api/etiquetas/delete/'+idTag);
+  }
 
 
   getAllTagsByCreador(tagrequest:TagRequest): Observable<Tag[]> {

@@ -30,7 +30,7 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
 
 
   closeDialog() {
-    this.dialogRef.close('Pizza!');
+    this.dialogRef.close();
   }
 
   addTag() {
@@ -60,7 +60,12 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
       );
     }
     this.closeDialog();
+    this.reloadCurrentRoute();
   }
-
+  reloadCurrentRoute() {
+    this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/etiquetas"]));
+    window.location.reload();
+}
 
 }

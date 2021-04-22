@@ -1,0 +1,14 @@
+<div>
+    <div class="form-group row">
+        <label for="text1" class="col-4 col-form-label">Borrar Tarea</label>
+        <div class="col-8">
+            <h1>¿Estás seguro que deseas eliminar {{this.tag.nombre}} de la lista de etiquetas ?</h1>
+            <p>La etiqueta desaparecera de las fichas de expertos tmb</p>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-4 col-8">
+            <button class="btn btn-secondary" type="button" (click)="closeDialog()">salir</button>
+            <button (click)="deleteTag()" class="btn btn-danger">Borrar Tarea</button>
+        </div>
+    </div>

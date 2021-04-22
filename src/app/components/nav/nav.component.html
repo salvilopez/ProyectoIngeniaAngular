@@ -64,8 +64,8 @@
                 </nav>
             </div>
 
-            <button type="button" class="btn btn-success" *ngIf="pagActual()==='/etiquetas'" mat-raised-button (click)="openDialog()">
-                añadir Etiqueta
+            <button type="button" class="btn btn-success" *ngIf="pagActual()==='/etiquetas'" (click)="openDialog()">
+              <mat-icon>add</mat-icon>   añadir Etiqueta
               </button>
         </mat-toolbar>
         <mat-toolbar *ngIf="!pagActisEtiquetasPage()" class="d-flex flex-row justify-content-between">
@@ -93,7 +93,7 @@
                     </nav>
                 </div>
             </div>
-            <button *ngIf="pagActual()==='/expertos'" class="btn btn-success" [routerLink]="['/addexperto']">añadir Experto</button>
+            <button *ngIf="pagActual()==='/expertos'" class="btn btn-success" [routerLink]="['/addexperto']"><mat-icon>add</mat-icon> añadir Experto</button>
 
         </mat-toolbar>
         <section class="">

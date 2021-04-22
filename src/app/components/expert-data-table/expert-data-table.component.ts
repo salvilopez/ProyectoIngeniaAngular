@@ -1,4 +1,4 @@
-import { EventEmitter, Output } from '@angular/core';
+import { DoCheck, EventEmitter, Output } from '@angular/core';
 import {
   AfterViewInit,
   Component,
@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -22,7 +22,7 @@ import { TagsService } from 'src/app/services/tag/tags.service';
   templateUrl: './expert-data-table.component.html',
   styleUrls: ['./expert-data-table.component.scss'],
 })
-export class ExpertDataTableComponent implements AfterViewInit, OnInit {
+export class ExpertDataTableComponent implements AfterViewInit, OnInit ,DoCheck{
   displayedColumns = ['nombre', 'estado', 'etiquetas', 'puntuacion'];
 
   dataSource: MatTableDataSource<Expert>;
@@ -35,7 +35,18 @@ listaSelect:string[] =[]
   expertAllSubscription = new Subscription();
   expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
   tagRequest: TagRequest = new TagRequest('', 0, 0,"", new Date());
+  length:any = 20;
+  pageSize:any = 10;
+  pageIndex = 0;
+  pageSizeOptions = [1,2,3,4,5, 10, 15, 20];
+  showFirstLastButtons = true;
+  //TODO----------------------
 
+  ///inputnombre:any
+ //inputestado:any
+   // inputetiquetas:any
+    // inputpuntuacion:any
+  //TODO----------------------
 
   constructor(
     private expertsService: ExpertService,
@@ -47,16 +58,51 @@ listaSelect:string[] =[]
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.listaExpertTable);
   }
+
+
+
+  handlePageEvent(event: PageEvent) {
+
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+  //TODO----------------------
+
+  //TODO----------------------
+
+
+
+  }
   ngOnInit(): void {
 this.listaSelect.length=101
    this.listaExpertTable
+   this.dataSource.sort = this.sort;
+   this.dataSource.paginator=this.paginator;
   }
   ngDoCheck(): void {
-    this.dataSource = this.listaExpertTable;
 
+    this.dataSource = this.listaExpertTable;
+   this.dataSource.sort = this.sort;
+   this.dataSource.paginator=this.paginator;
 
   localStorage.setItem('totalExpert',this.listaExpertTable.length);
   }
+
+
+  getNext(event: PageEvent) {
+
+    // call your api function here with the offset
+    }
+
+
+
+
+
+
+
+
+
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -84,10 +130,15 @@ this.listaSelect.length=101
         return '#D66464';
     }
   }
+    //TODO----------------------
 
   applyFilterByName(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+   const filterValue = (event.target as HTMLInputElement).value;
+
+      //TODO----------------------
     this.expertRequest.nombre = filterValue;
+    this.expertRequest.pagina= this.pageIndex;
+    this.expertRequest.limite= this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByName(this.expertRequest)
       .subscribe((result) => {
@@ -98,6 +149,8 @@ this.listaSelect.length=101
   applyFilterByEstado(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.expertRequest.estado = filterValue;
+    this.expertRequest.pagina= this.pageIndex;
+    this.expertRequest.limite= this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByestado(this.expertRequest)
       .subscribe((result) => {
@@ -107,6 +160,8 @@ this.listaSelect.length=101
   applyFilterByValoracion(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.expertRequest.puntuacion = parseInt(filterValue);
+    this.expertRequest.pagina= this.pageIndex;
+    this.expertRequest.limite= this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByValoracion(this.expertRequest)
       .subscribe((result) => {
@@ -119,7 +174,8 @@ this.listaSelect.length=101
   applyFilterByEtiquetas(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.tagRequest.nombre = filterValue;
-    filterValue
+    this.expertRequest.pagina= this.pageIndex;
+    this.expertRequest.limite= this.pageSize;
     this.expertSubscription = this.tagsService
       .getAllTagsByName(this.tagRequest)
       .subscribe((result: Tag[]) => {

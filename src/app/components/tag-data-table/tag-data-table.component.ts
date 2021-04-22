@@ -1,5 +1,6 @@
 import { DoCheck, Input } from '@angular/core';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -7,6 +8,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { TagRequest } from 'src/app/models/tag/tag-request.model';
 import { Tag } from 'src/app/models/tag/tag.model';
 import { TagsService } from 'src/app/services/tag/tags.service';
+import { DialogDeleteTagComponent } from '../dialog-delete-tag/dialog-delete-tag.component';
 
 @Component({
   selector: 'app-tag-data-table',
@@ -25,7 +27,7 @@ export class TagDataTableComponent implements DoCheck {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
-    private tagsService: TagsService
+    private tagsService: TagsService,public dialog:MatDialog,
   ) {
     // Create 100 users
     //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
@@ -41,8 +43,14 @@ export class TagDataTableComponent implements DoCheck {
   }
 
   ngOnInit(): void {
-  }
 
+  }
+  openDialog2(dato:any){
+
+    this.dialog.open(DialogDeleteTagComponent,{
+      data:{tag:JSON.stringify(dato)}
+    });
+  }
 
   applyFilterByName(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

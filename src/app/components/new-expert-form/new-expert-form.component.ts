@@ -59,7 +59,9 @@ export class NewExpertFormComponent implements OnInit {
     this.expertSubscription = this.expertService.createExpert(experto).subscribe((result)=>{
     })
     }
-    this.router.navigate(['/expertos']);
+
+
+    this.reloadCurrentRoute()
   }
 addTag(event: any): void {
   const value = event.target.value;
@@ -85,5 +87,11 @@ let nuevaEtiqueta = {
     this.listaTags.push(nuevaEtiqueta);
   }
 }
+
+}
+reloadCurrentRoute() {
+  this.router.navigateByUrl('/addexperto', {skipLocationChange: true}).then(()=>
+  this.router.navigate(["/expertos"]));
+  window.location.reload();
 }
 }
