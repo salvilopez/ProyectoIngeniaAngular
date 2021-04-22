@@ -10,12 +10,13 @@ import { ExpertService } from 'src/app/services/expert/expert.service';
   templateUrl: './expert-details-page.component.html',
   styleUrls: ['./expert-details-page.component.scss'],
 })
-export class ExpertDetailsPageComponent implements OnInit {
+export class ExpertDetailsPageComponent implements OnInit,DoCheck {
 tabLoadTimes: Date[] = [];
   routerSubscription: Subscription = new Subscription();
   expertSubscription: Subscription = new Subscription();
-  expertDet: any;
+  expertDet: Expert=new Expert("", new Date(),new Date(),"","","",false,0,"","","",0,0,0,"","","","","","","","","","");
   id:number=0;
+  expertActualizado:any;
   archivoCapturado:any;
   archivoBase64:any;
   constructor(
@@ -23,31 +24,38 @@ tabLoadTimes: Date[] = [];
     private expertService: ExpertService,
     public router: Router
   ) {}
+  ngDoCheck(): void {
 
+      this.expertDet=this.expertActualizado;
+
+
+
+  }
 
 
   ngOnInit(): void {
 
-    if(this.expertDet==undefined){
+
+
+    if(this.expertDet.id===0||this.id===0){
+
       this.routerSubscription = this.activatedRoute.params.subscribe((params) => {
         this.id=  params.id
       });
-      this.expertSubscription = this.expertService
-      .getExpertsById(this.id)
-      .subscribe((data: Expert) => {
-        this.expertDet=data;
+        this.expertSubscription = this.expertService
+        .getExpertsById(this.id)
+        .subscribe((data: Expert) => {
+          this.expertDet=data;
+          this.expertActualizado= this.expertDet;
+        });
 
-      });
-
+    }else{
+      this.expertDet=this.expertActualizado;
     }
 
-
-    this.expertSubscription = this.expertService
-    .getExpertsById(this.id)
-    .subscribe((data: Expert) => {
-      this.expertDet=data;
-    });
   }
+
+
 /**
  *
  * @param index
@@ -65,12 +73,12 @@ tabLoadTimes: Date[] = [];
    */
   actualizarExperto() {
     console.log("antes del update");
-    this.expertDet.update_at=new Date();
+    this.expertDet.updated_at=new Date();
     let body={
       ...this.expertDet
     }
     this.expertService.updateExpert(body).subscribe((response) => {
-      this.expertDet = response;
+      this.expertActualizado = response;
 
     });
   }

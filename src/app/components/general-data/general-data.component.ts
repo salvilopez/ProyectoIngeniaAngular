@@ -15,7 +15,7 @@ import { ElementSchemaRegistry } from '@angular/compiler';
   templateUrl: './general-data.component.html',
   styleUrls: ['./general-data.component.scss'],
 })
-export class GeneralDataComponent implements OnInit, DoCheck {
+export class GeneralDataComponent implements OnInit {
   @Input() expertDetail: any;
   telefonovisible: boolean = false;
   emailvisible: boolean = false;
@@ -37,25 +37,22 @@ export class GeneralDataComponent implements OnInit, DoCheck {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor(private expertService: ExpertService,private snackBar: MatSnackBar, private tagService:TagsService) {
   }
-  ngDoCheck(): void {
-
-  }
 
   ngOnInit(): void {
-    if (this.expertDetail != undefined) {
-      this.expDetail = this.expertDetail;
+
+
+    if(this.expertDetail!=undefined){
+      this.expDetail=this.expertDetail;
     }
-    if (this.expActualizado !== undefined) {
-      this.expDetail = this.expDetail;
-      this.expActualizado = undefined;
+    if(this.expActualizado!==undefined){
+      this.expDetail=this.expDetail;
+      this.expActualizado=undefined;
     }
   }
-
   ocultar(): string {
 
     return 'disabled';
   }
-
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -70,7 +67,6 @@ export class GeneralDataComponent implements OnInit, DoCheck {
       input.value = '';
     }
   }
-
   addTag( tag:Tag) {
       this.tagSubscription = this.tagService.createTags(tag).subscribe(
         (response) => {
@@ -82,22 +78,16 @@ export class GeneralDataComponent implements OnInit, DoCheck {
          console.log(error.message)
         }
       );
-
-
   }
 
 
   actualizarExperto() {
-
     this.expDetail.update_at = new Date();
     let body = {
       ...this.expDetail,
-
     }
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expActualizado = response;
-
-     // console.log(this.expActualizado)
       this.snackBar.open(
         'Actualizacion Correcta',
         ``,
@@ -130,8 +120,6 @@ export class GeneralDataComponent implements OnInit, DoCheck {
   ngOnDestroy(): void {
     this.expertSubscription.unsubscribe();
   }
-
-
 
   verPdf() {
     //  console.log("descargando pdf")

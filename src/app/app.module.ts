@@ -48,7 +48,7 @@ import { NewExpertPageComponent } from './pages/new-expert-page/new-expert-page.
 import { NewExpertFormComponent } from './components/new-expert-form/new-expert-form.component';
 import { DialogAddTagComponent } from './components/dialog-add-tag/dialog-add-tag.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-delete-tag.component'
+import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-delete-tag.component';
 
 
 @NgModule({
