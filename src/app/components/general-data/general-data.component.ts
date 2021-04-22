@@ -27,7 +27,7 @@ export class GeneralDataComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  expDetail: any;
+
   expActualizado: any;
   selected: string = '';
   archivoCapturado: any;
@@ -47,11 +47,9 @@ export class GeneralDataComponent implements OnInit {
 
 
 
-    if (this.expDetail != undefined||this.expDetail !=0) {
-      this.expDetail = this.expertDetail;
-    }
+
     if (this.expActualizado !== undefined) {
-      this.expDetail = this.expDetail;
+      this.expertDetail = this.expActualizado;
       this.expActualizado = undefined;
     }
   }
@@ -77,7 +75,7 @@ export class GeneralDataComponent implements OnInit {
       this.tagSubscription = this.tagService.createTags(tag).subscribe(
         (response) => {
          this.tagCreada=response
-         this.expDetail.tagList.push(this.tagCreada);
+         this.expertDetail.tagList.push(this.tagCreada);
          this.actualizarExperto();
         },
         (error) => {
@@ -88,9 +86,9 @@ export class GeneralDataComponent implements OnInit {
 
 
   actualizarExperto() {
-    this.expDetail.update_at = new Date();
+    this.expertDetail.update_at = new Date();
     let body = {
-      ...this.expDetail,
+      ...this.expertDetail,
     }
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expActualizado = response;
@@ -116,10 +114,10 @@ export class GeneralDataComponent implements OnInit {
     });
   }
   remove(tag: Tag): void {
-    const index = this.expDetail.tagList.indexOf(tag);
+    const index = this.expertDetail.tagList.indexOf(tag);
 
     if (index >= 0) {
-      this.expDetail.tagList.splice(index, 1);
+      this.expertDetail.tagList.splice(index, 1);
     }
   }
 
@@ -133,7 +131,7 @@ export class GeneralDataComponent implements OnInit {
 
 
    downloadPDF() {
-    const linkSource = this.expDetail.fichero_cv;
+    const linkSource = this.expertDetail.fichero_cv;
     const downloadLink = document.createElement("a");
     const fileName = "tupdf.pdf";
     downloadLink.href = linkSource;
@@ -145,7 +143,7 @@ export class GeneralDataComponent implements OnInit {
 
      verPDF() {
       this.dialog.open(PDFviewerComponent,{
-        data:{pdf:this.expDetail.fichero_cv},
+        data:{pdf:this.expertDetail.fichero_cv},
         width: '1024px',
         height: '720px',
       });
@@ -176,7 +174,7 @@ export class GeneralDataComponent implements OnInit {
       .extraerBase64(this.archivoCapturado)
       .then((base64: any) => {
         this.archivoBase64 = base64.base;
-        this.expDetail.fichero_cv = base64.base;
+        this.expertDetail.fichero_cv = base64.base;
         this.actualizarExperto()
       });
     //TODO----------------------------------------------

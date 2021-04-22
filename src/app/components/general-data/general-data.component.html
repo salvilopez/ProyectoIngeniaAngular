@@ -4,35 +4,35 @@
             <div class="form-group row d-flex flex-column col-3 -0">
                 <label for="select" class="col-form-label mb-1 mt-1">DISPONIBILIDAD</label>
                 <div class="w-100">
-                    <select id="disponibilidad" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.disponibilidad" name="disponibilidad" class="form-control">
-        <option value="morning" [selected]="this.expDetail.disponibilidad == 'morning'">Mañanas</option>
-        <option value="tardes" [selected]="this.expDetail.disponibilidad == 'tardes'">Tardes</option>
-        <option value="todo" [selected]="this.expDetail.disponibilidad == 'todo'">Todo el día</option>
+                    <select id="disponibilidad" (change)="actualizarExperto()" [(ngModel)]="this.expertDetail.disponibilidad" name="disponibilidad" class="form-control">
+        <option value="morning" [selected]="this.expertDetail.disponibilidad == 'morning'">Mañanas</option>
+        <option value="tardes" [selected]="this.expertDetail.disponibilidad == 'tardes'">Tardes</option>
+        <option value="todo" [selected]="this.expertDetail.disponibilidad == 'todo'">Todo el día</option>
       </select>
                 </div>
             </div>
             <div class="form-group row d-flex flex-column col-3 m-0">
                 <label for="estado" class=" col-form-label">ESTADO</label>
                 <div class="w-100">
-                    <select id="estado" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.estado" name="estado" class="form-control">
-                    <option value="pendiente" [selected]="this.expDetail.estado == 'pendiente'">Pdte. Validar</option>
-                    <option value="validado" [selected]="this.expDetail.estado == 'validado'">Validado</option>
-                    <option value="todos" [selected]="this.expDetail.estado == 'todos'">Todos</option>
+                    <select id="estado" (change)="actualizarExperto()" [(ngModel)]="this.expertDetail.estado" name="estado" class="form-control">
+                    <option value="pendiente" [selected]="this.expertDetail.estado == 'pendiente'">Pdte. Validar</option>
+                    <option value="validado" [selected]="this.expertDetail.estado == 'validado'">Validado</option>
+                    <option value="todos" [selected]="this.expertDetail.estado == 'todos'">Todos</option>
                   </select>
                 </div>
             </div>
             <div class="form-group row d-flex flex-column m-0">
                 <label class=" mb-1 mt-1 col-form-label" for="valoracion">VALORACION</label>
                 <div class="w-100">
-                    <input id="valoracion" (change)="actualizarExperto()" name="valoracion" [(ngModel)]="this.expDetail.puntuacion" type="number" class="form-control">
+                    <input id="valoracion" (change)="actualizarExperto()" name="valoracion" [(ngModel)]="this.expertDetail.puntuacion" type="number" class="form-control">
                 </div>
             </div>
             <div class="form-group row d-flex flex-column col-3 m-0">
                 <label for="origen" class=" mb-1 mt-1 col-form-label">ORIGEN</label>
                 <div class="w-100">
-                    <select id="origen" (change)="actualizarExperto()" [(ngModel)]="this.expDetail.origen" name="origen" class="form-control">
-                      <option value="recursos humanos" [selected]="this.expDetail.origen == 'recursos humanos'">Recursos Humanos</option>
-                      <option value="Infojobs" [selected]="this.expDetail.origen == 'Infojobs'">Infojobs</option>
+                    <select id="origen" (change)="actualizarExperto()" [(ngModel)]="this.expertDetail.origen" name="origen" class="form-control">
+                      <option value="recursos humanos" [selected]="this.expertDetail.origen == 'recursos humanos'">Recursos Humanos</option>
+                      <option value="Infojobs" [selected]="this.expertDetail.origen == 'Infojobs'">Infojobs</option>
                     </select>
                 </div>
             </div>
@@ -41,13 +41,13 @@
             <div class="col-6 m-0 p-0">
                 <div class="row w-100 col-12">
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Telefono</div>
-                    <input type="number" [(ngModel)]="this.expDetail.contacto_telefono" (change)="actualizarExperto()" name="telefono" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <input type="number" [(ngModel)]="this.expertDetail.contacto_telefono" (change)="actualizarExperto()" name="telefono" class=" m-0 p-0 offset-1 col-5 text-left">
                     <!--   <div (change)="actualizarExperto()" *ngIf="!telefonovisible" (click)="telefonovisible=!telefonovisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_telefono}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Correo</div>
-                    <input type="text" [(ngModel)]="this.expDetail.contacto_email" (change)="actualizarExperto()" name="email" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <input type="text" [(ngModel)]="this.expertDetail.contacto_email" (change)="actualizarExperto()" name="email" class=" m-0 p-0 offset-1 col-5 text-left">
                     <!--    <div (change)="actualizarExperto()" *ngIf="!emailvisible" (click)="emailvisible=!emailvisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_email}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Direccion</div>
-                    <input type="text" [(ngModel)]="this.expDetail.contacto_ciudad" (change)="actualizarExperto()" name="direccion" class=" m-0 p-0 offset-1 col-5 text-left">
+                    <input type="text" [(ngModel)]="this.expertDetail.contacto_ciudad" (change)="actualizarExperto()" name="direccion" class=" m-0 p-0 offset-1 col-5 text-left">
                     <!--     <div (change)="actualizarExperto()" *ngIf="!direccionvisible" (click)="direccionvisible=!direccionvisible" class=" m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_direccion}}</div>-->
                     <div class=" m-0 p-0 offset-2 col-4 text-left">CV</div>
                     <div class="m-0 p-0 offset-1 col-10 d-flex flex-row justify-content-between mt-3 mb-3">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class=" m-0 p-0 offset-2 col-4 text-left">Linkedin</div>
-                    <input type="text" [(ngModel)]="this.expDetail.contacto_linkedin" (change)="actualizarExperto()" name="linkedin" class="m-0 p-0 offset-1 col-5 text-left">
+                    <input type="text" [(ngModel)]="this.expertDetail.contacto_linkedin" (change)="actualizarExperto()" name="linkedin" class="m-0 p-0 offset-1 col-5 text-left">
                     <!--         <div (change)="actualizarExperto()" *ngIf="!linkedinvisible" (click)="linkedinvisible=!linkedinvisible" class="m-0 p-0 offset-1 col-5 text-left">{{this.expDetail.contacto_linkedin}}</div>-->
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     <mat-form-field class="example-chip-list">
                         <mat-label>Etiquetas</mat-label>
                         <mat-chip-list #chipList aria-label="Fruit selection">
-                            <mat-chip *ngFor="let fruit of this.expDetail.tagList" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+                            <mat-chip *ngFor="let fruit of this.expertDetail.tagList" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
                                 {{fruit.nombre}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>

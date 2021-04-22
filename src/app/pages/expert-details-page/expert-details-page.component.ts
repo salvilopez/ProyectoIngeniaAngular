@@ -10,7 +10,7 @@ import { ExpertService } from 'src/app/services/expert/expert.service';
   templateUrl: './expert-details-page.component.html',
   styleUrls: ['./expert-details-page.component.scss'],
 })
-export class ExpertDetailsPageComponent implements OnInit,DoCheck {
+export class ExpertDetailsPageComponent implements OnInit {
 tabLoadTimes: Date[] = [];
   routerSubscription: Subscription = new Subscription();
   expertSubscription: Subscription = new Subscription();
@@ -27,7 +27,6 @@ tabLoadTimes: Date[] = [];
   ) {}
   ngDoCheck(): void {
 
-      this.expertDet=this.expertActualizado;
 
 
 
@@ -35,8 +34,6 @@ tabLoadTimes: Date[] = [];
 
 
   ngOnInit(): void {
-
-
 
     if(this.expertDet.id===0||this.id===0){
 
@@ -53,6 +50,7 @@ tabLoadTimes: Date[] = [];
     }else{
       this.expertDet=this.expertActualizado;
     }
+
 
   }
 

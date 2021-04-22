@@ -19,17 +19,19 @@
                 <a mat-list-item [routerLink]="['/expertos']">Expertos</a>
                 <a mat-list-item [routerLink]="['/etiquetas']">Etiquetas</a>
             </div>
-            <!--   <div class="mi-imagen-abajo-izquierda d-flex flex-row">
+            <!--//TODO---------------------------------------->
+            <div class="mi-imagen-abajo-izquierda d-flex flex-row align-items-center">
 
-               <div class="imagen-para-archivo">
+                <div class="imagen-para-archivo">
                     <label for="boton-archivo">
-             <img src="{{this.userLogueado.img}}" />
+             <img />
                 </label>
 
                     <input id="boton-archivo" type="file" (change)="showPreviewImg($event)" />
                 </div>
-                <p>{{this.userLogueado.email}}</p>
-            </div>-->
+                <p class="ml-2">---------------</p>
+            </div>
+            <!--  //TODO----------------------------------------->
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
