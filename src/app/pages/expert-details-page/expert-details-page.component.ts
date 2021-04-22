@@ -99,7 +99,7 @@ tabLoadTimes: Date[] = [];
      .extraerBase64(this.archivoCapturado)
     .then((base64: any) => {
       this.archivoBase64 = base64.base;
-      if(this.expertDet.fichero_foto !==undefined) this.expertDet.fichero_foto = base64.base;
+      this.expertDet.fichero_foto = base64.base;
 
       this.actualizarExperto()
      });

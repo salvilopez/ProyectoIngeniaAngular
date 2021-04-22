@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 import { ExpertDetailsPageComponent } from './pages/expert-details-page/expert-details-page.component';
 import { ExpertPageComponent } from './pages/expert-page/expert-page.component';
 
@@ -27,23 +28,23 @@ const routes: Routes = [
   {
     path: 'expertos', // http:localhost:4200/todos
     component: ExpertPageComponent,
-    //canActivate: [GuardGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'expertos/:id', // http:localhost:4200/todos
     component: ExpertDetailsPageComponent,
-    //canActivate: [GuardGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'etiquetas', // http:localhost:4200/todos/1
     component: TagsPageComponent,
-    //canActivate: [GuardGuard],
+    canActivate: [AuthGuard],
   }
   ,
   {
     path: 'addexperto', // http:localhost:4200/todos/1
     component: NewExpertPageComponent,
-    //canActivate: [GuardGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

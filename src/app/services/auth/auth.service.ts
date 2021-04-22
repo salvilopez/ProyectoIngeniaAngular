@@ -20,12 +20,11 @@ export class AuthService {
    */
   login(user: UserRequest): Observable<any> {
     let body = {
-      //email: user.email,
-     // password: user.password,
-     email: 'salvi@gmail.com',
-      password: 'salvi'
+      email: user.email,
+      password: user.password,
+
      };
-    return this.http.post('http://localhost:8082/auth/login', body);
+    return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/login', body);
   }
 /**
  * Metodo para Actualizar Usuario
@@ -34,7 +33,7 @@ export class AuthService {
  */
   actualizarUser(usu: User): Observable<User> {
 
-    return this.http.put<User>('http://localhost:8082/auth/username',usu);
+    return this.http.put<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username',usu);
   }
   /**
    *  Metodo pra obtener User oir Username
@@ -43,7 +42,7 @@ export class AuthService {
    */
   getbyUsername(username: string): Observable<User> {
 
-    return this.http.get<User>('http://localhost:8082/auth/username/'+username);
+    return this.http.get<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username/'+username);
   }
   /**
    * Metodo getter de log
@@ -70,9 +69,8 @@ export class AuthService {
       password: user.password,
     };
     console.table(body);
-    //body.email = 'eve.holt@reqres.in';
-    //body.password = 'pistol';
-    return this.http.post('http://localhost:8082/auth/registro', body);
+
+    return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/registro', body);
   }
 
   /**

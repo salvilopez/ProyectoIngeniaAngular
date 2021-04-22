@@ -120,9 +120,9 @@ export class NewExpertFormComponent implements OnInit {
    * MEtodo actualizar la ruta al añadir el experto
    */
   reloadCurrentRoute() {
-    this.router
-      .navigateByUrl('/addexperto', { skipLocationChange: true })
-      .then(() => this.router.navigate(['/expertos']));
-    window.location.reload();
+ //   this.router
+  //    .navigateByUrl('/addexperto', { skipLocationChange: true })
+  //    .then(() => this.router.navigate(['/expertos']));
+//    window.location.reload();
   }
 }

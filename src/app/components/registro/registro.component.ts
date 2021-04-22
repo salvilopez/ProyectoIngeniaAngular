@@ -43,15 +43,13 @@ export class RegistroComponent implements OnInit {
         (response) => {
             this.snackBar.open(
               'Registro realizado con exito',
-              `Token: ${response.token}`,
+              ``,
               {
                 duration: 2000,
                 horizontalPosition: 'center',
                 verticalPosition: 'top',
               }
             );
-            sessionStorage.setItem('Token',  user.email);
-            localStorage.setItem('username', user.email);
         },
         (error) => {
           this.snackBar.open(
@@ -66,7 +64,9 @@ export class RegistroComponent implements OnInit {
           sessionStorage.removeItem('Token');
         }
       );
-    } else
+    }
+
+
     this.router.navigate(['/login']);
   }
   ngOnDestroy(): void {

@@ -36,10 +36,14 @@ export class NavComponent implements DoCheck, OnInit {
                 public dialog: MatDialog) { }
   ngOnInit(): void {
     this.username = localStorage.getItem('username');
+
+
     this.authSubscription = this.authService
       .getbyUsername(this.username)
       .subscribe((res) => {
-        this.userLogueado = res;
+        this.userLogueado = res as User;
+        console.log(this.userLogueado)
+
       });
   }
   ngDoCheck(): void {
@@ -64,7 +68,7 @@ export class NavComponent implements DoCheck, OnInit {
     this.dialog.open(DialogAddTagComponent);
   }
 
-  showPreviewImg(event: any) {
+ changeperfilImg(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
     //TODO---.- Importante de Leer ..------
@@ -76,7 +80,7 @@ export class NavComponent implements DoCheck, OnInit {
     this.authService
       .extraerBase64(this.archivoCapturado)
       .then((base64: any) => {
-        this.userLogueado.img = base64.base;
+      //  this.userLogueado.img = base64.base;
         this.actualizarUsu();
       });
     //TODO----------------------------------------------

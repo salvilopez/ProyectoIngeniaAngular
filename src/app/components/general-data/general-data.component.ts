@@ -23,7 +23,6 @@ export class GeneralDataComponent implements OnInit {
   emailvisible: boolean = false;
   direccionvisible: boolean = false;
   linkedinvisible: boolean = false;
-  visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
@@ -53,6 +52,24 @@ export class GeneralDataComponent implements OnInit {
       this.expActualizado = undefined;
     }
   }
+  visibletelefono(){
+    this.telefonovisible=!this.telefonovisible;
+
+  }
+  visibleemail(){
+    this.emailvisible=!this.emailvisible;
+
+  }
+  visibledireccion(){
+    this.direccionvisible=!this.direccionvisible;
+
+  }
+  visiblelinkedin(){
+    this.linkedinvisible=!this.linkedinvisible;
+
+  }
+
+
   ocultar(): string {
 
     return 'disabled';

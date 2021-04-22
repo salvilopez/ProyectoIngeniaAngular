@@ -54,9 +54,14 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
+          }else{
+            this.router.navigate(['/login']);
+            this.authService.setLoggedIn(false);
+            sessionStorage.removeItem('Token')
           }
         },
         (error) => {
+
           this.snackBar.open(
             'Fallo en el Login',
             'Error: ' + error.status + ' : ',
