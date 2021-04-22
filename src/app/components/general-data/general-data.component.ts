@@ -6,6 +6,9 @@ import { ExpertService } from 'src/app/services/expert/expert.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Expert } from 'src/app/models/expert/expert.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TagsService } from 'src/app/services/tag/tags.service';
+import { data } from 'jquery';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Component({
   selector: 'app-general-data',
@@ -28,12 +31,17 @@ export class GeneralDataComponent implements OnInit, DoCheck {
   archivoCapturado: any;
   archivoBase64: any;
   nombreUsu:any;
+  tagCreada:any;
   expertSubscription: Subscription = new Subscription();
-
+  tagSubscription: Subscription = new Subscription();
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  constructor(private expertService: ExpertService,private snackBar: MatSnackBar) {
+  constructor(private expertService: ExpertService,private snackBar: MatSnackBar, private tagService:TagsService) {
   }
   ngDoCheck(): void {
+
+  }
+
+  ngOnInit(): void {
     if (this.expertDetail != undefined) {
       this.expDetail = this.expertDetail;
     }
@@ -41,10 +49,6 @@ export class GeneralDataComponent implements OnInit, DoCheck {
       this.expDetail = this.expDetail;
       this.expActualizado = undefined;
     }
-  }
-
-  ngOnInit(): void {
-
   }
 
   ocultar(): string {
@@ -55,25 +59,33 @@ export class GeneralDataComponent implements OnInit, DoCheck {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
-    // Add our fruit
+    let nomCreador:any=localStorage.getItem("username");
+    let tag: Tag = new Tag(value,new Date(),nomCreador,new Date())
+    tag.id=undefined;
     if ((value || '').trim()) {
-      let tag = new Tag(
-        value.trim(),
-        new Date(),
-        'salvi@gmail.com',
-        new Date()
-      );
-      tag.id = this.expDetail.tagList.length+1;
-      this.expDetail.tagList.push(tag);
-      this.actualizarExperto();
+          this.addTag(tag)
     }
-
     // Reset the input value
     if (input) {
       input.value = '';
     }
   }
+
+  addTag( tag:Tag) {
+      this.tagSubscription = this.tagService.createTags(tag).subscribe(
+        (response) => {
+         this.tagCreada=response
+         this.expDetail.tagList.push(this.tagCreada);
+         this.actualizarExperto();
+        },
+        (error) => {
+         console.log(error.message)
+        }
+      );
+
+
+  }
+
 
   actualizarExperto() {
 
@@ -85,7 +97,7 @@ export class GeneralDataComponent implements OnInit, DoCheck {
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expActualizado = response;
 
-      console.log(this.expActualizado)
+     // console.log(this.expActualizado)
       this.snackBar.open(
         'Actualizacion Correcta',
         ``,
