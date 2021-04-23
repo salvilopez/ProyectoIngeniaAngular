@@ -51,10 +51,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
     private expertsService: ExpertService,
     private tagsService: TagsService
   ) {
-    // Create 100 users
-    //const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
-    // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.listaExpertTable);
   }
 
@@ -233,8 +230,6 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
       });
   }
 
-
-  //TODO----------------------------
   applyFilterByEtiquetas(event: Event) {
     let tag0={
       etiqueta:this.inputetiquetas,
@@ -242,7 +237,6 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
       pagina:this.pageIndex,
      }
      this.expertSubscription = this.expertsService.getAllExpertsBytags(tag0).subscribe((result)=>{
-       console.log(result)
       this.listaExpertTable = result;
       this.preopcion = "etiquetas";
 
@@ -275,7 +269,7 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
     return sinRepetidos;
   }
 
-  //TODO----------------------------
+
   ngOnDestroy(): void {
     this.expertSubscription.unsubscribe();
     this.expertAllSubscription.unsubscribe();
