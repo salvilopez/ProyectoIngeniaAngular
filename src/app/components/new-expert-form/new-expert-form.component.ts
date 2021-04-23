@@ -41,8 +41,29 @@ export class NewExpertFormComponent implements OnInit {
       disponibilidad: ['', Validators.required],
       tagList: '',
     });
-  }
 
+  }
+  get nombreinvalido(){
+    return this.addExpertForm.get('nombre')?.invalid && this.addExpertForm.get('nombre')?.touched;
+  }
+  get nifinvalido(){
+    return this.addExpertForm.get('nif')?.invalid && this.addExpertForm.get('nif')?.touched;
+  }
+  get telefonoinvalido(){
+    return this.addExpertForm.get('contacto_telefono')?.invalid && this.addExpertForm.get('contacto_telefono')?.touched;
+  }
+  get emailinvalido(){
+    return this.addExpertForm.get('contacto_email')?.invalid && this.addExpertForm.get('contacto_email')?.touched;
+  }
+  get ciudadinvalido(){
+    return this.addExpertForm.get('contacto_ciudad')?.invalid && this.addExpertForm.get('contacto_ciudad')?.touched;
+  }
+  get linkedininvalido(){
+    return this.addExpertForm.get('contacto_linkedin')?.invalid && this.addExpertForm.get('contacto_linkedin')?.touched;
+  }
+  get disponibilidadinvalido(){
+    return this.addExpertForm.get('disponibilidad')?.invalid && this.addExpertForm.get('disponibilidad')?.touched;
+  }
   /**
    * Metodo Crear Un experto
    */

@@ -5,8 +5,10 @@
                 <div class="text-email">
                     <span>Email</span>
                 </div>
-                <input class="input-username" formControlName="email" />
-
+                <input class="form-control" formControlName="email" placeholder="Introduce email" [class.is-invalid]="emailInvalido" />
+                <small *ngIf="emailInvalido" class="text-danger">
+                  Introduce un email valido
+                </small>
             </div>
 
             <div class="password-container">
@@ -14,16 +16,18 @@
                     <div class="text-password">
                         <span>Password</span>
                     </div>
-                    <input class="input-password" formControlName="password" />
-
+                    <input class="form-control" formControlName="password" placeholder="Introduce password" [class.is-invalid]="passInvalido" />
+                    <small *ngIf="passInvalido" class="text-danger">
+                      password requerida
+                    </small>
                 </div>
             </div>
         </div>
-        <div class="btn-container-inicio-sesion">
+        <div class="btn-container-inicio-sesion mt-4">
             <div>
                 <div class="text-nuevo-usuario">
                     Nuevo usuario? <a [routerLink]="['/registro']">Crear Cuenta</a>
-                    <button class="btn-inicio-sesion">
+                    <button [disabled]="loginForm.invalid" type="submit" class="btn badge-secondary">
             <div>Inicio sesión</div>
           </button>
                 </div>

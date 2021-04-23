@@ -4,10 +4,16 @@
             <div class="form-group col-6 m-0 p-3 w-100">
                 <label for="nombre">NOMBRE COMPLETO</label>
                 <input id="text" formControlName="nombre" type="text" class="form-control" placeholder="Ej:Juan Perez martinez" />
+                <small *ngIf="nombreinvalido" class="text-danger">
+                  Introduce un nombre de etiqueta
+                </small>
             </div>
             <div class="form-group col-6 m-0 p-3 w-100">
                 <label for="nif">NIF</label>
                 <input id="text1" formControlName="nif" type="text" class="form-control" placeholder="Ej:354543545" />
+                <small *ngIf="nifinvalido" class="text-danger">
+                  Introduce un email
+                </small>
             </div>
             <div class="form-group col-12 m-0 p-3 w-100">
                 <label for="etiquetas">ETIQUETAS</label>
@@ -36,28 +42,43 @@
             <option value="tardes">Tardes</option>
             <option value="todo">Todo el día</option>
           </select>
+                    <small *ngIf="disponibilidadinvalido" class="text-danger">
+            Campo requerido
+          </small>
                 </div>
             </div>
             <div class="form-group col-6 m-0 p-3 w-100">
                 <label for="telefono">TELEFONO</label>
                 <input id="telefono" formControlName="contacto_telefono" type="number" class="form-control" placeholder="Ej: 60 000 00 00" />
+                <small *ngIf="telefonoinvalido" class="text-danger">
+                 introduce un telefono 9 cifras
+                </small>
             </div>
             <div class="form-grou col-6 m-0 p-3 w-100">
                 <label for="email">EMAIL</label>
                 <input id="formControlName" formControlName="contacto_email" type="email" class="form-control" placeholder="Ej: juanperez@gmail.com" />
+                <small *ngIf="emailinvalido" class="text-danger">
+                  Introduce Email valido
+                </small>
             </div>
 
             <div class="form-group col-12 m-0 p-3 w-100">
                 <label for="direccion">DIRECCIÓn</label>
                 <input id="direccion" formControlName="contacto_ciudad" type="text" class="form-control" placeholder="Ej: Avenida colon, Valencia" />
+                <small *ngIf="ciudadinvalido" class="text-danger">
+                  Campo requerido
+                </small>
             </div>
             <div class="form-group col-12 m-0 p-3 w-100">
                 <label for="linkedin">LINKEDIN</label>
                 <input id="linkedin" formControlName="contacto_linkedin" type="text" class="form-control" placeholder="Introduce el enlace del Linkedin del experto" />
+                <small *ngIf="linkedininvalido" class="text-danger">
+                  Campo requerido
+                </small>
             </div>
 
             <div class="form-group col-12 m-0 p-3 w-100">
-                <button [disabled]="addExpertForm.invalid" type="submit" class="btn btn-success w-100">
+                <button type="submit" class="btn btn-success w-100">
           Crear nuevo experto
         </button>
             </div>

@@ -22,10 +22,18 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email]), ],
+      password: ['', Validators.required],
     });
   }
+
+
+get emailInvalido(){
+  return this.registerForm.get('email')?.invalid && this.registerForm.get('email')?.touched;
+}
+get passInvalido(){
+  return this.registerForm.get('password')?.invalid && this.registerForm.get('password')?.touched;
+}
 /**
  * Metodo de registro
  */

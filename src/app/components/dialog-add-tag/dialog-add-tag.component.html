@@ -3,7 +3,11 @@
         <label for="text1" class="col-12 col-form-label text-left">Nombre Tarea</label>
         <div class="col-12">
             <input id="nombreEtiqueta" type="text" formControlName="nombreEtiqueta" class="form-control" placeholder="Introducir Nombre">
+            <small *ngIf="nombrerequerido" class="text-danger">
+              Introduce un nombre de etiqueta
+            </small>
         </div>
+
     </div>
     <div class="form-group row">
         <div class="offset-2 col-8 d-flex flex-row justify-content-around">

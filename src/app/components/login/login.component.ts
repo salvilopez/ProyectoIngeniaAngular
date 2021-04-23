@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormBuilder} from '@angular/forms';
+import {FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -16,13 +16,21 @@ export class LoginComponent implements OnInit {
   authSubscription: Subscription = new Subscription();
   constructor(private authService: AuthService,   private snackBar: MatSnackBar,  private router: Router, private formBuilder: FormBuilder,) {}
 
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: '',
-      password: '',
+      email: ['', Validators.compose([Validators.required, Validators.email]), ],
+      password: ['', Validators.required],
     });
 
   }
+
+get emailInvalido(){
+  return this.loginForm.get('email')?.invalid && this.loginForm.get('email')?.touched;
+}
+get passInvalido(){
+  return this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched;
+}
 
   /**
    * Login

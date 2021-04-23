@@ -23,7 +23,9 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
       nombreEtiqueta: ['', Validators.compose([Validators.required])],
     });
   }
-
+  get nombrerequerido(){
+    return this.addTagForm.get('nombreEtiqueta')?.invalid && this.addTagForm.get('nombreEtiqueta')?.touched;
+  }
   closeDialog() {
     this.dialogRef.close();
   }
