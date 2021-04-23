@@ -29,7 +29,9 @@ export class TagDataTableComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
+
     this.dataSource = this.listaTagTable;
+    this.dataSource.sort = this.sort;
     localStorage.setItem('totalTags',this.listaTagTable.length);
   }
 
@@ -65,9 +67,21 @@ export class TagDataTableComponent implements DoCheck {
    */
   applyFilterByFechaCrea(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-   this.tagRequest.fechaCreacion =new Date(filterValue);
+    let day=new Date(filterValue).getDay()
+    let mes=new Date(filterValue).getMonth()
+    let year=new Date(filterValue).getFullYear();
+   let ta={
+    nombre: this.tagRequest.nombre,
+    limite:this.tagRequest.limite,
+    pagina:this.tagRequest.pagina,
+    creador:this.tagRequest.creador,
+    ///fechaCreacion:year+"-"+mes+"-"+day,
+    fechaCreacion:new Date(filterValue).toISOString().slice(0,10),
+    expertList:this.tagRequest.expertList
+   }
+
     this.tagSubscription = this.tagsService
-      .getAllTagbyFeCr(this.tagRequest)
+      .getAllTagbyFeCr(ta)
      .subscribe((result) => {
         this.listaTagTable = result;
      });
