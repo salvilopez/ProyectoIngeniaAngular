@@ -35,7 +35,7 @@ export class TagsService {
  * @param tagrequest
  * @returns Tag[]
  */
-  getAllTagsByCreador(tagrequest:TagRequest): Observable<Tag[]> {
+  getAllTagsByCreador(tagrequest:any): Observable<Tag[]> {
 
     if(tagrequest.limite===0)tagrequest.limite=10
 
@@ -44,7 +44,14 @@ export class TagsService {
     return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
 
 }
+/**
+getAllTagsByall(tagrequest:any): Observable<Tag[]> {
 
+
+
+  return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+"&creador="+tagrequest.creador+"&fechaCreacion="+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+
+}*/
 /**
  * Metodo obtener lista flitrando por fecha de creacion
  * @param tagrequest
@@ -62,7 +69,7 @@ export class TagsService {
  * @param tagrequest
  * @returns Tag[]
  */
-  getAllTagsByName(tagrequest:TagRequest): Observable<Tag[]> {
+  getAllTagsByName(tagrequest:any): Observable<Tag[]> {
 
         if(tagrequest.limite===0)tagrequest.limite=10
 
@@ -76,7 +83,7 @@ export class TagsService {
  * @param tagrequest
  * @returns Tag[]
  */
-  getAllTags(tag:TagRequest): Observable<Tag[]> {
+  getAllTags(tag:any): Observable<Tag[]> {
 
     if(tag.pagina===undefined) tag.pagina=0
 
