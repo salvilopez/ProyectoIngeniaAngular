@@ -28,7 +28,7 @@ export class TagDataTableComponent implements DoCheck {
   pageSize:any;
   pageIndex:any;
   length:any = 20;
-
+ prefiltro:any="todos";
 nombre:any;
 creador:any;
 fecha:any;
@@ -59,29 +59,110 @@ fecha:any;
   }
   handlePageEvent(event: PageEvent) {
 
-    /*let tag1={
-      nombre:"",
-      limite:0,
-      pagina:0,
-      creador:"",
-      fechaCreacion:"",
+    this.pageIndex = event.pageIndex;
+    this.pageSize=event.pageSize
+
+     switch (this.prefiltro) {
+       case "nombre":
+
+        let tag1={
+          nombre:this.nombre,
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+
+   if(tag1.limite===undefined)tag1.limite=10
+
+   if(tag1.pagina===undefined)tag1.pagina=0
+
+    this.tagSubscription = this.tagsService
+      .getAllTagsByName(tag1)
+     .subscribe((result) => {
+
+        this.listaTagTable = result;
+        this.prefiltro="nombre"
+     });
+         break;
+         case "creador":
+
+          let tag2={
+            creador:this.creador,
+            limite:this.pageSize,
+            pagina:this.pageIndex,
+           }
+
+          if(tag2.limite===undefined)tag2.limite=10
+
+          if(tag2.pagina===undefined)tag2.pagina=0
+
+           this.tagSubscription = this.tagsService
+             .getAllTagsByCreador(tag2)
+            .subscribe((result) => {
+               this.listaTagTable = result;
+               this.prefiltro="creador"
+            });
+
+          break;
+
+          case "created_at":
+            let ta={
+              limite:this.pageSize,
+              pagina:this.pageIndex,
+              fechaCreacion:new Date(this.fecha).toISOString().slice(0,10),
+             }
+
+             if(ta.limite===undefined)ta.limite=10
+
+             if(ta.pagina===undefined)ta.pagina=0
+
+              this.tagSubscription = this.tagsService
+                .getAllTagbyFeCr(ta)
+               .subscribe((result) => {
+                  this.listaTagTable = result;
+                  this.prefiltro="created_at"
+               });
+
+
+
+            break;
+
+
+            case "todos":
+              let ta3={
+                limite:this.pageSize,
+                pagina:this.pageIndex,
+               }
+
+              if(ta3.limite===undefined)ta3.limite=10
+
+              if(ta3.pagina===undefined)ta3.pagina=0
+
+              this.tagSubscription =this.tagsService.getAllTags(ta3).subscribe((result)=>{
+
+                this.listaTagTable = result;
+                this.prefiltro="todos"
+              })
+
+
+              break;
+              let ta4={
+                limite:this.pageSize,
+                pagina:this.pageIndex,
+               }
+
+              if(ta4.limite===undefined)ta4.limite=10
+
+              if(ta4.pagina===undefined)ta4.pagina=0
+
+              this.tagSubscription =this.tagsService.getAllTags(ta4).subscribe((result)=>{
+
+                this.listaTagTable = result;
+                this.prefiltro="todos"
+              })
+
+         break;
      }
 
-    tag1.limite=event.pageSize;
-    tag1.pagina=event.pageIndex;
-     tag1.nombre=this.nombre;
-     tag1.creador=this.creador;
-     console.log(this.fecha)
-     if(this.fecha!==undefined){
-     tag1.fechaCreacion=new Date(this.fecha).toISOString().slice(0,10)
-     }else{
-      tag1.fechaCreacion=""
-     }
-
-     this.tagSubscription=this.tagsService.getAllTagsByall(tag1).subscribe((result)=>{
-      this.listaTagTable = result;
-
-     })*/
 
 
 
@@ -129,6 +210,7 @@ fecha:any;
       .getAllTagsByName(this.tagRequest)
      .subscribe((result) => {
         this.listaTagTable = result;
+        this.prefiltro="nombre"
      });
   }
     /**
@@ -155,6 +237,7 @@ fecha:any;
       .getAllTagbyFeCr(ta)
      .subscribe((result) => {
         this.listaTagTable = result;
+        this.prefiltro="created_at"
      });
   }
 
@@ -176,6 +259,7 @@ fecha:any;
       .getAllTagsByCreador(this.tagRequest)
      .subscribe((result) => {
         this.listaTagTable = result;
+        this.prefiltro="creador"
      });
   }
 }

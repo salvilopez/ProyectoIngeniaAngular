@@ -70,11 +70,10 @@ getAllTagsByall(tagrequest:any): Observable<Tag[]> {
  * @returns Tag[]
  */
   getAllTagsByName(tagrequest:any): Observable<Tag[]> {
+console.log(tagrequest)
+              if(tagrequest.nombre==undefined)tagrequest.nombre="";
 
-        if(tagrequest.limite===0)tagrequest.limite=10
-
-        if(tagrequest.nombre==undefined)tagrequest.nombre="";
-
+        //console.log('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
         return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
   }
 

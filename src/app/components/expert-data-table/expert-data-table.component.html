@@ -5,7 +5,7 @@
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
-                        <input type="text" (keyup)="applyFilterByName($event)" class="form-control-sm mr-5 w-100 m-2" placeholder="Buscar por nombre" id="nombre" />
+                        <input type="text" [(ngModel)]="this.inputnombre" (keyup)="applyFilterByName($event)" class="form-control-sm mr-5 w-100 m-2" placeholder="Buscar por nombre" id="nombre" />
                         <p>NOMBRE</p>
                     </div>
                 </th>
@@ -21,7 +21,7 @@
             <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
-                        <select (change)="applyFilterByEstado($event)" class="custom-select mr-5 w-100 m-2" id="estado">
+                        <select (change)="applyFilterByEstado($event)" [(ngModel)]="this.inputestado" class="custom-select mr-5 w-100 m-2" id="estado">
               <option value="validado">Validado</option>
               <option value="pendiente">Pdte de Validar</option>
               <option value="todos" default>Todos</option>
@@ -41,7 +41,7 @@
             <ng-container matColumnDef="etiquetas">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
-                        <input type="text" (keyup)="applyFilterByEtiquetas($event)" class="form-control-sm mr-5 w-100 m-2" placeholder="Buscar por etiqueta" />
+                        <input type="text" [(ngModel)]="this.inputetiquetas" (keyup)="applyFilterByEtiquetas($event)" class="form-control-sm mr-5 w-100 m-2" placeholder="Buscar por etiqueta" />
                         <p>ETIQUETAS</p>
                     </div>
                 </th>
@@ -57,7 +57,7 @@
             <ng-container matColumnDef="puntuacion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>
                     <div class="d-flex flex-column">
-                        <select (change)="applyFilterByValoracion($event)" class="custom-select mr-5 w-100 m-2" id="inputGroupSelect01">
+                        <select (change)="applyFilterByValoracion($event)" [(ngModel)]="this.inputpuntuacion" class="custom-select mr-5 w-100 m-2" id="inputGroupSelect01">
               <option value="101">Todos</option>
               <option
                 *ngFor="let item of listaSelect; let indice = index"

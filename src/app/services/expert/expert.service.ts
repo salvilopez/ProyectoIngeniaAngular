@@ -55,7 +55,7 @@ export class ExpertService {
    * @param expertRequest
    * @returns Experts[]
    */
-  getAllExpertsByValoracion(expertRequest:ExpertRequest): Observable<Expert[]> {
+  getAllExpertsByValoracion(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
@@ -94,7 +94,7 @@ export class ExpertService {
    * @param expertRequest
    * @returns
    */
-  getAllExpertsByName(expertRequest:ExpertRequest): Observable<Expert[]> {
+  getAllExpertsByName(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
@@ -107,7 +107,7 @@ export class ExpertService {
  * @param expertRequest
  * @returns Expert[]
  */
-  getAllExpertsByestado(expertRequest:ExpertRequest): Observable<Expert[]> {
+  getAllExpertsByestado(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
@@ -123,7 +123,7 @@ export class ExpertService {
  * @param expertRequest
  * @returns
  */
-  getAllExpertsByModalidad(expertRequest:ExpertRequest): Observable<Expert[]> {
+  getAllExpertsByModalidad(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
@@ -135,7 +135,7 @@ export class ExpertService {
    * @param expertRequest
    * @returns
    */
-  getAllExperts(expertRequest:ExpertRequest){
+  getAllExperts(expertRequest:any){
 
     if(expertRequest.limite===0)expertRequest.limite=10
 

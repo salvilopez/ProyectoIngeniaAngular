@@ -22,7 +22,7 @@ import { TagsService } from 'src/app/services/tag/tags.service';
   templateUrl: './expert-data-table.component.html',
   styleUrls: ['./expert-data-table.component.scss'],
 })
-export class ExpertDataTableComponent implements AfterViewInit, OnInit ,DoCheck{
+export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck {
   displayedColumns = ['nombre', 'estado', 'etiquetas', 'puntuacion'];
 
   dataSource: MatTableDataSource<Expert>;
@@ -30,23 +30,22 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit ,DoCheck{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input() listaExpertTable: any = [];
-listaSelect:string[] =[]
+  listaSelect: string[] = []
   expertSubscription: Subscription = new Subscription();
   expertAllSubscription = new Subscription();
   expertRequest: ExpertRequest = new ExpertRequest(0, 0, '', '', '', 0);
-  tagRequest: TagRequest = new TagRequest('', 0, 0,"", new Date());
-  length:any = 20;
-  pageSize:any = 10;
+  tagRequest: TagRequest = new TagRequest('', 0, 0, "", new Date());
+  length: any = 20;
+  pageSize: any = 10;
   pageIndex = 0;
-  pageSizeOptions = [1,2,3,4,5, 10, 15, 20];
+  pageSizeOptions = [1, 2, 3, 4, 5, 10, 15, 20];
   showFirstLastButtons = true;
-  //TODO----------------------
+  preopcion: any = "todos";
+  inputnombre: any
+  inputestado: any
+  inputetiquetas: any
+  inputpuntuacion: any
 
-  ///inputnombre:any
- //inputestado:any
-   // inputetiquetas:any
-    // inputpuntuacion:any
-  //TODO----------------------
 
   constructor(
     private expertsService: ExpertService,
@@ -62,47 +61,101 @@ listaSelect:string[] =[]
 
 
   handlePageEvent(event: PageEvent) {
-
-    this.length = event.length;
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
-  //TODO----------------------
 
-  //TODO----------------------
+    if(event.pageSize===undefined)this.pageSize=10
 
+    if(event.pageIndex===undefined)this.pageIndex=0
+    switch (this.preopcion) {
+      case "etiquetas":
 
+        break;
+      case "nombre":
+
+        let tag1={
+          nombre:this.inputnombre,
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+        this.expertSubscription = this.expertsService
+          .getAllExpertsByName(tag1)
+          .subscribe((result) => {
+            this.listaExpertTable = result;
+            this.preopcion = "nombre";
+          });
+
+        break;
+      case "estado":
+
+        let tag2={
+          estado:this.inputestado,
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+        this.expertSubscription = this.expertsService
+          .getAllExpertsByestado(this.expertRequest)
+          .subscribe((result) => {
+            this.listaExpertTable = result;
+            this.preopcion = "estado"
+          });
+
+        break;
+      case "puntuacion":
+
+        let tag3={
+          puntuacion:parseInt(this.inputpuntuacion),
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+        this.expertSubscription = this.expertsService
+          .getAllExpertsByValoracion(this.expertRequest)
+          .subscribe((result) => {
+            this.listaExpertTable = result;
+            this.preopcion = "puntuacion"
+          });
+
+        break;
+      case "todos":
+        let tag4={
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+         this.expertSubscription = this.expertsService.getAllExperts(tag4).subscribe((result)=>{
+          this.listaExpertTable = result;
+          this.preopcion = "todos"
+         })
+
+        break;
+      default:
+        let tag5={
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+         this.expertSubscription = this.expertsService.getAllExperts(tag5).subscribe((result)=>{
+          this.listaExpertTable = result;
+          this.preopcion = "todos"
+         })
+
+        break;
+    }
 
   }
   ngOnInit(): void {
-this.listaSelect.length=101
+    this.listaSelect.length = 101
 
-   this.listaExpertTable
-   this.dataSource.sort = this.sort;
-   this.dataSource.paginator=this.paginator;
+    this.listaExpertTable
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
   ngDoCheck(): void {
 
     this.dataSource = this.listaExpertTable;
-   this.dataSource.sort = this.sort;
-   this.dataSource.paginator=this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
 
-  localStorage.setItem('totalExpert',this.listaExpertTable.length);
+    localStorage.setItem('totalExpert', this.listaExpertTable.length);
   }
-
-
-  getNext(event: PageEvent) {
-
-    // call your api function here with the offset
-    }
-
-
-
-
-
-
-
-
-
 
 
   ngAfterViewInit() {
@@ -131,42 +184,43 @@ this.listaSelect.length=101
         return '#D66464';
     }
   }
-    //TODO----------------------
 
   applyFilterByName(event: Event) {
-   const filterValue = (event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value;
 
-      //TODO----------------------
     this.expertRequest.nombre = filterValue;
-    this.expertRequest.pagina= this.pageIndex;
-    this.expertRequest.limite= this.pageSize;
+    this.expertRequest.pagina = this.pageIndex;
+    this.expertRequest.limite = this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByName(this.expertRequest)
       .subscribe((result) => {
         this.listaExpertTable = result;
+        this.preopcion = "nombre";
       });
   }
 
   applyFilterByEstado(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.expertRequest.estado = filterValue;
-    this.expertRequest.pagina= this.pageIndex;
-    this.expertRequest.limite= this.pageSize;
+    this.expertRequest.pagina = this.pageIndex;
+    this.expertRequest.limite = this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByestado(this.expertRequest)
       .subscribe((result) => {
         this.listaExpertTable = result;
+        this.preopcion = "estado"
       });
   }
   applyFilterByValoracion(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.expertRequest.puntuacion = parseInt(filterValue);
-    this.expertRequest.pagina= this.pageIndex;
-    this.expertRequest.limite= this.pageSize;
+    this.expertRequest.pagina = this.pageIndex;
+    this.expertRequest.limite = this.pageSize;
     this.expertSubscription = this.expertsService
       .getAllExpertsByValoracion(this.expertRequest)
       .subscribe((result) => {
         this.listaExpertTable = result;
+        this.preopcion = "puntuacion"
       });
   }
 
@@ -175,13 +229,14 @@ this.listaSelect.length=101
   applyFilterByEtiquetas(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.tagRequest.nombre = filterValue;
-    this.expertRequest.pagina= this.pageIndex;
-    this.expertRequest.limite= this.pageSize;
+    this.expertRequest.pagina = this.pageIndex;
+    this.expertRequest.limite = this.pageSize;
     this.expertSubscription = this.tagsService
       .getAllTagsByName(this.tagRequest)
       .subscribe((result: Tag[]) => {
+        this.preopcion = "etiquetas"
         if (result.length !== 0) {
-          this.listaExpertTable =this.tratarTags(result)
+          this.listaExpertTable = this.tratarTags(result)
         }
       });
   }
