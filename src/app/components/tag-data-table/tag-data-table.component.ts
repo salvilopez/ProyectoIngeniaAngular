@@ -31,7 +31,6 @@ export class TagDataTableComponent implements DoCheck {
   ngDoCheck(): void {
 
     this.dataSource = this.listaTagTable;
-    this.dataSource.sort = this.sort;
     localStorage.setItem('totalTags',this.listaTagTable.length);
   }
 

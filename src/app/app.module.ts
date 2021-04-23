@@ -27,7 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ExpertsListComponent } from './views/experts-list/experts-list.component';
 import { TagsListComponent } from './views/tags-list/tags-list.component';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { NavComponent } from './components/nav/nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -99,7 +99,6 @@ import { PDFviewerComponent } from './components/pdfviewer/pdfviewer.component';
     MatInputModule,
     CommonModule,
     MatSelectModule,
-    MatMenuModule,
     MatSortModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -107,31 +106,7 @@ import { PDFviewerComponent } from './components/pdfviewer/pdfviewer.component';
     MatChipsModule,
     MatTabsModule,
     MatNativeDateModule,
-
-    MatButtonModule,
-
-    MatCardModule,
-
-    MatChipsModule,
-
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-
-    MatSelectModule,
-    MatSidenavModule,
-
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-
-  ],
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })
