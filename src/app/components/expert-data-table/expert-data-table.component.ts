@@ -69,7 +69,16 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
     if(event.pageIndex===undefined)this.pageIndex=0
     switch (this.preopcion) {
       case "etiquetas":
+        let tag0={
+          etiqueta:this.inputetiquetas,
+          limite:this.pageSize,
+          pagina:this.pageIndex,
+         }
+         this.expertSubscription = this.expertsService.getAllExpertsBytags(tag0).subscribe((result)=>{
+          this.listaExpertTable = result;
+          this.preopcion = "etiquetas";
 
+         })
         break;
       case "nombre":
 
@@ -227,18 +236,18 @@ export class ExpertDataTableComponent implements AfterViewInit, OnInit, DoCheck 
 
   //TODO----------------------------
   applyFilterByEtiquetas(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tagRequest.nombre = filterValue;
-    this.expertRequest.pagina = this.pageIndex;
-    this.expertRequest.limite = this.pageSize;
-    this.expertSubscription = this.tagsService
-      .getAllTagsByName(this.tagRequest)
-      .subscribe((result: Tag[]) => {
-        this.preopcion = "etiquetas"
-        if (result.length !== 0) {
-          this.listaExpertTable = this.tratarTags(result)
-        }
-      });
+    let tag0={
+      etiqueta:this.inputetiquetas,
+      limite:this.pageSize,
+      pagina:this.pageIndex,
+     }
+     this.expertSubscription = this.expertsService.getAllExpertsBytags(tag0).subscribe((result)=>{
+       console.log(result)
+      this.listaExpertTable = result;
+      this.preopcion = "etiquetas";
+
+     })
+
   }
 
 

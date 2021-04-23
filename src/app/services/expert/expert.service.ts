@@ -100,7 +100,12 @@ export class ExpertService {
 
     return this.http.get<Expert[]>('http://localhost:8082/api/expertos?nombre='+expertRequest.nombre+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
+  getAllExpertsBytags(expertRequest:any): Observable<Expert[]> {
 
+    if(expertRequest.limite===0)expertRequest.limite=10
+
+    return this.http.get<Expert[]>('http://localhost:8082/api/expertos?etiqueta='+expertRequest.etiqueta+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+  }
 
 /**
  * Metodo para filtrar por estado
