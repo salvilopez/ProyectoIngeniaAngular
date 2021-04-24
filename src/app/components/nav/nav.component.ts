@@ -53,7 +53,16 @@ export class NavComponent implements DoCheck, OnInit {
 
   ngDoCheck(): void {
 
+    if(this.userLogueado==undefined){
+      this.username = localStorage.getItem('username');
+      this.authSubscription = this.authService
+        .getbyUsername(this.username)
+        .subscribe((res) => {
+          this.userLogueado = res as User;
 
+
+        });
+    }
     this.totalExper = localStorage.getItem('totalExpert');
     this.totalTags = localStorage.getItem('totalTags');
 
