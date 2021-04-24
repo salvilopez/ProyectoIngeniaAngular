@@ -35,72 +35,60 @@ export class NavComponent implements DoCheck, OnInit {
                 public authService: AuthService,
                 public dialog: MatDialog) { }
   ngOnInit(): void {
+
+    if(this.userLogueado==undefined){
     this.username = localStorage.getItem('username');
-
-
     this.authSubscription = this.authService
       .getbyUsername(this.username)
       .subscribe((res) => {
         this.userLogueado = res as User;
-        console.log(this.userLogueado)
+
 
       });
   }
+}
+
+
+
+
   ngDoCheck(): void {
-    if (this.userLogueado == undefined) {
-      this.userLogueado = this.userLogueado as User;
-    }
+
 
     this.totalExper = localStorage.getItem('totalExpert');
     this.totalTags = localStorage.getItem('totalTags');
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        //console.log(e.url);
 
         this.routerUrlExperto = e.url.includes('expertos/');
         this.routerUrlEtiqueta = e.url.includes('etiquetas/');
       }
     });
   }
-
   openDialog() {
     this.dialog.open(DialogAddTagComponent);
   }
 
  changeperfilImg(event: any) {
     this.archivoCapturado = event.target.files[0];
-    //
-    //TODO---.- Importante de Leer ..------
 
-    //TODO opcional porque el servidor no acepta tamaño de la imagen base64
-    //TODO(cambiar por lo comentado de abajo , si el servidor admite Base64)
-
-    //TODO----------------------------------------------
     this.authService
       .extraerBase64(this.archivoCapturado)
       .then((base64: any) => {
-      //  this.userLogueado.img = base64.base;
+        this.userLogueado.img = base64.base;
         this.actualizarUsu();
       });
-    //TODO----------------------------------------------
+
   }
 
   actualizarUsu() {
     let body = {
       ...this.userLogueado,
     };
-    console.log('--------------------');
-    console.log('antes del update');
-    console.log(body);
-    console.log('--------------------');
+
     this.authService.actualizarUser(body).subscribe((response) => {
       this.userActualizado = response;
       this.userLogueado = response;
-      console.log('--------------------');
-      console.log('depues del update');
-      console.log(this.userActualizado);
-      console.log('--------------------');
     });
   }
   pagActisEtiquetasPage(): boolean {

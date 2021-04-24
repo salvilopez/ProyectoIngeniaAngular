@@ -24,12 +24,16 @@
 
                 <div class="imagen-para-archivo">
                     <label for="botonPerfil">
-             <img  />
+             <img src="{{this.userLogueado.img}}"  />
                 </label>
 
                     <input id="botonPerfil" type="file" (change)="changeperfilImg($event)" />
                 </div>
-                <p class="ml-2">---------------</p>
+                <div>
+                    <p class="ml-2 mr-5">{{this.userLogueado.nombre}}</p>
+                    <p class="ml-2 mr-5">{{this.userLogueado.email}}</p>
+                </div>
+
             </div>
             <!--  //TODO----------------------------------------->
         </mat-nav-list>

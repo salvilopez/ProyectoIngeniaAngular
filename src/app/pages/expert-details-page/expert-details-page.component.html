@@ -1,16 +1,19 @@
 <main class="d-flex flex-column m-5" *ngIf="pagActual()!=='/expertos/addexpert'">
     <div class="mb-3 d-flex flex-row  justify-content-between">
-        <div *ngIf="this.expertDet" class="d-flex flex-column m-2 justify-content-center">
+        <div *ngIf="this.expertDet" class="d-flex flex-row m-2 justify-content-center">
             <div class="d-flex flex-column">
                 <div class="imagen-para-archivo">
-                    <label for="boton-archivo">
+                    <label for="boton-archivo" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                     <img  src="{{ this.expertDet.fichero_foto}}" class="img" />
                   </label>
                     <input id="boton-archivo" type="file" (change)="showPreviewImg($event)">
                 </div>
             </div>
-            <p class="m-2">{{this.expertDet.contacto_email}}</p>
-            <p class="m-2"> nif {{this.expertDet.nif}}</p>
+            <div class="ml-4 justify-content-center d-flex flex-column">
+                <p class="m-2 mat-display-1">{{this.expertDet.nombre}}</p>
+                <p class="m-2 text-secondary"> NIF {{this.expertDet.nif}}</p>
+            </div>
+
         </div>
         <div>
             <P class="m-2">CREADO</P>
