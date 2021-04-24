@@ -39,7 +39,7 @@ export class ObservationsComponent  implements DoCheck {
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expActualizado = response;
       this.snackBar.open(
-        '',
+        'OK!',
         'Actualizado Correctamente',
         {
           duration: 2000,

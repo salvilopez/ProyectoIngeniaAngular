@@ -1,28 +1,31 @@
-<main>
-    <div id="registro">
-        <h1>Register Page : </h1>
-        <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
-            <div class="form-group row">
-                <div class="col-12">
-                    <input id="email" formControlName="email" type="text" class="form-control" placeholder="Email">
-                    <small *ngIf="emailInvalido" class="text-danger">
+<section id="registro" class="m-0 pr-4 pl-4 w-100 row">
+    <form [formGroup]="registerForm" (submit)="submitRegisterForm()" class="card-login-content w-100 p-4 col-12">
+        <div class="form-group row ">
+            <div class="col-12">
+                <input id="email" formControlName="email" type="text" class="form-control w-100" placeholder="Email">
+                <small *ngIf="emailInvalido" class="text-danger">
                       Introduce un email valido
                     </small>
-                </div>
-
             </div>
-            <div class="form-group row">
-                <div class="col-12">
-                    <input id="password" formControlName="password" type="text" class="form-control" placeholder="Password">
-                    <small *ngIf="passInvalido" class="text-danger">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <input id="password" formControlName="password" type="text" class="form-control" placeholder="Password">
+                <small *ngIf="passInvalido" class="text-danger">
                       password requerida
                     </small>
-                </div>
             </div>
-            <div class="d-flex flex-column justify-content-lg-around ">
-                <button [disabled]="registerForm.invalid" type="submit" class="btn btn-success m-3">Register</button>
-                <button color="warning" [routerLink]="['/login']" class=" btn btn-secondary m-3">Go To Login Page</button>
-            </div>
-        </form>
-    </div>
-</main>
+        </div>
+        <small *ngIf="registerForm.invalid && this.fomuVal" class="text-danger mt-2 mt-2">
+          Rellene lo campos primero
+        </small>
+        <div class="d-flex flex-column justify-content-lg-around ">
+            <button type="submit" (click)="this.fomuVal=true" class="btn botonLogin">Register</button>
+
+
+            <div> <a [routerLink]="['/login']" class="  m-3 linkverde">Volver al Login</a></div>
+        </div>
+
+    </form>
+</section>

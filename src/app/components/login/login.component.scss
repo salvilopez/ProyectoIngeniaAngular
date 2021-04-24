@@ -1,0 +1,68 @@
+ section {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     padding: 0px;
+     position: static;
+     width: 588px;
+     height: 469.5px;
+     left: 270px;
+     top: 305.25px;
+     /* Inside Auto Layout */
+     flex: none;
+     order: 0;
+     flex-grow: 0;
+     margin: 10px 0px;
+     margin: 39.5px 0px;
+ }
+
+ .colorVerde {
+     color: #0ED28C;
+ }
+
+ .text-nuevo-usuario {
+     position: static;
+     width: 509px;
+     height: 48px;
+     left: 39.5px;
+     top: 237.5px;
+     /* Inside Auto Layout */
+     flex: none;
+     order: 1;
+     flex-grow: 0;
+     margin: 40px 0px;
+ }
+
+ .botonLogin {
+     /* Green_primary */
+     background: #0ED28C;
+     border-radius: 5px;
+ }
+
+ .linkverde {
+     color: #0ED28C;
+ }
+
+ .linkverde:hover {
+     color: #0ED28C;
+ }
+
+ .linkverde:active {
+     color: #0ED28C;
+ }
+
+ .textlologin {
+     color: #FFFFFF;
+ }
+
+ .textlologin:hover {
+     color: #FFFFFF;
+ }
+
+ .textlologin:active {
+     color: #FFFFFF;
+ }
+
+ .enlaceolvido:hover {
+     cursor: pointer;
+ }

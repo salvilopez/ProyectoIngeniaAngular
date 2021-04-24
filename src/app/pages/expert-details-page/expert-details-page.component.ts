@@ -1,5 +1,6 @@
 import { DoCheck } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Expert } from 'src/app/models/expert/expert.model';
@@ -19,8 +20,10 @@ tabLoadTimes: Date[] = [];
   expertActualizado:any;
   archivoCapturado:any;
   archivoBase64:any;
-
+  direccionvisible:boolean = false;
+  nifvisible:boolean = false;
   constructor(
+    private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private expertService: ExpertService,
     public router: Router
@@ -71,15 +74,31 @@ tabLoadTimes: Date[] = [];
    * Metodo para actualizar el experto
    */
   actualizarExperto() {
-    console.log("antes del update");
     this.expertDet.updated_at=new Date();
     let body={
       ...this.expertDet
     }
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expertActualizado = response;
+      this.snackBar.open(
+        'OK!',
+        'Actualizado Correctamente',
+        {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        }
+      );
 
     });
+  }
+  visibledireccion(){
+    this.direccionvisible=!this.direccionvisible;
+
+  }
+  visiblenif(){
+    this.nifvisible=!this.nifvisible;
+
   }
 
   /**

@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRequest } from 'src/app/models/user/user-request.model';
 import { UserResponse } from 'src/app/models/user/user-response.model';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogSendEmailComponent } from '../dialog-send-email/dialog-send-email.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +16,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   authSubscription: Subscription = new Subscription();
-  constructor(private authService: AuthService,   private snackBar: MatSnackBar,  private router: Router, private formBuilder: FormBuilder,) {}
+  formuVal:boolean = false;
+  constructor(private authService: AuthService,   public dialog: MatDialog,  private snackBar: MatSnackBar,  private router: Router, private formBuilder: FormBuilder,) {}
 
 
   ngOnInit(): void {
@@ -83,14 +86,9 @@ get passInvalido(){
           sessionStorage.removeItem('Token')
         }
       );
-    } else {
-      this.authService.setLoggedIn(false);
-      this.snackBar.open('Error de el username y password', '', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
     }
   }
-
+  openDialog() {
+    this.dialog.open(DialogSendEmailComponent);
+  }
 }

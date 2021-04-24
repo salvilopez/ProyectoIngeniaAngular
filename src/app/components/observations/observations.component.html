@@ -3,7 +3,7 @@
 
         <div class="col-12 mt-5">
             <label for="observaciones" class="form-label">Observaciones</label>
-            <input (change)="actualizarExperto()" [(ngModel)]="this.expDetail.observaciones" class="form-control form-control-lg" name="observaciones" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
+            <input (mouseleave)="actualizarExperto()" [(ngModel)]="this.expDetail.observaciones" class="form-control form-control-lg" name="observaciones" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
         </div>
 
         <div class="col-2  m-0 mt-5">
@@ -22,7 +22,7 @@
         <div class="col-8 offset-1 mt-5">
 
             <label for="motivo" class="form-label">Especifica el motivo</label>
-            <input (blur)="actualizarExperto()" *ngIf="this.expDetail.estado_motivo === 'otros'; disabled " [(ngModel)]="motivoNuevo" class="form-control form-control-lg" name="motivo" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
+            <input (mouseleave)="actualizarExperto()" *ngIf="this.expDetail.estado_motivo === 'otros'; disabled " [(ngModel)]="motivoNuevo" class="form-control form-control-lg" name="motivo" type="text" placeholder="Escribe algo..." aria-label=".form-control-lg example">
 
         </div>
 

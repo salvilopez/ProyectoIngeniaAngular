@@ -13,30 +13,32 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class RegistroComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   authSubscription: Subscription = new Subscription();
+  mensajeUserRepetido: boolean = false;
+  fomuVal:boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private auth: AuthService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email]), ],
+      email: ['', Validators.compose([Validators.required, Validators.email]),],
       password: ['', Validators.required],
     });
   }
 
 
-get emailInvalido(){
-  return this.registerForm.get('email')?.invalid && this.registerForm.get('email')?.touched;
-}
-get passInvalido(){
-  return this.registerForm.get('password')?.invalid && this.registerForm.get('password')?.touched;
-}
-/**
- * Metodo de registro
- */
+  get emailInvalido() {
+    return this.registerForm.get('email')?.invalid && this.registerForm.get('email')?.touched;
+  }
+  get passInvalido() {
+    return this.registerForm.get('password')?.invalid && this.registerForm.get('password')?.touched;
+  }
+  /**
+   * Metodo de registro
+   */
   submitRegisterForm() {
     if (
       this.registerForm.valid &&
@@ -47,35 +49,45 @@ get passInvalido(){
         this.registerForm.value.email,
         this.registerForm.value.password
       );
+
       this.authSubscription = this.auth.register(user).subscribe(
         (response) => {
-            this.snackBar.open(
-              'Registro realizado con exito',
-              ``,
-              {
-                duration: 2000,
-                horizontalPosition: 'center',
-                verticalPosition: 'top',
-              }
-            );
-        },
-        (error) => {
           this.snackBar.open(
-            'Fallo en el Registro',
-            'Error: ' + error.status + '  Introduce el usuario y el email Correcto',
+            "OK",
+            'Registro Correcto',
             {
               duration: 2000,
               horizontalPosition: 'center',
               verticalPosition: 'top',
             }
           );
+
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          switch (error.status) {
+            case 400:
+              this.snackBar.open(
+                "Error: " + error.status,
+                'Email Ya Existe en la Base de datos',
+                {
+                  duration: 2000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'top',
+                }
+              );
+              break;
+            default:
+              break;
+          }
+
           sessionStorage.removeItem('Token');
         }
       );
     }
 
 
-    this.router.navigate(['/login']);
+
   }
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();

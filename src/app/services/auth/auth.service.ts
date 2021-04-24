@@ -70,11 +70,12 @@ export class AuthService {
       email: user.email,
       password: user.password,
     };
-    console.table(body);
-
-    return this.http.post('http://localhost:8082/auth/registro', body);
+       return this.http.post('http://localhost:8082/auth/registro', body);
   }
+  passolvidada(email: string): Observable<any> {
 
+       return this.http.get('http://localhost:8082/auth/email/'+email);
+  }
   /**
    * Metodo para convertir cualquier imagen a base64
    * @param $event

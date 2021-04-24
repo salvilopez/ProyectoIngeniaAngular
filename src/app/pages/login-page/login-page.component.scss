@@ -1,35 +1,253 @@
-main {
-    display: flex;
-    flex-direction: row;
-}
+    main {
+        display: flex;
+        flex-direction: row;
+    }
 
-.parteDerecha {
-    /* Frame 945 */
-    /* Auto Layout */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    position: absolute;
-    width: 55%;
-    height: 100%;
-    left: 792px;
-    top: 0px;
-}
+    .parteDerecha {
+        /* Frame 945 */
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        position: absolute;
+        width: 55%;
+        height: 100%;
+        left: 792px;
+        top: 0px;
+    }
 
-.parteIzquierda {
-    /* Frame 946 */
-    /* Auto Layout */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    position: absolute;
-    width: 45%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    background: radial-gradient(109.66% 112.15% at -1.89% -1.44%, #FFE81D 0%, #00D1C5 100%);
-}
+    .parteIzquierda {
+        /* Frame 946 */
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        position: absolute;
+        width: 45%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        background: radial-gradient(109.66% 112.15% at -1.89% -1.44%, #FFE81D 0%, #00D1C5 100%);
+    }
+
+    .titulo {
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        position: absolute;
+        width: 174.06px;
+        height: 48px;
+        left: 40px;
+        top: 40px;
+    }
+
+    .cajatitulo {
+        position: static;
+        width: 174.06px;
+        height: 38.33px;
+        left: 0px;
+        top: 4.83px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 10px 0px;
+    }
+
+    .textotitulo {
+        position: absolute;
+        width: 122.03px;
+        height: 30.75px;
+        left: 52.04px;
+        top: 12.42px;
+        color: white;
+    }
+
+    .container-info-text {
+        /* Frame 8 */
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        position: static;
+        width: 504px;
+        height: 278px;
+        left: 144px;
+        top: 401px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 10px 0px;
+    }
+
+    .textoplataforma {
+        /* La plataforma de gestión de Expertos */
+        position: static;
+        width: 504px;
+        height: 116px;
+        left: 0px;
+        top: 0px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 58px;
+        /* or 120% */
+        text-align: center;
+        letter-spacing: -0.4px;
+        color: #FFFFFF;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 16px 0px;
+    }
+
+    .textoplataforma2 {
+        /* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun. */
+        position: static;
+        width: 395px;
+        height: 50px;
+        left: 54.5px;
+        top: 132px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 27px;
+        /* or 167% */
+        text-align: center;
+        letter-spacing: -0.2px;
+        color: #FFFFFF;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 16px 0px;
+    }
+
+    .btnPrincipal {
+        border: 2px solid #FFFFFF;
+        box-sizing: border-box;
+        border-radius: 8px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 40px 0px;
+    }
+
+    .btn-base-web {
+        /* Inside Auto Layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 0px 8px;
+    }
+
+    .iconoir {
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 0px 8px;
+    }
+
+    a {
+        color: #FFFFFF;
+    }
+
+    a:hover {
+        color: #FFFFFF;
+    }
+
+    a:active {
+        color: #FFFFFF;
+    }
+
+    .titulobienvenido {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 58px;
+        /* identical to box height */
+        /* Green_primary */
+        color: #0ED28C;
+    }
+
+    .titulocontinuar {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 31px;
+        text-align: center;
+        /* Black */
+        color: #131340;
+    }
+
+    .titulon {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        position: static;
+        width: 446px;
+        height: 105px;
+        left: 0px;
+        top: 0px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 39.5px 0px;
+    }
+
+    .cajal {
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        position: static;
+        width: 588px;
+        height: 469.5px;
+        left: 270px;
+        top: 305.25px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin: 10px 0px;
+    }
+
+    .cajalog {
+        /* Auto Layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 39.5px;
+        position: static;
+        width: 588px;
+        height: 325px;
+        left: 0px;
+        top: 144.5px;
+        background: #FFFFFF;
+        /* Main-boxshadow */
+        box-shadow: 0px 4px 16px rgba(117, 114, 150, 0.15);
+        border-radius: 4px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 39.5px 0px;
+    }

@@ -1,5 +1,5 @@
-<section>
-    <form [formGroup]="loginForm" (submit)="login()" class="card-login-content">
+<section class="m-0 pr-4 pl-4">
+    <form [formGroup]="loginForm" (submit)="login()" class="card-login-content w-100 p-4">
         <div class="inputs-container">
             <div class="input-container-username">
                 <div class="text-email">
@@ -22,16 +22,31 @@
                     </small>
                 </div>
             </div>
+
+            <div class="mt-2 mb-2">
+                <a class="colorVerde enlaceolvido" (click)="openDialog()">Has olvidado la contraseña?</a>
+            </div>
         </div>
+
+
+
+
+
         <div class="btn-container-inicio-sesion mt-4">
+            <small *ngIf="loginForm.invalid && this.formuVal" class="text-danger text-right">
+            Rellene lo campos primero
+          </small>
             <div>
-                <div class="text-nuevo-usuario">
-                    Nuevo usuario? <a [routerLink]="['/registro']">Crear Cuenta</a>
-                    <button [disabled]="loginForm.invalid" type="submit" class="btn badge-secondary">
-            <div>Inicio sesión</div>
+
+                <div class="text-nuevo-usuario mr-2 d-flex flex-row justify-content-between">
+                    <div>Nuevo usuario? <a [routerLink]="['/registro']" class="linkverde">Crear Cuenta</a></div>
+                    <button type="submit" (click)="this.formuVal=true" class="botonLogin textlologin">
+           Inicio sesión
           </button>
+
                 </div>
             </div>
+
         </div>
     </form>
 </section>

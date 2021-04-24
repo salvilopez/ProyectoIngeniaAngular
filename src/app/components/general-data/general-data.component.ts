@@ -110,8 +110,8 @@ export class GeneralDataComponent implements OnInit {
     this.expertService.updateExpert(body).subscribe((response) => {
       this.expActualizado = response;
       this.snackBar.open(
-        'Actualizacion Correcta',
-        ``,
+        'OK!',
+        'Actualizado Correctamente',
         {
           duration: 2000,
           horizontalPosition: 'center',

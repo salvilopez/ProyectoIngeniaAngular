@@ -50,6 +50,7 @@ import { DialogAddTagComponent } from './components/dialog-add-tag/dialog-add-ta
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogDeleteTagComponent } from './components/dialog-delete-tag/dialog-delete-tag.component';
 import { PDFviewerComponent } from './components/pdfviewer/pdfviewer.component';
+import { DialogSendEmailComponent } from './components/dialog-send-email/dialog-send-email.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { PDFviewerComponent } from './components/pdfviewer/pdfviewer.component';
     DialogAddTagComponent,
     DialogDeleteTagComponent,
     PDFviewerComponent,
+    DialogSendEmailComponent,
 
   ],
   entryComponents:[DialogAddTagComponent],

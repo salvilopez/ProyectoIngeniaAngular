@@ -10,16 +10,31 @@
                 </div>
             </div>
             <div class="ml-4 justify-content-center d-flex flex-column">
-                <p class="m-2 mat-display-1">{{this.expertDet.nombre}}</p>
-                <p class="m-2 text-secondary"> NIF {{this.expertDet.nif}}</p>
+
+
+                <div class="m-2 mat-display-1">
+                    <p (click)="visibledireccion()" class="col-6 text-left" name="nombre" *ngIf="this.direccionvisible===false">{{this.expertDet.nombre}}</p>
+                    <input *ngIf="this.direccionvisible" name="direccion" class="col-6 text-left" type="text" [(ngModel)]="this.expertDet.nombre" (mouseleave)="visibledireccion()" (mouseleave)="actualizarExperto()">
+
+                </div>
+
+
+
+                <div class="m-2 m">
+                    <label for="nif">NIF</label>
+                    <p (click)="visiblenif()" class="col-6 text-left" name="nif" *ngIf="this.nifvisible===false">{{this.expertDet.nif}}</p>
+                    <input *ngIf="this.nifvisible" name="direccion" class="col-6 text-left" type="text" [(ngModel)]="this.expertDet.nif" (mouseleave)="visiblenif()" (mouseleave)="actualizarExperto()">
+
+                </div>
             </div>
 
         </div>
         <div>
             <P class="m-2">CREADO</P>
             <p class="m-2">{{this.expertDet.created_at | date :'dd-MMM-yyyy h:mm'}}</p>
-            <p class="m-2">{{this.expertDet.updated_at| date :'dd-MMM-yyyy h:mm'}}</p>
             <P class="m-2">ULTIMO CAMBIO</P>
+            <p class="m-2">{{this.expertDet.updated_at| date :'dd-MMM-yyyy h:mm'}}</p>
+
         </div>
     </div>
     <mat-tab-group class="mt-3">
