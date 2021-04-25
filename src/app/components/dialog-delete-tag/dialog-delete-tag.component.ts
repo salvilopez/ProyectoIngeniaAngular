@@ -31,10 +31,12 @@ export class DialogDeleteTagComponent implements OnInit , OnDestroy {
 
   }
   reloadCurrentRoute() {
-   this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/etiquetas"]));
-    window.location.reload();
-}
+    this.router
+     .navigateByUrl('/etiquetas', { skipLocationChange: true })
+     .then(() => this.router.navigate(['/etiquetas']));
+     window.location.reload();
+
+   }
 
   closeDialog() {
     this.dialogRef.close();

@@ -63,9 +63,11 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
 
   }
   reloadCurrentRoute() {
-    this.router.navigateByUrl('/expertos', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/expertos"]));
-    window.location.reload();
-}
+    this.router
+     .navigateByUrl('/expertos', { skipLocationChange: true })
+     .then(() => this.router.navigate(['/expertos']));
+     window.location.reload();
+
+   }
 
 }
