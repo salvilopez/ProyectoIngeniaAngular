@@ -56,8 +56,8 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
         }
       );
     }
-  //  this.closeDialog();
-    this.reloadCurrentRoute();
+    this.closeDialog();
+this.ngOnInit()
   }
   reloadCurrentRoute() {
     this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
