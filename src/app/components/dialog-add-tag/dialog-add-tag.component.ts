@@ -14,7 +14,7 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
   addTagForm: FormGroup = new FormGroup({});
   tagSubscription: Subscription = new Subscription();
   constructor(
-    private location:Location,
+
     private formBuilder: FormBuilder,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogAddTagComponent>){}
   ngOnDestroy(): void {
     this.tagSubscription.unsubscribe();
