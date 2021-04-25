@@ -33,7 +33,7 @@ export class AuthService {
  */
   actualizarUser(usu: User): Observable<User> {
 
-    return this.http.put<User>('http://localhost:8082/auth/username',usu);
+    return this.http.put<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username',usu);
   }
   /**
    *  Metodo pra obtener User oir Username
@@ -42,7 +42,7 @@ export class AuthService {
    */
   getbyUsername(username: string): Observable<User> {
 
-    return this.http.get<User>('http://localhost:8082/auth/username/'+username);
+    return this.http.get<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username/'+username);
   }
   /**
    * Metodo getter de log
@@ -70,11 +70,11 @@ export class AuthService {
       email: user.email,
       password: user.password,
     };
-       return this.http.post('http://localhost:8082/auth/registro', body);
+       return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/registro', body);
   }
   passolvidada(email: string): Observable<any> {
 
-       return this.http.get('http://localhost:8082/auth/email/'+email);
+       return this.http.get('https://proyectofinal-ingenia.herokuapp.com/auth/email/'+email);
   }
   /**
    * Metodo para convertir cualquier imagen a base64

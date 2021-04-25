@@ -17,7 +17,7 @@ export class TagsService {
  */
   createTags(tag:Tag): Observable<Tag> {
 
-   return this.http.post<Tag>('http://localhost:8082/api/etiquetas',tag);
+   return this.http.post<Tag>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas',tag);
   }
 
 /**
@@ -27,7 +27,7 @@ export class TagsService {
  */
   deleteTag(idTag:number): Observable<Tag> {
 
-    return this.http.delete<Tag>('http://localhost:8082/api/etiquetas/delete/'+idTag);
+    return this.http.delete<Tag>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas/delete/'+idTag);
   }
 
 /**
@@ -41,17 +41,10 @@ export class TagsService {
 
     if(tagrequest.creador==undefined)tagrequest.creador="";
 
-    return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+    return this.http.get<Tag[]>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
 
 }
-/**
-getAllTagsByall(tagrequest:any): Observable<Tag[]> {
 
-
-
-  return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+"&creador="+tagrequest.creador+"&fechaCreacion="+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
-
-}*/
 /**
  * Metodo obtener lista flitrando por fecha de creacion
  * @param tagrequest
@@ -62,7 +55,7 @@ getAllTagsByall(tagrequest:any): Observable<Tag[]> {
    if(tagrequest.limite===0)tagrequest.limite=10
 
 
-    return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+    return this.http.get<Tag[]>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
   }
 /**
  * Metodo obtener lista flitrando por nombre
@@ -74,7 +67,7 @@ console.log(tagrequest)
               if(tagrequest.nombre==undefined)tagrequest.nombre="";
 
         //console.log('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
-        return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+        return this.http.get<Tag[]>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
   }
 
   /**
@@ -88,7 +81,7 @@ console.log(tagrequest)
 
     if(tag.limite===undefined) tag.limite=10
 
-      return this.http.get<Tag[]>('http://localhost:8082/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite);
+      return this.http.get<Tag[]>('https://proyectofinal-ingenia.herokuapp.com/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite);
   }
 
 }
