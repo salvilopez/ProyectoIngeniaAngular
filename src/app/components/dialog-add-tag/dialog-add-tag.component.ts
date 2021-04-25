@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tag } from 'src/app/models/tag/tag.model';
 import { TagsService } from 'src/app/services/tag/tags.service';
@@ -15,7 +15,7 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
   tagSubscription: Subscription = new Subscription();
   constructor(
     private location:Location,
-    private formBuilder: FormBuilder,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogAddTagComponent>){}
+    private formBuilder: FormBuilder,private activatedRoute: ActivatedRoute,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogAddTagComponent>){}
   ngOnDestroy(): void {
     this.tagSubscription.unsubscribe();
   }
@@ -61,9 +61,9 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
 this.ngOnInit()
   }
   reloadCurrentRoute() {
-    this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/etiquetas"]));
-    window.location.reload();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./'], { relativeTo: this.activatedRoute, queryParamsHandling: 'preserve' });
 }
 
 }
