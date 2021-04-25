@@ -144,6 +144,6 @@ export class NewExpertFormComponent implements OnInit {
    this.router
     .navigateByUrl('/addexperto', { skipLocationChange: true })
     .then(() => this.router.navigate(['/expertos']));
-    //window.location.reload();
+    window.location.reload();
   }
 }
