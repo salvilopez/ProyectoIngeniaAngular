@@ -42,7 +42,8 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
       this.tagSubscription = this.tagService.createTags(tag).subscribe(
         (response) => {
           if (response) {
-
+            this.ngOnInit();
+            this.closeDialog();
 
 
           }
@@ -56,7 +57,7 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
         }
       );
     }
-    this.closeDialog();
+
 this.ngOnInit()
   }
   reloadCurrentRoute() {
