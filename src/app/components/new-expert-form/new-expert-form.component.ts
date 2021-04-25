@@ -105,9 +105,10 @@ export class NewExpertFormComponent implements OnInit {
               verticalPosition: 'top',
             });
         });
+        this.reloadCurrentRoute();
     }
 
-    this.reloadCurrentRoute();
+
   }
 
   /**

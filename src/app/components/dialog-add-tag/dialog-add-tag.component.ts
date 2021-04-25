@@ -56,12 +56,16 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
 
         }
       );
+      this.reloadCurrentRoute();
+      this.closeDialog();
     }
 
 
   }
   reloadCurrentRoute() {
-    this.router.navigateByUrl('/etiquetas')
+    this.router.navigateByUrl('/expertos', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/expertos"]));
+    window.location.reload();
 }
 
 }
