@@ -56,13 +56,13 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
         }
       );
     }
-    this.closeDialog();
+  //  this.closeDialog();
     this.reloadCurrentRoute();
   }
   reloadCurrentRoute() {
-   // this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
-   // this.router.navigate(["/etiquetas"]));
-    this.location.reload();
+    this.router.navigateByUrl('/etiquetas', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/etiquetas"]));
+    window.location.reload();
 }
 
 }
