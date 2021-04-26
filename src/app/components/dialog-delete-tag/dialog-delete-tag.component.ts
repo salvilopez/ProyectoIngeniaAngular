@@ -7,6 +7,7 @@ import { TagsService } from 'src/app/services/tag/tags.service';
 import { Location } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tag } from 'src/app/models/tag/tag.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-dialog-delete-tag',
   templateUrl: './dialog-delete-tag.component.html',
@@ -18,7 +19,7 @@ export class DialogDeleteTagComponent implements OnInit , OnDestroy {
   numero:any;
   tag:any;
   dataSource = new MatTableDataSource();
-  constructor(
+  constructor(private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogDeleteTagComponent>,private location: Location,
     @Inject(MAT_DIALOG_DATA) public data:{tag:string}
     ){}
@@ -47,6 +48,17 @@ export class DialogDeleteTagComponent implements OnInit , OnDestroy {
 
     this.tagSubscription=this.tagService.deleteTag(this.tag.id).subscribe(
       (response) => {
+        this.snackBar.open(
+          'ok',
+          'Eliminado correctamente',
+          {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          }
+        );
+
+
         this.reloadCurrentRoute();
         this.closeDialog();
       },

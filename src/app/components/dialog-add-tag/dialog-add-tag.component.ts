@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tag } from 'src/app/models/tag/tag.model';
@@ -14,7 +15,7 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
   addTagForm: FormGroup = new FormGroup({});
   tagSubscription: Subscription = new Subscription();
   constructor(
-
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,private tagService: TagsService,private router: Router,public dialogRef: MatDialogRef<DialogAddTagComponent>){}
   ngOnDestroy(): void {
     this.tagSubscription.unsubscribe();
@@ -41,7 +42,15 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
       console.log(tag);
       this.tagSubscription = this.tagService.createTags(tag).subscribe(
         (response) => {
-
+          this.snackBar.open(
+            'ok',
+            'Añadida correctamente',
+            {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            }
+          );
             this.reloadCurrentRoute();
             this.closeDialog();
 
