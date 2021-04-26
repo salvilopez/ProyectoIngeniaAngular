@@ -47,13 +47,13 @@ export class DialogDeleteTagComponent implements OnInit , OnDestroy {
 
     this.tagSubscription=this.tagService.deleteTag(this.tag.id).subscribe(
       (response) => {
-
+        this.reloadCurrentRoute();
+        this.closeDialog();
       },
       (error) => {
 
     } );
-    this.reloadCurrentRoute();
-    this.closeDialog();
+
   }
 
 }

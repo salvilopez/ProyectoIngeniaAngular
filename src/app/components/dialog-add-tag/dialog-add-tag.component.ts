@@ -41,23 +41,22 @@ export class DialogAddTagComponent implements OnInit , OnDestroy {
       console.log(tag);
       this.tagSubscription = this.tagService.createTags(tag).subscribe(
         (response) => {
-          if (response) {
+
             this.reloadCurrentRoute();
             this.closeDialog();
 
 
-          }
+
         },
         (error) => {
-          if(error){
 
 
-          }
+
+
 
         }
       );
-      this.reloadCurrentRoute();
-      this.closeDialog();
+
     }
 
 
