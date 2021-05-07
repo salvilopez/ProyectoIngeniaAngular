@@ -29,9 +29,12 @@ export class DialogSendEmailComponent implements OnInit {
   ngOnInit(): void {
     this.emailForm = this.formBuilder.group({
       email: ['', Validators.required],
+      password:['',Validators.required]
     });
   }
-
+  get passInvalido(){
+    return this.emailForm.get('password')?.invalid && this.emailForm.get('password')?.touched;
+  }
   closeDialog() {
     this.dialogRef.close();
   }
@@ -44,8 +47,8 @@ export class DialogSendEmailComponent implements OnInit {
     })
   }
 
-  newPassword(){}
-  passwordOlvided() {
+
+  newPassword() {
     if (
       this.emailForm.valid &&
       this.emailForm.value.email

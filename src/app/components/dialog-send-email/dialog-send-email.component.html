@@ -7,7 +7,12 @@
             El Email no existe en la BD
           </small>
         </div>
-
+        <div class="col-12"  *ngIf="emailexiste">
+            <input id="password" type="password" formControlName="password" class="form-control" placeholder="Introducir Password" (change)="newPassword()" >
+            <small *ngIf="passInvalido" class="text-danger">
+                password requerida
+              </small>
+        </div>
     </div>
     <div class="form-group row">
         <div class="offset-2 col-8 d-flex flex-row justify-content-around">
