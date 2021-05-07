@@ -51,11 +51,12 @@ export class DialogSendEmailComponent implements OnInit {
   newPassword() {
     if (
       this.emailForm.valid &&
-      this.emailForm.value.email
+      this.emailForm.value.email &&
+      this.emailForm.value.password
     ) {
-      let email =this.emailForm.value.email
-
-        this.emailSubscription = this.authService.passolvidada(email).subscribe(
+      this.email=this.emailForm.value.email
+      let password= this.emailForm.value.password
+        this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
 
             if (response) {
@@ -71,10 +72,6 @@ export class DialogSendEmailComponent implements OnInit {
                 }
               );
             }
-
-
-
-
 
           }, (error) => {
             console.log(error)
