@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { DialogNewPassComponent } from '../dialog-new-pass/dialog-new-pass.component';
 
 @Component({
   selector: 'app-dialog-send-email',
@@ -13,7 +12,7 @@ import { DialogNewPassComponent } from '../dialog-new-pass/dialog-new-pass.compo
   styleUrls: ['./dialog-send-email.component.scss']
 })
 export class DialogSendEmailComponent implements OnInit {
-emailnoexiste=false;
+  emailexiste = false;
   emailForm: FormGroup = new FormGroup({});
   emailSubscription: Subscription = new Subscription();
   constructor(
@@ -21,8 +20,8 @@ emailnoexiste=false;
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<DialogSendEmailComponent>){}
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<DialogSendEmailComponent>) { }
   ngOnDestroy(): void {
     this.emailSubscription.unsubscribe();
   }
@@ -35,52 +34,56 @@ emailnoexiste=false;
   closeDialog() {
     this.dialogRef.close();
   }
+  chechkpassword() {
+    this.authService.passolvidada(this.emailForm.value.email).subscribe((response) => {
+      this.emailexiste = response
+
+    })
+  }
+
+  newPassword(){}
   passwordOlvided() {
     if (
       this.emailForm.valid &&
       this.emailForm.value.email
     ) {
-      let email=
+      let email =this.emailForm.value.email
 
-      this.emailSubscription = this.authService.passolvidada(this.emailForm.value.email).subscribe(
-        (response) => {
+        this.emailSubscription = this.authService.passolvidada(email).subscribe(
+          (response) => {
 
-          if (response) {
+            if (response) {
 
-            this.openDialogPassword(email);
-          } else {
-            this.snackBar.open(
-              'Error 403',
-            " Email no existe en Base de datos",
-              {
-              duration: 2000,
-               horizontalPosition: 'center',
-              verticalPosition: 'top',
-              }
-            );
+            } else {
+              this.snackBar.open(
+                'Error 403',
+                " Email no existe en Base de datos",
+                {
+                  duration: 2000,
+                  horizontalPosition: 'center',
+                  verticalPosition: 'top',
+                }
+              );
+            }
+
+
+
+
+
+          }, (error) => {
+            console.log(error)
           }
-
-
-
-
-
-        },(error)=>{
-          console.log(error)
-        }
-      );
+        );
     }
     this.closeDialog();
     this.reloadCurrentRoute();
   }
   reloadCurrentRoute() {
-    this.router.navigateByUrl('/login', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/login"]));
-}
-openDialogPassword(dato:any) {
-    this.dialog.open(DialogNewPassComponent,{
-    data:{email:JSON.stringify(dato)}
-  });
+    this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() =>
+      this.router.navigate(["/login"]));
+  }
 
-}
+
+
 
 }

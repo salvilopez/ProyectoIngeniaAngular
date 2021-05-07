@@ -76,7 +76,7 @@ export class AuthService {
 
        return this.http.get('https://proyectofinal-ingenia.herokuapp.com/auth/email/'+email);
   }
-  nuevoEmail(correo: string,pass:string): Observable<any> {
+  nuevoPAss(correo: string,pass:string): Observable<any> {
 
     let body={
       email:correo,
