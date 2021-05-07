@@ -55,6 +55,8 @@ alert("hola")
 
       this.email=this.emailForm.value.email
       let password= this.emailForm.value.password
+      console.log("email => "+this.email)
+      console.log("password =>"+password)
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
             alert("passok")
