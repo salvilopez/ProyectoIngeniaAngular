@@ -50,10 +50,8 @@ export class DialogSendEmailComponent implements OnInit {
 
   newPassword() {
 
+alert("hola")
 
-    console.log(      this.emailForm.valid &&
-      this.emailForm.value.email &&
-      this.emailForm.value.password)
     if (
       this.emailForm.valid &&
       this.emailForm.value.email &&
