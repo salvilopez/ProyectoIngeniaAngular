@@ -2,7 +2,7 @@
     <div class="form-group row d-flex flex-column">
         <label for="text1" class="col-12 col-form-label text-left">Introduce tu email para Recibir el email de recuperación </label>
         <div class="col-12">
-            <input id="email" type="text" formControlName="email" class="form-control" placeholder="Introducir Email" (change)="chechkpassword()" >
+            <input id="email" type="text" formControlName="email" class="form-control" placeholder="Introducir Email" (change)="checkpassword()" >
             <small *ngIf="!emailexiste" class="text-danger">
             El Email no existe en la BD
           </small>

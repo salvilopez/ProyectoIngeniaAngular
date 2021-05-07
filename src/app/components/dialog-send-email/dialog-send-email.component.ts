@@ -34,8 +34,10 @@ export class DialogSendEmailComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
-  chechkpassword() {
+  checkpassword() {
+    console.log(this.emailForm.value.email)
     this.authService.passolvidada(this.emailForm.value.email).subscribe((response) => {
+      console.log(response)
       this.emailexiste = response
 
     })
