@@ -59,19 +59,16 @@ export class DialogSendEmailComponent implements OnInit {
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
 
-            if (response) {
-
-            } else {
+         
               this.snackBar.open(
-                'Error 403',
-                " Email no existe en Base de datos",
+                'ok!',
+                " Contraseña cambiada correctamente",
                 {
                   duration: 2000,
                   horizontalPosition: 'center',
                   verticalPosition: 'top',
                 }
               );
-            }
 
           }, (error) => {
             console.log(error)
