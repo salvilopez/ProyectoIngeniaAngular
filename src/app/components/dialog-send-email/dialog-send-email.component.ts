@@ -41,39 +41,33 @@ emailnoexiste=false;
       this.emailForm.value.email
     ) {
       let email=
-      console.log(this.emailForm.value.email);
+
       this.emailSubscription = this.authService.passolvidada(this.emailForm.value.email).subscribe(
         (response) => {
+
+
+          console.log(response)
           if (response) {
-            this.closeDialog();
+
             this.openDialogPassword(email);
           } else {
-            this.closeDialog();
+            this.snackBar.open(
+              'Error 403',
+            " Email no existe en Base de datos",
+              {
+              duration: 2000,
+               horizontalPosition: 'center',
+              verticalPosition: 'top',
+              }
+            );
           }
 
 
 
 
 
-        },
-        (error) => {
-          switch (error.status) {
-            case 403:
-              this.snackBar.open(
-                'Error 403',
-              " Email no existe en Base de datos",
-                {
-                duration: 2000,
-                 horizontalPosition: 'center',
-                verticalPosition: 'top',
-                }
-              );
-
-              break;
-            default:
-              break;
-          }
-
+        },(error)=>{
+          console.log(error)
         }
       );
     }
