@@ -76,6 +76,15 @@ export class AuthService {
 
        return this.http.get('https://proyectofinal-ingenia.herokuapp.com/auth/email/'+email);
   }
+  nuevoEmail(correo: string,pass:string): Observable<any> {
+
+    let body={
+      email:correo,
+      password:pass,
+    }
+
+    return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/newpass',body);
+}
   /**
    * Metodo para convertir cualquier imagen a base64
    * @param $event

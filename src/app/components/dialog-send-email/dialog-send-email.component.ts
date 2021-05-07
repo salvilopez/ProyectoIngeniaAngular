@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DialogNewPassComponent } from '../dialog-new-pass/dialog-new-pass.component';
 
 @Component({
   selector: 'app-dialog-send-email',
@@ -20,6 +21,7 @@ emailnoexiste=false;
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+     public dialog: MatDialog,
     public dialogRef: MatDialogRef<DialogSendEmailComponent>){}
   ngOnDestroy(): void {
     this.emailSubscription.unsubscribe();
@@ -42,15 +44,17 @@ emailnoexiste=false;
       console.log(this.emailForm.value.email);
       this.emailSubscription = this.authService.passolvidada(this.emailForm.value.email).subscribe(
         (response) => {
-          this.snackBar.open(
-            'OK!',
-          " Email enviado Correctamente",
-            {
-            duration: 2000,
-             horizontalPosition: 'center',
-            verticalPosition: 'top',
-            }
-          );
+          if (response) {
+            this.closeDialog();
+            this.openDialogPassword(email);
+          } else {
+            this.closeDialog();
+          }
+
+
+
+
+
         },
         (error) => {
           switch (error.status) {
@@ -80,7 +84,13 @@ emailnoexiste=false;
     this.router.navigateByUrl('/login', {skipLocationChange: true}).then(()=>
     this.router.navigate(["/login"]));
 }
+openDialogPassword(dato:any) {
+  this.dialog.open(DialogNewPassComponent);
+
+    this.dialog.open(DialogNewPassComponent,{
+    data:{email:JSON.stringify(dato)}
+  });
 
 }
 
-
+}
