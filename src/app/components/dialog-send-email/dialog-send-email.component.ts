@@ -49,6 +49,11 @@ export class DialogSendEmailComponent implements OnInit {
 
 
   newPassword() {
+
+
+    console.log(      this.emailForm.valid &&
+      this.emailForm.value.email &&
+      this.emailForm.value.password)
     if (
       this.emailForm.valid &&
       this.emailForm.value.email &&
@@ -58,7 +63,7 @@ export class DialogSendEmailComponent implements OnInit {
       let password= this.emailForm.value.password
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
-
+            alert("passok")
          
               this.snackBar.open(
                 'ok!',
@@ -71,6 +76,7 @@ export class DialogSendEmailComponent implements OnInit {
               );
 
           }, (error) => {
+            alert("fail")
             console.log(error)
           }
         );
