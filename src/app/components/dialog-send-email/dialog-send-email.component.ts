@@ -45,8 +45,6 @@ emailnoexiste=false;
       this.emailSubscription = this.authService.passolvidada(this.emailForm.value.email).subscribe(
         (response) => {
 
-
-          console.log(response)
           if (response) {
 
             this.openDialogPassword(email);
@@ -79,8 +77,6 @@ emailnoexiste=false;
     this.router.navigate(["/login"]));
 }
 openDialogPassword(dato:any) {
-  this.dialog.open(DialogNewPassComponent);
-
     this.dialog.open(DialogNewPassComponent,{
     data:{email:JSON.stringify(dato)}
   });
