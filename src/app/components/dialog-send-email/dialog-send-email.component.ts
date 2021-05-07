@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class DialogSendEmailComponent implements OnInit {
   emailexiste = false;
+  email="";
   emailForm: FormGroup = new FormGroup({});
   emailSubscription: Subscription = new Subscription();
   constructor(
@@ -35,8 +36,8 @@ export class DialogSendEmailComponent implements OnInit {
     this.dialogRef.close();
   }
   checkpassword() {
-    console.log(this.emailForm.value.email)
-    this.authService.passolvidada(this.emailForm.value.email).subscribe((response) => {
+    this.email=this.emailForm.value.email;
+    this.authService.passolvidada(this.email).subscribe((response) => {
       console.log(response)
       this.emailexiste = response
 
