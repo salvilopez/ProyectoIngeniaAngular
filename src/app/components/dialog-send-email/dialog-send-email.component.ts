@@ -46,9 +46,7 @@ export class DialogSendEmailComponent implements OnInit {
 
     })
   }
-newpass2(){
-  alert("hola")
-}
+
 
   newPassword() {
 
