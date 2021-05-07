@@ -52,11 +52,7 @@ export class DialogSendEmailComponent implements OnInit {
 
 alert("hola")
 
-    if (
-      this.emailForm.valid &&
-      this.emailForm.value.email &&
-      this.emailForm.value.password
-    ) {
+
       this.email=this.emailForm.value.email
       let password= this.emailForm.value.password
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
@@ -72,15 +68,15 @@ alert("hola")
                   verticalPosition: 'top',
                 }
               );
-
+              this.closeDialog();
+              this.reloadCurrentRoute();
           }, (error) => {
             alert("fail")
             console.log(error)
           }
         );
-    }
-    this.closeDialog();
-    this.reloadCurrentRoute();
+    
+
   }
   reloadCurrentRoute() {
     this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() =>
