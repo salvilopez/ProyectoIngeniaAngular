@@ -7,8 +7,8 @@ import { Tag } from 'src/app/models/tag/tag.model';
   providedIn: 'root'
 })
 export class TagsService {
-  //urlbase:string='https://proyectofinal-ingenia.herokuapp.com'
-  urlbase:string='http://localhost:8081'
+  urlbase:string='https://proyectofinal-ingenia.herokuapp.com'
+  //urlbase:string='http://localhost:8081'
   constructor(private http: HttpClient) { }
 
 /**
