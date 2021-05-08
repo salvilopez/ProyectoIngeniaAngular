@@ -7,7 +7,7 @@
             El Email no existe en la BD
           </small>
         </div>
-        <div class="col-12"  *ngIf="emailexiste">
+        <div class="col-12 mt-3"  *ngIf="emailexiste">
             <input id="password" type="password" formControlName="password" class="form-control" placeholder="Introducir Password" >
             <small *ngIf="passInvalido" class="text-danger">
                 password requerida
