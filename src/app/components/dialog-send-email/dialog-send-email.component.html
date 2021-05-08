@@ -20,15 +20,7 @@
     <div class="form-group row">
         <div class="offset-2 col-8 d-flex flex-row justify-content-around">
             <button class="btn btn-secondary m-3 mt-5" type="button" (click)="closeDialog()">salir</button>
-            <button class="btn btn-success m-3 mt-5" type="submit">Recibir correo recuperación</button>
+            <button [disabled]="!emailForm.valid&&!emailexiste" class="btn btn-success m-3 mt-5" type="submit">Recibir correo recuperación</button>
         </div>
     </div>
 </form>
-
-
-<div class="col-12 mt-3"  *ngIf="emailexiste">
-    <input id="password" type="password" formControlName="password" class="form-control" placeholder="Introducir Password" >
-    <small *ngIf="passInvalido" class="text-danger">
-        password requerida
-      </small>
-</div>

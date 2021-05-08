@@ -41,7 +41,6 @@ export class DialogSendEmailComponent implements OnInit {
   checkpassword() {
     this.email=this.emailForm.value.email;
     this.authService.passolvidada(this.email).subscribe((response) => {
-      console.log(response)
       this.emailexiste = response
 
     })
@@ -49,10 +48,6 @@ export class DialogSendEmailComponent implements OnInit {
 
 
   newPassword() {
-
-alert("hola")
-
-
       this.email=this.emailForm.value.email
       let password= this.emailForm.value.password
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
@@ -69,15 +64,22 @@ alert("hola")
               this.closeDialog();
               this.reloadCurrentRoute();
           }, (error) => {
-            this.snackBar.open(
-              'Error!',
-              "No existe el email en la BD",
-              {
-                duration: 2000,
-                horizontalPosition: 'center',
-                verticalPosition: 'top',
-              }
-            );
+            console.log(error.status)
+           switch (error.status) {
+              case 500:
+                this.snackBar.open(
+                  'Error!',
+                  "Ocurrio un error",
+                  {
+                    duration: 2000,
+                    horizontalPosition: 'center',
+                    verticalPosition: 'top',
+                  }
+                );           
+                break;   
+              default:
+                break;
+            }
           }
         );
     
