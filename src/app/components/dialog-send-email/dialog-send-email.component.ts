@@ -57,8 +57,6 @@ alert("hola")
       let password= this.emailForm.value.password
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
-            alert("passok")
-         
               this.snackBar.open(
                 'ok!',
                 " Contraseña cambiada correctamente",
@@ -71,8 +69,15 @@ alert("hola")
               this.closeDialog();
               this.reloadCurrentRoute();
           }, (error) => {
-            alert("fail")
-            console.log(error)
+            this.snackBar.open(
+              'Error!',
+              "No existe el email en la BD",
+              {
+                duration: 2000,
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+              }
+            );
           }
         );
     
