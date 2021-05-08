@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  urlbase:string='https://proyectofinal-ingenia.herokuapp.com'
+  urlbase:string='http://proyectofinal-ingenia.herokuapp.com'
 //urlbase:string='http://localhost:8081'
   private isLoggedIn: boolean = false;
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
