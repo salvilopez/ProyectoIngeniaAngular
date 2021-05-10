@@ -147,7 +147,7 @@ export class ExpertService {
     let token =sessionStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({ 
-        "Autorization":"Bearer "+token
+        "Authorization":"Bearer "+token
       })
     };
 
