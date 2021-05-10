@@ -61,7 +61,7 @@ get passInvalido(){
               verticalPosition: 'top',
               }
             );
-            sessionStorage.setItem('Token',"Jwt =  "+response.jwt);
+            sessionStorage.setItem('Token',"Jwt = "+response.jwt);
             localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
