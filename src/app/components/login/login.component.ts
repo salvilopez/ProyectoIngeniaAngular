@@ -50,7 +50,6 @@ get passInvalido(){
       );
       this.authSubscription = this.authService.login(user).subscribe(
         (response:UserResponse) => {
-          console.log(response)
           if (response.jwt) {
            this.snackBar.open(
               'Login realizado con exito',
@@ -62,7 +61,6 @@ get passInvalido(){
               }
             );
             sessionStorage.setItem('Authorization',"Bearer "+response.jwt);
-            localStorage.setItem('Authorization',"Bearer "+response.jwt);
             localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
