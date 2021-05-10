@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
@@ -144,8 +144,15 @@ export class ExpertService {
   getAllExperts(expertRequest:any){
 
     if(expertRequest.limite===0)expertRequest.limite=10
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Autorization":"Bearer "+token,
+      })
+    };
 
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
 
 }

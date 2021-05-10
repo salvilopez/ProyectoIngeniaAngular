@@ -60,8 +60,8 @@ get passInvalido(){
               verticalPosition: 'top',
               }
             );
-            sessionStorage.setItem('token',"Bearer"+" "+response.jwt);
-            localStorage.setItem('token',"Bearer"+" "+response.jwt);
+            sessionStorage.setItem('token',response.jwt);
+            localStorage.setItem('token',response.jwt);
             localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
