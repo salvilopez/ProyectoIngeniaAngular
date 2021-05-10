@@ -61,6 +61,7 @@ get passInvalido(){
               }
             );
             sessionStorage.setItem('Authorization',"Bearer "+response.jwt);
+            localStorage.setItem('Authorization',"Bearer "+response.jwt);
             localStorage.setItem('username', this.loginForm.value.email);
             this.authService.setLoggedIn(true);
             this.router.navigate(['/expertos']);
