@@ -148,6 +148,7 @@ export class ExpertService {
     const httpOptions = {
       headers: new HttpHeaders({ 
         "Autorization":"Bearer "+token,
+        'Access-Control-Allow-Origin': '*'
       })
     };
 
