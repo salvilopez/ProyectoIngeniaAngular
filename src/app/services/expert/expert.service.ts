@@ -11,7 +11,8 @@ import { Expert } from 'src/app/models/expert/expert.model';
   providedIn: 'root'
 })
 export class ExpertService {
-
+  urlbase:string='https://proyectofinal-ingenia.herokuapp.com'
+//urlbase:string='http://localhost:8081'
   constructor(private http: HttpClient, private sanitizer: DomSanitizer ) { }
 
 /**
@@ -21,7 +22,7 @@ export class ExpertService {
  */
   updateExpert(expert:Expert): Observable<Expert> {
 
-    return this.http.put<Expert>('https://proyectofinal-ingenia.herokuapp.com/api/expertos',expert);
+    return this.http.put<Expert>(this.urlbase+'/api/expertos',expert);
 
   }
   /**
@@ -66,7 +67,7 @@ export class ExpertService {
       expertRequest.puntuacion=0
     }
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
   /**
    * Find Experts By Id
@@ -75,7 +76,7 @@ export class ExpertService {
    */
   getExpertsById(num:number): Observable<Expert> {
 
-    return this.http.get<Expert>('https://proyectofinal-ingenia.herokuapp.com/api/expertos/'+num);
+    return this.http.get<Expert>(this.urlbase+'/api/expertos/'+num);
   }
 
   /**
@@ -85,7 +86,7 @@ export class ExpertService {
    */
   createExpert(expert:Expert): Observable<Expert> {
 
-    return this.http.post<Expert>('https://proyectofinal-ingenia.herokuapp.com/api/expertos',expert);
+    return this.http.post<Expert>(this.urlbase+'/api/expertos',expert);
   }
 
 
@@ -98,13 +99,13 @@ export class ExpertService {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?nombre='+expertRequest.nombre+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?nombre='+expertRequest.nombre+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
   getAllExpertsBytags(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?etiqueta='+expertRequest.etiqueta+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?etiqueta='+expertRequest.etiqueta+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
 /**
@@ -120,7 +121,7 @@ export class ExpertService {
         return this.getAllExperts(expertRequest);
     }
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?estado='+expertRequest.estado+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?estado='+expertRequest.estado+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
 /**
@@ -132,7 +133,7 @@ export class ExpertService {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?modalidad='+expertRequest.modalidad+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?modalidad='+expertRequest.modalidad+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
   /**
@@ -144,7 +145,7 @@ export class ExpertService {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>('https://proyectofinal-ingenia.herokuapp.com/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
   }
 
 }

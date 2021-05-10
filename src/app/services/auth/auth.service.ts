@@ -9,7 +9,8 @@ import { User } from 'src/app/models/user/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
+  urlbase:string='https://proyectofinal-ingenia.herokuapp.com'
+//urlbase:string='http://localhost:8081'
   private isLoggedIn: boolean = false;
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
@@ -24,7 +25,7 @@ export class AuthService {
       password: user.password,
 
      };
-    return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/login', body);
+    return this.http.post(this.urlbase+'/auth/login', body);
   }
 /**
  * Metodo para Actualizar Usuario
@@ -33,7 +34,7 @@ export class AuthService {
  */
   actualizarUser(usu: User): Observable<User> {
 
-    return this.http.put<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username',usu);
+    return this.http.put<User>(this.urlbase+'/auth/username',usu);
   }
   /**
    *  Metodo pra obtener User oir Username
@@ -42,7 +43,7 @@ export class AuthService {
    */
   getbyUsername(username: string): Observable<User> {
 
-    return this.http.get<User>('https://proyectofinal-ingenia.herokuapp.com/auth/username/'+username);
+    return this.http.get<User>(this.urlbase+'/auth/username/'+username);
   }
   /**
    * Metodo getter de log
@@ -70,11 +71,11 @@ export class AuthService {
       email: user.email,
       password: user.password,
     };
-       return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/registro', body);
+       return this.http.post(this.urlbase+'/auth/registro', body);
   }
   passolvidada(email: string): Observable<any> {
 
-       return this.http.get('https://proyectofinal-ingenia.herokuapp.com/auth/email/'+email);
+       return this.http.get(this.urlbase+'/auth/email/'+email);
   }
   nuevoPAss(correo: string,pass:string): Observable<any> {
 
@@ -83,7 +84,7 @@ export class AuthService {
       password:pass,
     }
 
-    return this.http.post('https://proyectofinal-ingenia.herokuapp.com/auth/newpass',body);
+    return this.http.post(this.urlbase+'/auth/newpass',body);
 }
   /**
    * Metodo para convertir cualquier imagen a base64

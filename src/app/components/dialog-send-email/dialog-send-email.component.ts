@@ -41,7 +41,6 @@ export class DialogSendEmailComponent implements OnInit {
   checkpassword() {
     this.email=this.emailForm.value.email;
     this.authService.passolvidada(this.email).subscribe((response) => {
-      console.log(response)
       this.emailexiste = response
 
     })
@@ -49,18 +48,12 @@ export class DialogSendEmailComponent implements OnInit {
 
 
   newPassword() {
-
-alert("hola")
-
-
       this.email=this.emailForm.value.email
       let password= this.emailForm.value.password
       console.log("email => "+this.email)
       console.log("password =>"+password)
         this.emailSubscription = this.authService.nuevoPAss(this.email,password).subscribe(
           (response) => {
-            alert("passok")
-         
               this.snackBar.open(
                 'ok!',
                 " Contraseña cambiada correctamente",
@@ -73,8 +66,22 @@ alert("hola")
               this.closeDialog();
               this.reloadCurrentRoute();
           }, (error) => {
-            alert("fail")
-            console.log(error)
+            console.log(error.status)
+           switch (error.status) {
+              case 500:
+                this.snackBar.open(
+                  'Error!',
+                  "Ocurrio un error",
+                  {
+                    duration: 2000,
+                    horizontalPosition: 'center',
+                    verticalPosition: 'top',
+                  }
+                );           
+                break;   
+              default:
+                break;
+            }
           }
         );
     
