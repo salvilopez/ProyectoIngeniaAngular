@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { TagRequest } from 'src/app/models/tag/tag-request.model';
@@ -17,8 +17,13 @@ export class TagsService {
  * @returns Tag
  */
   createTags(tag:Tag): Observable<Tag> {
-
-   return this.http.post<Tag>(this.urlbase+'/api/etiquetas',tag);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+   return this.http.post<Tag>(this.urlbase+'/api/etiquetas',tag,httpOptions);
   }
 
 /**
@@ -27,8 +32,13 @@ export class TagsService {
  * @returns Tag borrada
  */
   deleteTag(idTag:number): Observable<Tag> {
-
-    return this.http.delete<Tag>(this.urlbase+'/api/etiquetas/delete/'+idTag);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+    return this.http.delete<Tag>(this.urlbase+'/api/etiquetas/delete/'+idTag,httpOptions);
   }
 
 /**
@@ -37,12 +47,17 @@ export class TagsService {
  * @returns Tag[]
  */
   getAllTagsByCreador(tagrequest:any): Observable<Tag[]> {
-
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
     if(tagrequest.limite===0)tagrequest.limite=10
 
     if(tagrequest.creador==undefined)tagrequest.creador="";
 
-    return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+    return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?creador='+tagrequest.creador+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite,httpOptions);
 
 }
 
@@ -52,11 +67,16 @@ export class TagsService {
  * @returns Tag[]
  */
   getAllTagbyFeCr(tagrequest:any): Observable<Tag[]> {
-
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
    if(tagrequest.limite===0)tagrequest.limite=10
 
 
-    return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+    return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?fechaCreacion='+tagrequest.fechaCreacion+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite,httpOptions);
   }
 /**
  * Metodo obtener lista flitrando por nombre
@@ -64,11 +84,16 @@ export class TagsService {
  * @returns Tag[]
  */
   getAllTagsByName(tagrequest:any): Observable<Tag[]> {
-console.log(tagrequest)
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
               if(tagrequest.nombre==undefined)tagrequest.nombre="";
 
         //console.log('http://localhost:8082/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite)
-        return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite);
+        return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?nombre='+tagrequest.nombre+'&pagina='+tagrequest.pagina+"&limite="+tagrequest.limite,httpOptions);
   }
 
   /**
@@ -77,12 +102,17 @@ console.log(tagrequest)
  * @returns Tag[]
  */
   getAllTags(tag:any): Observable<Tag[]> {
-
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
     if(tag.pagina===undefined) tag.pagina=0
 
     if(tag.limite===undefined) tag.limite=10
 
-      return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite);
+      return this.http.get<Tag[]>(this.urlbase+'/api/etiquetas?pagina='+tag.pagina+"&limite="+tag.limite,httpOptions);
   }
 
 }

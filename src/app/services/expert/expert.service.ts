@@ -22,7 +22,15 @@ export class ExpertService {
  */
   updateExpert(expert:Expert): Observable<Expert> {
 
-    return this.http.put<Expert>(this.urlbase+'/api/expertos',expert);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+
+
+    return this.http.put<Expert>(this.urlbase+'/api/expertos',expert,httpOptions);
 
   }
   /**
@@ -67,7 +75,15 @@ export class ExpertService {
       expertRequest.puntuacion=0
     }
 
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+
+
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?puntuacion='+expertRequest.puntuacion+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
   /**
    * Find Experts By Id
@@ -76,7 +92,15 @@ export class ExpertService {
    */
   getExpertsById(num:number): Observable<Expert> {
 
-    return this.http.get<Expert>(this.urlbase+'/api/expertos/'+num);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+
+
+    return this.http.get<Expert>(this.urlbase+'/api/expertos/'+num,httpOptions);
   }
 
   /**
@@ -86,7 +110,15 @@ export class ExpertService {
    */
   createExpert(expert:Expert): Observable<Expert> {
 
-    return this.http.post<Expert>(this.urlbase+'/api/expertos',expert);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+
+
+    return this.http.post<Expert>(this.urlbase+'/api/expertos',expert,httpOptions);
   }
 
 
@@ -99,13 +131,27 @@ export class ExpertService {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?nombre='+expertRequest.nombre+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?nombre='+expertRequest.nombre+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
   getAllExpertsBytags(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
 
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?etiqueta='+expertRequest.etiqueta+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?etiqueta='+expertRequest.etiqueta+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
 
 /**
@@ -120,8 +166,13 @@ export class ExpertService {
     if(expertRequest.estado==='todos'){
         return this.getAllExperts(expertRequest);
     }
-
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?estado='+expertRequest.estado+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?estado='+expertRequest.estado+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
 
 /**
@@ -132,8 +183,14 @@ export class ExpertService {
   getAllExpertsByModalidad(expertRequest:any): Observable<Expert[]> {
 
     if(expertRequest.limite===0)expertRequest.limite=10
-
-    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?modalidad='+expertRequest.modalidad+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite);
+    if(expertRequest.limite===0)expertRequest.limite=10
+    let token =sessionStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        "Authorization":"Bearer "+token
+      })
+    };
+    return this.http.get<Expert[]>(this.urlbase+'/api/expertos?modalidad='+expertRequest.modalidad+'&pagina='+expertRequest.pagina+"&limite="+expertRequest.limite,httpOptions);
   }
 
   /**
